@@ -178,6 +178,9 @@ public class PhaseManagerAI : MonoBehaviour
 
 				if (turnSide == PlayerSide.Enemy)
 					StartCoroutine(AutoAdvanceAfterDelay(0.5f));
+
+				HandManagerAI.Instance.ArrangeHand();
+
 				break;
 
 			case Phase.Mana:
