@@ -101,18 +101,18 @@ public class FkingCardDisplay : MonoBehaviour
         // --- 状態の切り替え: 【手札・通常表示モード】に設定 ---
         SetHandState(); // この中でフレームとイラストの表示/非表示も行われる
 
-        if (statsText != null)
-        {
-            if (data.cardType == "ユニットスター")
-            {
-                statsText.gameObject.SetActive(true);
-                statsText.text = $"AP {data.ap} / BP {data.bp}";
-            }
-            else
-            {
-                statsText.gameObject.SetActive(false);
-            }
-        }
+        //if (statsText != null)
+        //{
+        //    if (data.cardType == "ユニットスター")
+        //    {
+        //        statsText.gameObject.SetActive(true);
+        //        statsText.text = $"AP {data.ap} / BP {data.bp}";
+        //    }
+        //    else
+        //    {
+        //        statsText.gameObject.SetActive(false);
+        //    }
+        //}
 
         UpdateCostDisplay(data);
     }
@@ -124,7 +124,7 @@ public class FkingCardDisplay : MonoBehaviour
 
         // --- 1. コストと通常Statsを非表示 ---
         HideAllCostUI();
-        if (statsText != null) statsText.gameObject.SetActive(false);
+        //if (statsText != null) statsText.gameObject.SetActive(false);
 
         if (currentCardData.hasPostSummonEffect == false)
         {
@@ -215,7 +215,7 @@ public class FkingCardDisplay : MonoBehaviour
 
         // 状態の初期化
         HideAllCostUI();
-        if (statsText != null) statsText.gameObject.SetActive(false);
+        //if (statsText != null) statsText.gameObject.SetActive(false);
 
         // フレーム切り替え
         UpdateFrameDisplay(true); // 'true' = バトルモードである
@@ -270,7 +270,7 @@ public class FkingCardDisplay : MonoBehaviour
 
         // 状態の初期化
         HideAllCostUI();
-        if (statsText != null) statsText.gameObject.SetActive(false);
+        //if (statsText != null) statsText.gameObject.SetActive(false);
 
         // フレーム切り替え
         UpdateFrameDisplay(false); // 'false' = バトルモードではない
@@ -286,7 +286,7 @@ public class FkingCardDisplay : MonoBehaviour
         if (keyCardIllustImage != null) keyCardIllustImage.gameObject.SetActive(false);
 
         // バトルStats非表示
-        if (battleStatsGroup != null) battleStatsGroup.SetActive(false);
+        //if (battleStatsGroup != null) battleStatsGroup.SetActive(false);
 
         // ▼▼▼ 修正点 (KeyCardなら色を変更) ▼▼▼
         if (currentCardData != null && currentCardData.hasKeyCardIllust)
@@ -376,18 +376,18 @@ public class FkingCardDisplay : MonoBehaviour
     {
         if (currentCardData == null) return;
         SetHandState();
-        if (statsText != null)
-        {
-            if (currentCardData.cardType == "ユニットスター")
-            {
-                statsText.gameObject.SetActive(true);
-                statsText.text = $"AP {currentCardData.ap} / BP {currentCardData.bp}";
-            }
-            else
-            {
-                statsText.gameObject.SetActive(false);
-            }
-        }
+        //if (statsText != null)
+        //{
+        //    if (currentCardData.cardType == "ユニットスター")
+        //    {
+        //        statsText.gameObject.SetActive(true);
+        //        statsText.text = $"AP {currentCardData.ap} / BP {currentCardData.bp}";
+        //    }
+        //    else
+        //    {
+        //        statsText.gameObject.SetActive(false);
+        //    }
+        //}
         UpdateCostDisplay(currentCardData);
     }
 
