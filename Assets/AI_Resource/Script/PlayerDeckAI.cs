@@ -80,6 +80,8 @@ public class PlayerDeckAI : MonoBehaviour
 			// DeckEdit‘¤‚ÍintACardAI‘¤‚Ístring‚È‚Ì‚Å•ÏŠ·‚·‚é
 			string idString = id.ToString();
 
+			idString = idString.PadLeft(2, '0');
+
 			// allCards‚©‚çˆê’v‚·‚éƒJ[ƒh‚ð’T‚·
 			CardAI cardData = allCards.Find(card => card.cardID == idString);
 
