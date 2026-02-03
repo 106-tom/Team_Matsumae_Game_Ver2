@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6864a98d27c7aaa4e92b1b5877ef0bd1, type: 3}
+  m_Name: 05
+  m_EditorClassIdentifier: 
+  cardID: 05
+  cardName: "\u8001\u9F8D\u3000\u5929\u81B3"
+  cardImage: {fileID: 21300000, guid: 1e6e73c728e9cd349b527f4b023c8593, type: 3}
+  cardType: Monster
+  genericCost: 0
+  specificColor: 1
+  specificCost: 4
+  effectText: "\u9F8D\u65CF\u3001\u6F5C\u4F0F"
+  tags: "\u9F8D\u65CF\u3001\u6F5C\u4F0F"
+  ap: 5
+  bp: 500
+  hasPostSummonEffect: 0

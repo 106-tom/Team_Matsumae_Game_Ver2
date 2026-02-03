@@ -1,0 +1,869 @@
+﻿[
+  {
+    "cardID": 0,
+    "category": "test",
+    "cardName": "test",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/00_00"
+  },
+  {
+    "cardID": 1,
+    "category": "Monster",
+    "cardName": "竜脚軽",
+    "ap": 1,
+    "bp": 100,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 1
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_01",
+    "CardText": ""
+  },
+  {
+    "cardID": 2,
+    "category": "Monster",
+    "cardName": "どら侍",
+    "ap": 2,
+    "bp": 200,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 2
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_02"
+  },
+  {
+    "cardID": 3,
+    "category": "Monster",
+    "cardName": "ビックバトルボールドラゴン忍",
+    "ap": 2,
+    "bp": 200,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 3
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_03",
+    "onSummon": [
+      {
+        "effectType": "Destroy",
+        "mathValue": 500,
+        "timeValue": 1
+      }
+    ]
+  },
+  {
+    "cardID": 4,
+    "category": "Monster",
+    "cardName": "龍使いの少女",
+    "ap": 3,
+    "bp": 100,
+    "anyColorCost": 1,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 2
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_04",
+    "onSummon": [
+      {
+        "effectType": "Draw",
+        "mathValue": 0,
+        "timeValue": 1
+      }
+    ]
+  },
+  {
+    "cardID": 5,
+    "category": "Monster",
+    "cardName": "老龍天禅",
+    "ap": 5,
+    "bp": 500,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 4
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_05"
+  },
+  {
+    "cardID": 6,
+    "category": "Monster",
+    "cardName": "博麗蒼竜",
+    "ap": 3,
+    "bp": 500,
+    "anyColorCost": 1,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 4
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_06",
+    "onSummon": [
+      {
+        "effectType": "Destroy",
+        "mathValue": 9999,
+        "timeValue": 1
+      }
+    ]
+  },
+  {
+    "cardID": 7,
+    "category": "Monster",
+    "cardName": "大将軍無敵火",
+    "ap": 4,
+    "bp": 500,
+    "anyColorCost": 2,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 3
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_07",
+    "onSummon": [
+      {
+        "effectType": "DestroyAll",
+        "mathValue": 300,
+        "timeValue": 0
+      }
+    ]
+  },
+  {
+    "cardID": 8,
+    "category": "Monster",
+    "cardName": "皇姫ヴアル",
+    "ap": 4,
+    "bp": 500,
+    "anyColorCost": 2,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 4
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_08",
+    "onSummon": [
+      {
+        "effectType": "GrantTag_APBuff_Allies",
+        "mathValue": 0,
+        "timeValue": 0
+      }
+    ],
+    "Fininsher": true
+  },
+  {
+    "cardID": 9,
+    "category": "Spell",
+    "cardName": "老龍の徘徊",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 2
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_09",
+    "onSummon": [
+      {
+        "effectType": "Destroy",
+        "mathValue": 300,
+        "timeValue": 2
+      }
+    ]
+  },
+  {
+    "cardID": 10,
+    "category": "Spell",
+    "cardName": "獄炎龍",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 2,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 3
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_10",
+    "onSummon": [
+      {
+        "effectType": "DestroyAll",
+        "mathValue": 500,
+        "timeValue": 0
+      }
+    ]
+  },
+  {
+    "cardID": 11,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_01"
+  },
+  {
+    "cardID": 12,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_02"
+  },
+  {
+    "cardID": 13,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_03"
+  },
+  {
+    "cardID": 14,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_04"
+  },
+  {
+    "cardID": 15,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_05"
+  },
+  {
+    "cardID": 16,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_06"
+  },
+  {
+    "cardID": 17,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_07"
+  },
+  {
+    "cardID": 18,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_08"
+  },
+  {
+    "cardID": 19,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_09"
+  },
+  {
+    "cardID": 20,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Blue",
+        "cost": 0
+      }
+    ],
+    "color": "Blue",
+    "imagePath": "CardImages/03_10"
+  },
+  {
+    "cardID": 21,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_01"
+  },
+  {
+    "cardID": 22,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_02"
+  },
+  {
+    "cardID": 23,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_03"
+  },
+  {
+    "cardID": 24,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_04"
+  },
+  {
+    "cardID": 25,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_05"
+  },
+  {
+    "cardID": 26,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_06"
+  },
+  {
+    "cardID": 27,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_07"
+  },
+  {
+    "cardID": 28,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_08"
+  },
+  {
+    "cardID": 29,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_09"
+  },
+  {
+    "cardID": 30,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Green",
+    "imagePath": "CardImages/03_10"
+  },
+  {
+    "cardID": 31,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_01"
+  },
+  {
+    "cardID": 32,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_02"
+  },
+  {
+    "cardID": 33,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_03"
+  },
+  {
+    "cardID": 34,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_04"
+  },
+  {
+    "cardID": 35,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_05"
+  },
+  {
+    "cardID": 36,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_06"
+  },
+  {
+    "cardID": 37,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_07"
+  },
+  {
+    "cardID": 38,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_08"
+  },
+  {
+    "cardID": 39,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_09"
+  },
+  {
+    "cardID": 40,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Yellow",
+    "imagePath": "CardImages/03_10"
+  },
+  {
+    "cardID": 41,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_01"
+  },
+  {
+    "cardID": 42,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_02"
+  },
+  {
+    "cardID": 43,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_03"
+  },
+  {
+    "cardID": 44,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_04"
+  },
+  {
+    "cardID": 45,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_05"
+  },
+  {
+    "cardID": 46,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_06"
+  },
+  {
+    "cardID": 47,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_07"
+  },
+  {
+    "cardID": 48,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_08"
+  },
+  {
+    "cardID": 49,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_09"
+  },
+  {
+    "cardID": 50,
+    "category": "unknown",
+    "cardName": "unknown",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 0,
+    "manaCosts": [
+      {
+        "color": "Green",
+        "cost": 0
+      }
+    ],
+    "color": "Purple",
+    "imagePath": "CardImages/03_10"
+  }
+]

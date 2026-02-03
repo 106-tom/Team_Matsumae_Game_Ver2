@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GameAI.unity
+    guid: 99ca3812f014c7d428c552419243faf3
+  - enabled: 1
+    path: Assets/Scenes/DeckEddit.unity
+    guid: 1eef39889ee16d9409c5e15b8886af0f
+  - enabled: 1
+    path: Assets/Scenes/DeckSelect.unity
+    guid: cc3b73bd2807733458e86a20666f77bc
+  - enabled: 1
+    path: Assets/Scenes/Result.unity
+    guid: 4be104063faa64c4ca1ba9dbef055c5d
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: f1cb4035066966345b6604f46215bdea
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: ac53c36abca0f4c46b204a31551f9772
+  - enabled: 1
+    path: Assets/Scenes/Home2.unity
+    guid: 5001279dfe7ad2d42ac086a7bb0c273f
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: cec01674a23cb234194ca3f9788baf33
+  - enabled: 1
+    path: Assets/Scenes/Room2.unity
+    guid: e155cc60822002f48a8a7fe602a93de6
+  - enabled: 1
+    path: Assets/Scenes/Room.unity
+    guid: 094570d6a12e8334680cb526a04caf83
+  - enabled: 1
+    path: Assets/Scenes/Game2.unity
+    guid: 6ee508d2df9bdc74ebea1e55f28d8857
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 9b13093cad1c0f541a9f2e75000c726e
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/Battle.unity
+    guid: 21c1e423a09ba0647a69d43d8003d312
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/Boot.unity
+    guid: fe555177dcdd73248a244d51645c9efa
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/CPUGame.unity
+    guid: 64b5f2ab8b53b7247b5a00792a7be958
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/CPUMenu.unity
+    guid: 72d8d11b843ed7846852de2381da1589
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/CPUResult.unity
+    guid: 7f00976a2d97f8640b2a7ab065d43833
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/DeckEdit.unity
+    guid: a08245449d8945540a3918ffc46965c1
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/DeckSelect.unity
+    guid: c42a0d99a66d97045a8514e84e8b38ec
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/Home.unity
+    guid: b349254c5e99bb0478a0bfbd5dc82cc1
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/MatchGame.unity
+    guid: cc926b0473ef9594091cdb453fd2566e
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/MatchJoin.unity
+    guid: 3324d11f42c7fbf45aa02b0722815a88
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/MatchMenu.unity
+    guid: ed7ab750fc8285549852efd546e50dd4
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/MatchReady.unity
+    guid: 1a576356dba4159459d27d725e12dcd3
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/Result.unity
+    guid: 94facabcb15454448a8b509b738ffbca
+  - enabled: 0
+    path: Assets/PL_Iwai_SceneManagement/Assets/Scenes/Title.unity
+    guid: 0425b631d7f955e4f8513371cd45892e
+  m_configObjects: {}

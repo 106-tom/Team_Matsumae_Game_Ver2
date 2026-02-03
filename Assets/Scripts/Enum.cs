@@ -1,0 +1,1 @@
+//public enum ChantKey { None, DrawOneCard, DealTwoDamageToUnit, HealThreePlayerHealth } //Žg‚í‚È‚¢‚¯‚Çˆê‰ž
