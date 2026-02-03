@@ -15,10 +15,6 @@ public class Buff : MonoBehaviour
     [SerializeField] private RenderTexture renderTexture;
     [Space(10)]
 
-    [Header("実際に表示するカード")]
-    [SerializeField] private GameObject mainCardIDDisplay;
-    [Space(10)]
-
     [Header("カード浮上")]
     [Tooltip("浮上時間")]
     [SerializeField] private float upTime;
@@ -33,7 +29,6 @@ public class Buff : MonoBehaviour
     [SerializeField] private AnimationCurve downCurve;
 
     private GameObject glassPlate;
-    private FkingCardFXManager cardFXManager;
 
     // 補助クラス
     CardMotionHelper cardMotionHelper;
@@ -43,30 +38,27 @@ public class Buff : MonoBehaviour
     {
         cardMotionHelper = SystemManager.Instance.cardMotionHelper;
         cardEffectHelper = SystemManager.Instance.cardEffectHelper;
-        cardFXManager = GetComponent<FkingCardFXManager>();
     }
 
     /// <summary>
     /// バフ演出開始
     /// </summary>
     /// <returns></returns>
-    IEnumerator StartBuff()
+    public IEnumerator StartBuff(
+        Transform transform,
+        GameObject mainCardIDDisplay,
+        FkingCardFXManager cardFXManager)
     {
         // 上昇処理の始点と終点
-        Vector3 upStartPosition = transform.position;
-        Vector3 upEndPosition = transform.position + new Vector3(0f, 0.5f, 0f);
+        Vector3 upStartPosition = transform.localPosition;
+        Vector3 upEndPosition = transform.localPosition + new Vector3(0f, 0.5f, 0f);
 
         // 降下の終点
-        Vector3 downEndPosition = transform.position;
-
-        // 回転処理の始点と終点
-        Quaternion startRotation = transform.rotation;
-        Vector3 eulerAngles = new Vector3(0f, 0f, 0f);
-        Quaternion endRotation = Quaternion.Euler(eulerAngles);
+        Vector3 downEndPosition = transform.localPosition;
 
         // 浮かせる
         yield return StartCoroutine(cardMotionHelper.MoveTarget(transform, upTime, upStartPosition, upEndPosition, upCurve));
-        Vector3 downStartPosition = transform.position;
+        Vector3 downStartPosition = transform.localPosition;
 
         // 光沢演出開始
         Color color = Color.green;

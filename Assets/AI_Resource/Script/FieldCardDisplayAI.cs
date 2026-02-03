@@ -44,6 +44,7 @@ public class FieldCardDisplayAI : MonoBehaviour, IPointerClickHandler
 	void Awake()
 	{
 		visual = GetComponentInChildren<CardVisualController>();
+		if (visual == null) Debug.Log("‚È‚¢‚æ‚¨‚¨‚¨‚¨‚¨‚¨‚¨‚¨‚¨‚¨‚¨‚¨‚¨");
 	}
 
 	public void Setup(CardAI card, PlayerSide ownerSide)

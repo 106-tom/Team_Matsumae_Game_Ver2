@@ -400,6 +400,10 @@ public class PlayerFieldAI : MonoBehaviour
 			if (card == null) continue;
 
 			card.Unrest();
+			Debug.Log("回復開始");
+            Transform visualChild = card.transform.Find("GameObject/CardVisualHajime");
+			var fxManager = card.GetComponent<FkingCardFXManager>();
+			StartCoroutine(MotionManager.Instance.heal.StartHeal(card.transform, visualChild.gameObject, fxManager));
 		}
 
 		Debug.Log("[Field] 全カードをアンレストしました");

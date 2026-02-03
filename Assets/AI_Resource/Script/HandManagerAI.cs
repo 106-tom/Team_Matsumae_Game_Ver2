@@ -16,6 +16,7 @@ public class HandManagerAI : MonoBehaviour
     public void ArrangeHand()
 	{
 		int count = handZoneParent.childCount;
+		Debug.Log(count);
 		for (int i = 0; i < count; i++)
 		{
 			Transform card = handZoneParent.GetChild(i);

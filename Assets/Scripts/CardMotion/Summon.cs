@@ -117,9 +117,10 @@ public class Summon : MonoBehaviour
         GameObject rockObj = effectPool.Get(rockEffect.gameObject, effectPosition);
         ParticleSystem rockEffectInstance = rockObj.GetComponent<ParticleSystem>();
 
-        flashEffectInstance.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
-        smokeEffectInstance.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
-        rockEffectInstance.transform.localScale  = new Vector3(0.05f, 0.05f, 0.05f);
+        Vector3 effectScale = new Vector3(0.05f, 0.05f, 0.05f);
+        flashEffectInstance.transform.localScale = effectScale;
+        smokeEffectInstance.transform.localScale = effectScale;
+        rockEffectInstance.transform.localScale  = effectScale;
 
         //エフェクト再生
         flashEffectInstance.Play();

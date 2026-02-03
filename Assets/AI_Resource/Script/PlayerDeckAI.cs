@@ -147,10 +147,7 @@ public class PlayerDeckAI : MonoBehaviour
 			// ドロー演出
 			StartCoroutine(MotionManager.Instance.draw.StartDraw(cardGO, handParent.gameObject));
 
-			//if (handManager != null)
-			//     { /*handManager.ArrangeHand();*/}
-
-            }
+		}
 	}
 	
 
@@ -162,10 +159,10 @@ public class PlayerDeckAI : MonoBehaviour
 
 		// UIカード削除
 		Destroy(display.gameObject);
-
+		Debug.Log("カウント : " + handParent.childCount);
 		//// 並び替え（これが絶対必要）
-		//if (HandManagerAI.Instance != null)
-		//	HandManagerAI.Instance.ArrangeHand();
+		if (HandManagerAI.Instance != null)
+			HandManagerAI.Instance.ArrangeHand();
 	}
 
 	public CardDisplayAI DrawCardAndGetDisplay(PlayerSide drawingPlayer)

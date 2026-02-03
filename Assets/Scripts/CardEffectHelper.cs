@@ -59,8 +59,8 @@ public class CardEffectHelper : MonoBehaviour
         cardMaterial.SetFloat(isShiningID, 0);
         cardMaterial.SetFloat(effectTimeID, 0f);
 
-        Destroy(camera.gameObject);
-        Destroy(cardVisual.gameObject);
+        //Destroy(camera.gameObject);
+        //Destroy(cardVisual.gameObject);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class CardEffectHelper : MonoBehaviour
     {
         // RenderTexture用カメラ作成
         camera = Instantiate(UICamera);
-
+        Debug.Log("カメラ生成");
         // RenderTexture表示用カード生成
         Quaternion rotation = Quaternion.Euler(90f, 0f, 0f);
         Vector3 cardPosition = new Vector3(0f, -3f, 0f);

@@ -15,9 +15,9 @@ public class Heal : MonoBehaviour
     [SerializeField] private RenderTexture renderTexture;
     [Space(10)]
 
-    [Header("実際に表示するカード")]
-    [SerializeField] private GameObject mainCardIDDisplay;
-    [Space(10)]
+    //[Header("実際に表示するカード")]
+    //[SerializeField] private GameObject mainCardIDDisplay;
+    //[Space(10)]
 
     [Header("カード浮上")]
     [Tooltip("浮上時間")]
@@ -41,8 +41,6 @@ public class Heal : MonoBehaviour
     [SerializeField] private AnimationCurve rotateCurve;
     [Space(10)]
 
-    [SerializeField] private FkingCardFXManager cardFXManager;
-
     private GameObject glassPlate;
     private CardMotionHelper cardMotionHelper;
     private CardEffectHelper cardEffectHelper;
@@ -57,14 +55,17 @@ public class Heal : MonoBehaviour
     /// 疲労回復演出
     /// </summary>
     /// <returns></returns>
-    public IEnumerator StartHeal()
+    public IEnumerator StartHeal(
+        Transform transform, 
+        GameObject mainCardIDDisplay, 
+        FkingCardFXManager cardFXManager)
     {
         // 上昇処理の始点と終点
-        Vector3 upStartPosition = transform.position;
-        Vector3 upEndPosition = transform.position + upOffset;
+        Vector3 upStartPosition = transform.localPosition;
+        Vector3 upEndPosition = transform.localPosition + upOffset;
 
         // 降下の終点
-        Vector3 downEndPosition = transform.position;
+        Vector3 downEndPosition = transform.localPosition;
 
         // 回転処理の始点と終点
         Quaternion startRotation = transform.rotation;
@@ -73,10 +74,10 @@ public class Heal : MonoBehaviour
 
         // 浮かせる
         yield return StartCoroutine(cardMotionHelper.MoveTarget(transform, upTime, upStartPosition, upEndPosition, upCurve));
-        Vector3 downStartPosition = transform.position;
+        Vector3 downStartPosition = transform.localPosition;
 
         // 回転させて光らせる
-        yield return StartCoroutine(cardMotionHelper.RotationTarget(transform, rotateTime, startRotation, endRotation, rotateCurve));
+        //yield return StartCoroutine(cardMotionHelper.RotationTarget(transform, rotateTime, startRotation, endRotation, rotateCurve));
         
         // 光沢演出開始
         Color color = Color.white;
