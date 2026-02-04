@@ -47,7 +47,7 @@ public class EffectManager : MonoBehaviour
 		if (card.effects == null || card.effects.Count == 0)
 			return;
 
-		Debug.Log($"[Effect] {card.cardName} の効果チェック ({timing})");
+		//Debug.Log($"[Effect] {card.cardName} の効果チェック ({timing})");
 
 		foreach (var effect in card.effects)
 		{
@@ -55,7 +55,7 @@ public class EffectManager : MonoBehaviour
 			if (effect.effectTimings != timing)
 				continue;
 
-			Debug.Log($"[Effect] 発動 → {effect.effectType}");
+			//Debug.Log($"[Effect] 発動 → {effect.effectType}");
 
 			switch (effect.effectType)
 			{

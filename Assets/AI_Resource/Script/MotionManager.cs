@@ -16,7 +16,7 @@ public class MotionManager : MonoBehaviour
     [SerializeField] private Spell _spell;
     public Attack attack => _attack;
     public Block block => _block;
-    public Break _break => _break;
+    public Break _break => _Break;
     public Buff buff => _buff;
     public Draw draw => _draw;
     public Heal heal => _heal;

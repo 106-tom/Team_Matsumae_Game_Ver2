@@ -69,7 +69,7 @@ public class PlayerManaManagerAI : MonoBehaviour
 
 		SortAndAlign();
 
-		Debug.Log($"{color} Mana Added");
+		//Debug.Log($"{color} Mana Added");
 	}
 
 

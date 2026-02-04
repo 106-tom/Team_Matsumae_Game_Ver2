@@ -22,8 +22,6 @@ public class Draw : MonoBehaviour
     /// <returns></returns>
     public IEnumerator StartDraw(GameObject newCard, GameObject hand)
     {
-        Debug.Log("ドロー開始");
-
         CardMotionHelper mathHelper = SystemManager.Instance.cardMotionHelper;
         AdjustCardPosition adjustCardPosition = AdjustCardPosition.Instance;
 

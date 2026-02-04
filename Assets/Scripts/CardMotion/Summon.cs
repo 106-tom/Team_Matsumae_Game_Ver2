@@ -81,7 +81,6 @@ public class Summon : MonoBehaviour
         // 一番右のカード(最新の子オブジェクト)を取得
         // 1. 直前の座標に頼らず、インデックス（何枚目か）から計算する
         int childCount = myFieldCards.childCount - 1;
-        float shiftOffset = 100f; // 適切な値に調整してください
 
         // 2. フィールドの基準点（1枚目が入る場所）
         Vector3 baseCenter = AdjustCardPosition.Instance.fieldCenter;

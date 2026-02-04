@@ -65,7 +65,7 @@ public class PlayerDeckAI : MonoBehaviour
 
 			if (cardData == null)
 			{
-				Debug.LogWarning($"カードIDが見つかりません: {entry.cardID}");
+				//Debug.LogWarning($"カードIDが見つかりません: {entry.cardID}");
 				continue;
 			}
 
@@ -78,7 +78,7 @@ public class PlayerDeckAI : MonoBehaviour
 
 		ShuffleDeck();
 
-		Debug.Log($"デッキ初期化完了：{deck.Count}枚");
+		//Debug.Log($"デッキ初期化完了：{deck.Count}枚");
 	}
 
 	// デッキをシャッフル
@@ -98,7 +98,7 @@ public class PlayerDeckAI : MonoBehaviour
 	{
 		if (deck.Count == 0)
 		{
-			Debug.Log("デッキが空です");
+			//Debug.Log("デッキが空です");
 			return;
 		}
 
@@ -107,7 +107,7 @@ public class PlayerDeckAI : MonoBehaviour
 			CardAI burnedCard = deck[0];
 			deck.RemoveAt(0);
 
-			Debug.Log($"【手札上限】{burnedCard.cardName} は9枚目なので破棄されました！");
+			//Debug.Log($"【手札上限】{burnedCard.cardName} は9枚目なので破棄されました！");
 			return;
 		}
 
@@ -115,7 +115,7 @@ public class PlayerDeckAI : MonoBehaviour
 		deck.RemoveAt(0);
 		hand.Add(drawnCard);
 
-		Debug.Log("ドロー: " + drawnCard.cardName);
+		//Debug.Log("ドロー: " + drawnCard.cardName);
 
 		if (cardPrefab != null && handParent != null)
 		{
@@ -126,7 +126,7 @@ public class PlayerDeckAI : MonoBehaviour
             // ① データをセット
             CardDisplayAI display = cardGO.GetComponent<CardDisplayAI>();
 			display.Setup(drawnCard);
-			Debug.Log($"[Draw] cardName={drawnCard.cardName}, cardID={drawnCard.cardID}");
+			//Debug.Log($"[Draw] cardName={drawnCard.cardName}, cardID={drawnCard.cardID}");
 
 			// ★ ここで誰のカードかと場所をセット
 			display.OwnerSide = drawingPlayer;
@@ -156,13 +156,11 @@ public class PlayerDeckAI : MonoBehaviour
 		// 手札からデータ削除
 		if (hand.Contains(display.cardData))
 			hand.Remove(display.cardData);
-
 		// UIカード削除
 		Destroy(display.gameObject);
-		Debug.Log("カウント : " + handParent.childCount);
 		//// 並び替え（これが絶対必要）
-		if (HandManagerAI.Instance != null)
-			HandManagerAI.Instance.ArrangeHand();
+		//if (HandManagerAI.Instance != null)
+		//	HandManagerAI.Instance.ArrangeHand();
 	}
 
 	public CardDisplayAI DrawCardAndGetDisplay(PlayerSide drawingPlayer)

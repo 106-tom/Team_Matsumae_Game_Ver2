@@ -50,14 +50,15 @@ public class Block : MonoBehaviour
     /// <returns></returns>
     public IEnumerator StartBlock(Transform attackedCard)
     {
+        Debug.Log("ブロックスタート");
         // 自分の位置
         Vector3 myPosition = transform.localPosition;
 
         // 回転の始点を設定
         Quaternion startRotation = transform.rotation;
         // 回転の終点を設定
-        float targetYAngle = cardMotionHelper.GetYAngleToTarget(myPosition, attackedCard.transform.position);
-        Quaternion endRotation = Quaternion.Euler(0f, targetYAngle, 0f) * startRotation;
+        //float targetYAngle = cardMotionHelper.GetYAngleToTarget(myPosition, attackedCard.transform.position);
+        //Quaternion endRotation = Quaternion.Euler(0f, targetYAngle, 0f) * startRotation;
        
         // 敵カードへ向く
         //yield return StartCoroutine(cardMotionHelper.RotationTarget(transform, rotationTime, startRotation, endRotation, rotateCurve));

@@ -57,7 +57,7 @@ public class FkingCardDisplayAttacher : MonoBehaviour
 
 	public void ChangeCard(string newID)
 	{
-		Debug.Log("[Fking] ChangeCard: " + newID);
+		//Debug.Log("[Fking] ChangeCard: " + newID);
 
 		if (string.IsNullOrEmpty(newID))
 		{
@@ -132,11 +132,11 @@ public class FkingCardDisplayAttacher : MonoBehaviour
 		// íİô•¶‚È‚Ç‚Ì‹æ•Êi‚Æ‚è‚ ‚¦‚¸ƒƒOj
 		if (persistent)
 		{
-			Debug.Log("BattleFrame (Persistent)");
+			//Debug.Log("BattleFrame (Persistent)");
 		}
 		else
 		{
-			Debug.Log("BattleFrame");
+			//Debug.Log("BattleFrame");
 		}
 	}
 

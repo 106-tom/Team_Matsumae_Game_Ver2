@@ -74,8 +74,11 @@ public class CardDisplayAI : MonoBehaviour, IPointerClickHandler
 				PhaseManagerAI.Instance.currentPlayerIndex == 0
 				? SummonSide.Player
 				: SummonSide.Enemy;
-			cardData.position = transform.position; // 2026/02/03 追加 召喚する際に使う座標
-			Debug.Log("座標 : " + cardData.position);
+			cardData.position = 
+				new Vector3(transform.localPosition.x, transform.localPosition.y - 150f, transform.localPosition.z); // 2026/02/03 追加 召喚する際に使う座標
+			
+			Debug.Log("cardDataPosition : " + cardData.position);
+			Debug.Log("lcoalPosition : " + transform.localPosition);
 			SummonManagerAI.Instance.TrySummon(cardData, this, summonSide);
 		}
 		

@@ -22,7 +22,7 @@ public class SummonManagerAI : MonoBehaviour
 
 	public bool TrySummon(CardAI card, CardDisplayAI handCard, SummonSide side)
 	{
-		Debug.Log($"card:{card.cardID}");
+		//Debug.Log($"card:{card.cardID}");
 
 		PlayerSide currentTurn = TurnManagerAI.Instance.CurrentTurnSide;
 		if (handCard.OwnerSide != currentTurn)
@@ -124,7 +124,7 @@ public class SummonManagerAI : MonoBehaviour
 			}
 		);
 
-		Debug.Log("[Summon] ¬Œ÷");
+		//Debug.Log("[Summon] ¬Œ÷");
 
 		return true;
 	}
@@ -184,12 +184,10 @@ public class SummonManagerAI : MonoBehaviour
 			}
 		);
 
-		Debug.Log("[Spell] ¬Œ÷");
+		//Debug.Log("[Spell] ¬Œ÷");
 
 		return true;
 	}
-
-
 }
 
 public enum SummonSide
