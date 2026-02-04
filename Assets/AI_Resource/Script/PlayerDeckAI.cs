@@ -124,11 +124,6 @@ public class PlayerDeckAI : MonoBehaviour
 
 			if (cardData == null)
 			{
-<<<<<<< HEAD
-				Debug.LogWarning($"ã‚«ãƒ¼ãƒ‰IDãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“: {entry.cardID}");
-=======
-				//Debug.LogWarning($"ƒJ[ƒhID‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ: {entry.cardID}");
->>>>>>> origin/tom
 				continue;
 			}
 
@@ -141,11 +136,6 @@ public class PlayerDeckAI : MonoBehaviour
 
 		ShuffleDeck();
 
-<<<<<<< HEAD
-		Debug.Log($"ãƒ‡ãƒƒã‚­åˆæœŸåŒ–å®Œäº†ï¼š{deck.Count}æš");
-=======
-		//Debug.Log($"ƒfƒbƒL‰Šú‰»Š®—¹F{deck.Count}–‡");
->>>>>>> origin/tom
 	}
 
 	// ãƒ‡ãƒƒã‚­ã‚’ã‚·ãƒ£ãƒƒãƒ•ãƒ«
@@ -165,11 +155,6 @@ public class PlayerDeckAI : MonoBehaviour
 	{
 		if (deck.Count == 0)
 		{
-<<<<<<< HEAD
-			Debug.Log("ãƒ‡ãƒƒã‚­ãŒç©ºã§ã™");
-=======
-			//Debug.Log("ƒfƒbƒL‚ª‹ó‚Å‚·");
->>>>>>> origin/tom
 			return;
 		}
 
@@ -178,23 +163,12 @@ public class PlayerDeckAI : MonoBehaviour
 			CardAI burnedCard = deck[0];
 			deck.RemoveAt(0);
 
-<<<<<<< HEAD
-			Debug.Log($"ã€æ‰‹æœ­ä¸Šé™ã€‘{burnedCard.cardName} ã¯9æšç›®ãªã®ã§ç ´æ£„ã•ã‚Œã¾ã—ãŸï¼");
-=======
-			//Debug.Log($"yèDãŒÀz{burnedCard.cardName} ‚Í9–‡–Ú‚È‚Ì‚Å”jŠü‚³‚ê‚Ü‚µ‚½I");
->>>>>>> origin/tom
 			return;
 		}
 
 		CardAI drawnCard = deck[0];
 		deck.RemoveAt(0);
 		hand.Add(drawnCard);
-
-<<<<<<< HEAD
-		Debug.Log("ãƒ‰ãƒ­ãƒ¼: " + drawnCard.cardName);
-=======
-		//Debug.Log("ƒhƒ[: " + drawnCard.cardName);
->>>>>>> origin/tom
 
 		if (cardPrefab != null && handParent != null)
 		{
@@ -225,12 +199,6 @@ public class PlayerDeckAI : MonoBehaviour
 
 			// ãƒ‰ãƒ­ãƒ¼æ¼”å‡º
 			StartCoroutine(MotionManager.Instance.draw.StartDraw(cardGO, handParent.gameObject));
-
-<<<<<<< HEAD
-			//HandManagerAI.Instance.ArrangeHand();
-
-=======
->>>>>>> origin/tom
 		}
 	}
 	
@@ -240,17 +208,10 @@ public class PlayerDeckAI : MonoBehaviour
 		// æ‰‹æœ­ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 		if (hand.Contains(display.cardData))
 			hand.Remove(display.cardData);
-<<<<<<< HEAD
 
 		// UIã‚«ãƒ¼ãƒ‰å‰Šé™¤
 		Destroy(display.gameObject);
 
-		//// ä¸¦ã³æ›¿ãˆï¼ˆã“ã‚ŒãŒçµ¶å¯¾å¿…è¦ï¼‰
-=======
-		// UIƒJ[ƒhíœ
-		Destroy(display.gameObject);
-		//// •À‚Ñ‘Ö‚¦i‚±‚ê‚ªâ‘Î•K—vj
->>>>>>> origin/tom
 		//if (HandManagerAI.Instance != null)
 		//	HandManagerAI.Instance.ArrangeHand();
 	}

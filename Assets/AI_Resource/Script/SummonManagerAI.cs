@@ -100,6 +100,14 @@ public class SummonManagerAI : MonoBehaviour
 		summonedCard.OwnerSide = currentTurn;
 		targetDeck.RemoveFromHand(handCard);
 
+		//summonedCard = targetField.AcceptSummonedCard(card, side);
+		if (summonedCard != null)
+		{
+			StartCoroutine(FkingCardDisplay.Instance.ShowStats(summonedCard));
+		}
+
+
+
 		// Effect ‚ð‰ðŒˆ
 		EffectManager.Instance.Resolve(
 			CardAI.EffectTiming.Summon,
@@ -123,13 +131,9 @@ public class SummonManagerAI : MonoBehaviour
 			}
 		);
 
-<<<<<<< HEAD
-		FkingCardDisplay.Instance.UpdateFrameDisplay(handCard);
+		//FkingCardDisplay.Instance.ShowStats();
 
 			Debug.Log("[Summon] ¬Œ÷");
-=======
-		//Debug.Log("[Summon] ¬Œ÷");
->>>>>>> origin/tom
 
 		return true;
 	}

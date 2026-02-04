@@ -277,15 +277,49 @@ public class FkingCardDisplay : MonoBehaviour
         battleStatsGroup.SetActive(true);
 	}
 
-    public IEnumerator ShowStats()
-    {
-        Debug.Log("アクティブ待機");
-        yield return new WaitUntil(() => this.battleStatsGroup != null);
-		battleStatsGroup.SetActive(true);
-		if (battleAPText != null) battleAPText.text = FieldCardDisplayAI.Instance.Attack.ToString();
-		if (battleBPText != null) battleBPText.text = FieldCardDisplayAI.Instance.Defense.ToString();
-		Debug.Log("Statsアクティブ化");
+	// FkingCardDisplay.cs
+	//public IEnumerator ShowStats(FieldCardDisplayAI fieldCard)
+	//{
+	//	Debug.Log("アクティブ待機");
+	//	yield return new WaitUntil(() => this.battleStatsGroup != null);
+	//
+	//	battleStatsGroup.SetActive(true);
+	//
+	//	if (battleAPText != null) battleAPText.text = fieldCard.Attack.ToString();
+	//	if (battleBPText != null) battleBPText.text = fieldCard.Defense.ToString();
+	//
+	//	Debug.Log("Statsアクティブ化");
+	//}
+
+	public IEnumerator ShowStats(FieldCardDisplayAI fieldCard)
+	{
+		// fieldCard の子にある battleStatsGroup を取得
+		FkingCardDisplay fkd = fieldCard.GetComponentInChildren<FkingCardDisplay>();
+		if (fkd == null)
+		{
+			Debug.LogError("[ShowStats] FkingCardDisplay が見つからない");
+			yield break;
+		}
+
+		GameObject statsGroup = fkd.battleStatsGroup;
+		TMP_Text apText = fkd.battleAPText;
+		TMP_Text bpText = fkd.battleBPText;
+
+		// statsGroup が生成されるまで待機
+		yield return new WaitUntil(() => statsGroup != null);
+
+		// Statsを表示
+		statsGroup.SetActive(true);
+
+		if (apText != null) apText.text = fieldCard.Defense.ToString();
+		if (bpText != null) bpText.text = fieldCard.Attack.ToString();
+
+		Debug.Log($"Stats表示完了: {fieldCard.CardName}");
 	}
+
+
+
+
 
 
 	/// <summary>

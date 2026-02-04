@@ -292,12 +292,10 @@ public class PlayerFieldAI : MonoBehaviour
 		fieldCards.Add(fieldCard);
 		//UpdateFieldLayout();
 
-<<<<<<< HEAD
-		fieldCardGO.GetComponentInChildren<FkingCardDisplay>().ShowStats();
+		StartCoroutine(fieldCardGO.GetComponentInChildren<FkingCardDisplay>()
+	.ShowStats(fieldCard));
 
-=======
-		
->>>>>>> origin/tom
+
 		return fieldCard; // š ¢Š«‚³‚ê‚½À‘Ì‚ğ•Ô‚·
 	}
 

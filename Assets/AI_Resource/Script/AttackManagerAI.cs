@@ -128,11 +128,7 @@ public class AttackManagerAI : MonoBehaviour
 		if (blockCard.IsRested)
 		{
 			Debug.Log("このカードはレスト中なのでブロックできません");
-<<<<<<< HEAD
 			yield break;
-=======
-            yield break;
->>>>>>> origin/tom
 		}
 
 
@@ -140,11 +136,7 @@ public class AttackManagerAI : MonoBehaviour
 		if (blockCard.OwnerSide != defendingSide)
 		{
 			Debug.Log("[Block] 防御側以外のカードが押された");
-<<<<<<< HEAD
 			yield break;
-=======
-            yield break;
->>>>>>> origin/tom
 		}
 
 		EffectManager.Instance.Resolve(
@@ -162,11 +154,8 @@ public class AttackManagerAI : MonoBehaviour
 		if (attackingCard == null)
 		{
 			Debug.LogError("[Block] attackingCard が存在しません");
-<<<<<<< HEAD
-			yield break;
-=======
             yield break;
->>>>>>> origin/tom
+
 		}
 
 
@@ -188,19 +177,11 @@ public class AttackManagerAI : MonoBehaviour
 		bool blockerAllWin =
 			blockCard.CardData.HasEffect(EffectType.AllWin);
 
-<<<<<<< HEAD
-		// 攻撃モーション
-		yield return StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, blockCard.transform, attackerSide));
-		// ブロックモーション
-		yield return StartCoroutine(MotionManager.Instance.block.StartBlock(attackingCard.transform));
-
-=======
         // 攻撃モーション
         yield return StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, blockCard.transform, attackerSide, false));
         // ブロックモーション
 		//yield return StartCoroutine(MotionManager.Instance.block.StartBlock(attackingCard.transform));
         
->>>>>>> origin/tom
 		// 両方が持っているなら相打ち
         if (attackerAllWin && blockerAllWin)
 		{
@@ -211,11 +192,8 @@ public class AttackManagerAI : MonoBehaviour
 			DestroyCard(blockCard);
 
 			EndAttack();
-<<<<<<< HEAD
+
 			yield break;
-=======
-            yield break;
->>>>>>> origin/tom
 		}
 
 		// 攻撃側だけAllWin → 防御破壊
@@ -230,11 +208,7 @@ public class AttackManagerAI : MonoBehaviour
 			attackingCard.Rest();
 
 			EndAttack();
-<<<<<<< HEAD
 			yield break;
-=======
-            yield break;
->>>>>>> origin/tom
 		}
 
 		// 防御側だけAllWin → 攻撃破壊
@@ -249,11 +223,8 @@ public class AttackManagerAI : MonoBehaviour
 			blockCard.Rest();
 
 			EndAttack();
-<<<<<<< HEAD
 			yield break;
-=======
-            yield break;
->>>>>>> origin/tom
+
 		}
 
 		bool attackerDestroyed = false;
