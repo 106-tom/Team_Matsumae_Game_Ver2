@@ -11,6 +11,8 @@ public class CardDisplayAI : MonoBehaviour, IPointerClickHandler
 {
 	public CardAI cardData;
 
+	public Sprite backImage;
+
 	private CardToFkingVisualBinderAI visualBinder;
 
 	public SummonSide summonSide = SummonSide.Player;
@@ -41,6 +43,8 @@ public class CardDisplayAI : MonoBehaviour, IPointerClickHandler
 			Debug.LogWarning("CardToFkingVisualBinder ‚ª‚ ‚è‚Ü‚¹‚ñ", this);
 		}
 	}
+
+
 
 	public void OnPointerClick(PointerEventData eventData)
 	{

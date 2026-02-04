@@ -186,16 +186,25 @@ public class PlayerDeckAI : MonoBehaviour
 			display.Location = CardLocation.Hand;
 
 			FkingCardDisplayAttacher visual =
-				cardGO.GetComponentInChildren<FkingCardDisplayAttacher>();
+	cardGO.GetComponentInChildren<FkingCardDisplayAttacher>();
 
 			if (visual != null)
 			{
-				visual.ChangeCard(drawnCard.cardID);
+				// 敵の手札なら裏面表示
+				if (drawingPlayer == PlayerSide.Enemy)
+				{
+					visual.ShowBack();
+				}
+				else
+				{
+					visual.ChangeCard(drawnCard.cardID);
+				}
 			}
 			else
 			{
 				Debug.LogError("FkingCardDisplayAttacher が子オブジェクトに見つかりません");
 			}
+
 
 			// ドロー演出
 			StartCoroutine(MotionManager.Instance.draw.StartDraw(cardGO, handParent.gameObject));

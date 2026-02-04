@@ -5,7 +5,13 @@ using UnityEngine;
 public class FkingCardDisplayAttacher : MonoBehaviour
 {
 	public FkingCardDatabase cardDatabase;
+
 	public string cardIDToDisplay;
+
+	//public Sprite backSprite;  // Inspector で裏面画像をセット
+
+	//public Sprite backSprite;  // Inspector で裏面画像をセット
+
 
 	public enum DebugDisplayMode
 	{
@@ -41,6 +47,8 @@ public class FkingCardDisplayAttacher : MonoBehaviour
 			canvas.transform.localRotation = Quaternion.identity;
 			canvas.transform.localScale = Vector3.one * 0.01f;
 		}
+
+		//cardDisplay.backSprite = backSprite;
 	}
 
 	void Start()
@@ -149,5 +157,31 @@ public class FkingCardDisplayAttacher : MonoBehaviour
 	{
 		return currentData;
 	}
+
+	// FkingCardDisplayAttacher
+	public void ApplyCardData(CardAI card, bool isAI = false)
+	{
+		if (card == null) return;
+
+		// 表面データをセット
+		ChangeCard(card.cardID);
+
+		// AIなら裏面にする
+		if (isAI)
+			cardDisplay.ShowBack();
+		else
+			cardDisplay.ShowFront();
+	}
+
+	// FkingCardDisplayAttacher.cs
+	public void ShowBack()
+	{
+		cardDisplay.ShowBack();
+	}
+
+
+
+
+
 
 }

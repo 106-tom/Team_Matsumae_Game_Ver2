@@ -19,21 +19,16 @@ public class CardToFkingVisualBinderAI : MonoBehaviour
 	/// </summary>
 	public void ApplyCardData(CardAI card)
 	{
-		if (card == null)
-		{
-			Debug.LogError("CardAI が null");
-			return;
-		}
+		if (card == null) return;
 
-		if (visualAttacher == null)
-		{
-			Debug.LogError("FkingCardDisplayAttacher が無い");
-			return;
-		}
+		// このカードの持ち主を取得
+		CardDisplayAI cd = GetComponent<CardDisplayAI>();
 
-		Debug.Log($"[Visual] cardID 適用: {card.cardID}");
-		Debug.Log("[Binder] ApplyCardData: " + card.cardID);
-		visualAttacher.ChangeCard(card.cardID);
+		// ★敵かどうか判定
+		bool isAI = (cd.OwnerSide == PlayerSide.Enemy);
+
+		// ★裏か表かを渡す
+		visualAttacher.ApplyCardData(card, isAI);
 	}
 
 }

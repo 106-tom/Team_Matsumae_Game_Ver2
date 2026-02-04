@@ -100,6 +100,12 @@ public class SummonManagerAI : MonoBehaviour
 		summonedCard.OwnerSide = currentTurn;
 		targetDeck.RemoveFromHand(handCard);
 
+		FkingCardDisplay fkd = summonedCard.GetComponentInChildren<FkingCardDisplay>();
+		if (fkd != null && currentTurn != PlayerSide.Self) // “GƒJ[ƒh‚Ìê‡
+		{
+			fkd.ShowFront();
+		}
+
 		//summonedCard = targetField.AcceptSummonedCard(card, side);
 		if (summonedCard != null)
 		{
