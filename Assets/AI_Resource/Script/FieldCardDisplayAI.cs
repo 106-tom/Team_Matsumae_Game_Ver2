@@ -23,7 +23,7 @@ public class FieldCardDisplayAI : MonoBehaviour, IPointerClickHandler
 	public bool noRestAfterBlock = false;
 	public bool usedDestroyCancel = false;
 
-
+	public static FieldCardDisplayAI Instance;
 
 
 	public PlayerSide OwnerSide { get; set; }
@@ -43,6 +43,7 @@ public class FieldCardDisplayAI : MonoBehaviour, IPointerClickHandler
 
 	void Awake()
 	{
+		Instance = this;
 		visual = GetComponentInChildren<CardVisualController>();
 	}
 

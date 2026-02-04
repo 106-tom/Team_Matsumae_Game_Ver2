@@ -19,7 +19,6 @@ public class SummonManagerAI : MonoBehaviour
 		Instance = this;
 	}
 
-
 	public bool TrySummon(CardAI card, CardDisplayAI handCard, SummonSide side)
 	{
 		Debug.Log($"card:{card.cardID}");
@@ -124,7 +123,9 @@ public class SummonManagerAI : MonoBehaviour
 			}
 		);
 
-		Debug.Log("[Summon] ¬Œ÷");
+		FkingCardDisplay.Instance.UpdateFrameDisplay(handCard);
+
+			Debug.Log("[Summon] ¬Œ÷");
 
 		return true;
 	}
