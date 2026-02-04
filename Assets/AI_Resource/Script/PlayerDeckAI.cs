@@ -1,20 +1,20 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using System.IO; 
 
 
 public class PlayerDeckAI : MonoBehaviour
 {
-	[Header("ƒJ[ƒhƒf[ƒ^")]
-	public List<CardAI> allCards = new List<CardAI>(); // Inspector‚Å10í—Ş‚ÌƒJ[ƒh‚ğƒZƒbƒg
+	[Header("ã‚«ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿")]
+	public List<CardAI> allCards = new List<CardAI>(); // Inspectorã§10ç¨®é¡ã®ã‚«ãƒ¼ãƒ‰ã‚’ã‚»ãƒƒãƒˆ
 
-	[Header("ƒfƒbƒL/èD")]
-	public List<CardAI> deck = new List<CardAI>();     // 40–‡‚ÌƒfƒbƒLi10í—Ş~4–‡j
-	public List<CardAI> hand = new List<CardAI>();     // ƒvƒŒƒCƒ„[‚ÌèD
+	[Header("ãƒ‡ãƒƒã‚­/æ‰‹æœ­")]
+	public List<CardAI> deck = new List<CardAI>();     // 40æšã®ãƒ‡ãƒƒã‚­ï¼ˆ10ç¨®é¡Ã—4æšï¼‰
+	public List<CardAI> hand = new List<CardAI>();     // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ‰‹æœ­
 
-	[Header("èDUI")]
-	public Transform handParent;                   // èD•\¦—p‚ÌeƒIƒuƒWƒFƒNƒg
-	public GameObject cardPrefab;                  // ƒJ[ƒh•\¦—pPrefab
+	[Header("æ‰‹æœ­UI")]
+	public Transform handParent;                   // æ‰‹æœ­è¡¨ç¤ºç”¨ã®è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+	public GameObject cardPrefab;                  // ã‚«ãƒ¼ãƒ‰è¡¨ç¤ºç”¨Prefab
 
 	//public HandManagerAI handManager;
 
@@ -28,7 +28,7 @@ public class PlayerDeckAI : MonoBehaviour
 
 
 
-	// Œ»İ‚ÌèD–‡”
+	// ç¾åœ¨ã®æ‰‹æœ­æšæ•°
 	public int HandCount => hand.Count;
 
 	public List<CardAI> GetHandCards()
@@ -47,16 +47,16 @@ public class PlayerDeckAI : MonoBehaviour
 	{
 		deck.Clear();
 
-		// ‡@ ‘I‘ğ’†‚ÌƒfƒbƒL–¼‚ğæ“¾
+		// â‘  é¸æŠä¸­ã®ãƒ‡ãƒƒã‚­åã‚’å–å¾—
 		string deckName = DeckDataManager.Instance.SelectedDeckName;
 
 		if (string.IsNullOrEmpty(deckName))
 		{
-			Debug.LogError("BattleŠJn‚ÉƒfƒbƒL‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI");
+			Debug.LogError("Battleé–‹å§‹æ™‚ã«ãƒ‡ãƒƒã‚­ãŒé¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“ï¼");
 			return;
 		}
 
-		// ‡A JSONƒtƒ@ƒCƒ‹‚ÌƒpƒXæ“¾
+		// â‘¡ JSONãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹å–å¾—
 		string path = Path.Combine(
 			DeckDataManager.Instance.DeckDirectory,
 			deckName + ".json"
@@ -64,48 +64,48 @@ public class PlayerDeckAI : MonoBehaviour
 
 		if (!File.Exists(path))
 		{
-			Debug.LogError("ƒfƒbƒLƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñ: " + path);
+			Debug.LogError("ãƒ‡ãƒƒã‚­ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“: " + path);
 			return;
 		}
 
-		// ‡B JSON“Ç‚İ‚İ
+		// â‘¢ JSONèª­ã¿è¾¼ã¿
 		DeckSaveData data =
 			JsonUtility.FromJson<DeckSaveData>(File.ReadAllText(path));
 
-		Debug.Log($"Battle—pƒfƒbƒL“Ç‚İ‚İ¬Œ÷: {data.deckName}");
+		Debug.Log($"Battleç”¨ãƒ‡ãƒƒã‚­èª­ã¿è¾¼ã¿æˆåŠŸ: {data.deckName}");
 
-		// ‡C cardIds ‚ğŒ³‚É40–‡ƒfƒbƒL¶¬
+		// â‘£ cardIds ã‚’å…ƒã«40æšãƒ‡ãƒƒã‚­ç”Ÿæˆ
 		foreach (int id in data.cardIds)
 		{
-			// DeckEdit‘¤‚ÍintACardAI‘¤‚Ístring‚È‚Ì‚Å•ÏŠ·‚·‚é
+			// DeckEditå´ã¯intã€CardAIå´ã¯stringãªã®ã§å¤‰æ›ã™ã‚‹
 			string idString = id.ToString();
 
 			idString = idString.PadLeft(2, '0');
 
-			// allCards‚©‚çˆê’v‚·‚éƒJ[ƒh‚ğ’T‚·
+			// allCardsã‹ã‚‰ä¸€è‡´ã™ã‚‹ã‚«ãƒ¼ãƒ‰ã‚’æ¢ã™
 			CardAI cardData = allCards.Find(card => card.cardID == idString);
 
 			if (cardData == null)
 			{
-				Debug.LogWarning($"ƒJ[ƒhID‚ªallCards‚É‘¶İ‚µ‚Ü‚¹‚ñ: {idString}");
+				Debug.LogWarning($"ã‚«ãƒ¼ãƒ‰IDãŒallCardsã«å­˜åœ¨ã—ã¾ã›ã‚“: {idString}");
 				continue;
 			}
 
 			deck.Add(cardData);
 		}
 
-		// ‡D ƒVƒƒƒbƒtƒ‹
+		// â‘¤ ã‚·ãƒ£ãƒƒãƒ•ãƒ«
 		ShuffleDeck();
 
-		Debug.Log($"ƒfƒbƒL‰Šú‰»Š®—¹F{deck.Count}–‡");
+		Debug.Log($"ãƒ‡ãƒƒã‚­åˆæœŸåŒ–å®Œäº†ï¼š{deck.Count}æš");
 	}
 
-	// ƒfƒbƒL‚ğ‰Šú‰»
+	// ãƒ‡ãƒƒã‚­ã‚’åˆæœŸåŒ–
 	void InitializeDeck()
 	{
 		//deck.Clear();
 		//
-		//// ŠeƒJ[ƒh‚ğ4–‡‚¸‚Â’Ç‰Á
+		//// å„ã‚«ãƒ¼ãƒ‰ã‚’4æšãšã¤è¿½åŠ 
 		//foreach (var card in allCards)
 		//{
 		//	for (int i = 0; i < 4; i++)
@@ -120,16 +120,16 @@ public class PlayerDeckAI : MonoBehaviour
 
 		foreach (var entry in deckRecipe)
 		{
-			// allCards‚©‚çIDˆê’vƒJ[ƒh‚ğ’T‚·
+			// allCardsã‹ã‚‰IDä¸€è‡´ã‚«ãƒ¼ãƒ‰ã‚’æ¢ã™
 			CardAI cardData = allCards.Find(card => card.cardID == entry.cardID);
 
 			if (cardData == null)
 			{
-				Debug.LogWarning($"ƒJ[ƒhID‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ: {entry.cardID}");
+				Debug.LogWarning($"ã‚«ãƒ¼ãƒ‰IDãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“: {entry.cardID}");
 				continue;
 			}
 
-			// w’è–‡”’Ç‰Á
+			// æŒ‡å®šæšæ•°è¿½åŠ 
 			for (int i = 0; i < entry.count; i++)
 			{
 				deck.Add(cardData);
@@ -138,10 +138,10 @@ public class PlayerDeckAI : MonoBehaviour
 
 		ShuffleDeck();
 
-		Debug.Log($"ƒfƒbƒL‰Šú‰»Š®—¹F{deck.Count}–‡");
+		Debug.Log($"ãƒ‡ãƒƒã‚­åˆæœŸåŒ–å®Œäº†ï¼š{deck.Count}æš");
 	}
 
-	// ƒfƒbƒL‚ğƒVƒƒƒbƒtƒ‹
+	// ãƒ‡ãƒƒã‚­ã‚’ã‚·ãƒ£ãƒƒãƒ•ãƒ«
 	void ShuffleDeck()
 	{
 		for (int i = 0; i < deck.Count; i++)
@@ -153,12 +153,12 @@ public class PlayerDeckAI : MonoBehaviour
 		}
 	}
 
-	// ƒfƒbƒL‚©‚ç1–‡ƒhƒ[
+	// ãƒ‡ãƒƒã‚­ã‹ã‚‰1æšãƒ‰ãƒ­ãƒ¼
 	public void DrawCard(PlayerSide drawingPlayer)
 	{
 		if (deck.Count == 0)
 		{
-			Debug.Log("ƒfƒbƒL‚ª‹ó‚Å‚·");
+			Debug.Log("ãƒ‡ãƒƒã‚­ãŒç©ºã§ã™");
 			return;
 		}
 
@@ -167,7 +167,7 @@ public class PlayerDeckAI : MonoBehaviour
 			CardAI burnedCard = deck[0];
 			deck.RemoveAt(0);
 
-			Debug.Log($"yèDãŒÀz{burnedCard.cardName} ‚Í9–‡–Ú‚È‚Ì‚Å”jŠü‚³‚ê‚Ü‚µ‚½I");
+			Debug.Log($"ã€æ‰‹æœ­ä¸Šé™ã€‘{burnedCard.cardName} ã¯9æšç›®ãªã®ã§ç ´æ£„ã•ã‚Œã¾ã—ãŸï¼");
 			return;
 		}
 
@@ -175,20 +175,20 @@ public class PlayerDeckAI : MonoBehaviour
 		deck.RemoveAt(0);
 		hand.Add(drawnCard);
 
-		Debug.Log("ƒhƒ[: " + drawnCard.cardName);
+		Debug.Log("ãƒ‰ãƒ­ãƒ¼: " + drawnCard.cardName);
 
 		if (cardPrefab != null && handParent != null)
 		{
 			Vector3 pos = new Vector3(-0.35f, 0f, 0f);
-			Quaternion rot = Quaternion.Euler(90f, 0f, 180f); // ‚±‚ÌŠp“x‚É‚µ‚È‚¢‚ÆƒJ[ƒh‚ª³–ÊŒü‚©‚È‚¢
+			Quaternion rot = Quaternion.Euler(90f, 0f, 180f); // ã“ã®è§’åº¦ã«ã—ãªã„ã¨ã‚«ãƒ¼ãƒ‰ãŒæ­£é¢å‘ã‹ãªã„
 			GameObject cardGO = Instantiate(cardPrefab, pos, rot, handParent);
             cardGO.transform.localPosition = new Vector3(0f, 0f, 0f);
-            // ‡@ ƒf[ƒ^‚ğƒZƒbƒg
+            // â‘  ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
             CardDisplayAI display = cardGO.GetComponent<CardDisplayAI>();
 			display.Setup(drawnCard);
 			Debug.Log($"[Draw] cardName={drawnCard.cardName}, cardID={drawnCard.cardID}");
 
-			// š ‚±‚±‚Å’N‚ÌƒJ[ƒh‚©‚ÆêŠ‚ğƒZƒbƒg
+			// â˜… ã“ã“ã§èª°ã®ã‚«ãƒ¼ãƒ‰ã‹ã¨å ´æ‰€ã‚’ã‚»ãƒƒãƒˆ
 			display.OwnerSide = drawingPlayer;
 			display.Location = CardLocation.Hand;
 
@@ -201,29 +201,28 @@ public class PlayerDeckAI : MonoBehaviour
 			}
 			else
 			{
-				Debug.LogError("FkingCardDisplayAttacher ‚ªqƒIƒuƒWƒFƒNƒg‚ÉŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+				Debug.LogError("FkingCardDisplayAttacher ãŒå­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
 			}
 
-			// ƒhƒ[‰‰o
+			// ãƒ‰ãƒ­ãƒ¼æ¼”å‡º
 			StartCoroutine(MotionManager.Instance.draw.StartDraw(cardGO, handParent.gameObject));
 
-			//if (handManager != null)
-			//     { /*handManager.ArrangeHand();*/}
+			//HandManagerAI.Instance.ArrangeHand();
 
-            }
+		}
 	}
 	
 
 	public void RemoveFromHand(CardDisplayAI display)
 	{
-		// èD‚©‚çƒf[ƒ^íœ
+		// æ‰‹æœ­ã‹ã‚‰ãƒ‡ãƒ¼ã‚¿å‰Šé™¤
 		if (hand.Contains(display.cardData))
 			hand.Remove(display.cardData);
 
-		// UIƒJ[ƒhíœ
+		// UIã‚«ãƒ¼ãƒ‰å‰Šé™¤
 		Destroy(display.gameObject);
 
-		//// •À‚Ñ‘Ö‚¦i‚±‚ê‚ªâ‘Î•K—vj
+		//// ä¸¦ã³æ›¿ãˆï¼ˆã“ã‚ŒãŒçµ¶å¯¾å¿…è¦ï¼‰
 		//if (HandManagerAI.Instance != null)
 		//	HandManagerAI.Instance.ArrangeHand();
 	}
@@ -231,7 +230,7 @@ public class PlayerDeckAI : MonoBehaviour
 	public CardDisplayAI DrawCardAndGetDisplay(PlayerSide drawingPlayer)
 	{
 		if (deck.Count == 0) return null;
-		if (hand.Count >= 8) return null; // ãŒÀ‚ª‚ ‚é‚È‚ç
+		if (hand.Count >= 8) return null; // ä¸Šé™ãŒã‚ã‚‹ãªã‚‰
 
 		CardAI drawnCard = deck[0];
 		deck.RemoveAt(0);
@@ -248,11 +247,11 @@ public class PlayerDeckAI : MonoBehaviour
 		if (visual != null)
 			visual.ChangeCard(drawnCard.cardID);
 
-        // •À‚Ñ‘Ö‚¦i‚±‚ê‚ªâ‘Î•K—vj
+        // ä¸¦ã³æ›¿ãˆï¼ˆã“ã‚ŒãŒçµ¶å¯¾å¿…è¦ï¼‰
         //if (HandManagerAI.Instance != null)
-        //    HandManagerAI.Instance.ArrangeHand();
+        HandManagerAI.Instance.ArrangeHand();
 
-        return display; // š ‚±‚ê‚ª’´d—v
+        return display; // â˜… ã“ã‚ŒãŒè¶…é‡è¦
 	}
 
 

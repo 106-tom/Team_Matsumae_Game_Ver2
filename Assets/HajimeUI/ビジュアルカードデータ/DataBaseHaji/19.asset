@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardID: 19
   cardName: "\u30A2\u30F3\u30B3\u30FC\u30EB"
-  cardImage: {fileID: 21300000, guid: f3877c02eb4ce97448743dbbd8868800, type: 3}
+  cardImage: {fileID: 21300000, guid: 766c3844788c8744a9937e88c622ac7b, type: 3}
   keyCardImage: {fileID: 0}
   hasKeyCardIllust: 0
   cardType: Monster
@@ -26,3 +26,4 @@ MonoBehaviour:
   ap: 1
   bp: 100
   hasPostSummonEffect: 0
+  isWeariness: 0
