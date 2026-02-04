@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using static CardAI;
 //using static UnityEditor.Timeline.TimelinePlaybackControls;
+//
 
 public class EffectManager : MonoBehaviour
 {
