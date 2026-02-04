@@ -511,7 +511,6 @@ GameObject:
   - component: {fileID: 6455328911299971688}
   - component: {fileID: 74299758636581004}
   - component: {fileID: 7012263556659314921}
-  - component: {fileID: 4416970623090174381}
   m_Layer: 0
   m_Name: washitom 1
   m_TagString: Untagged
@@ -663,53 +662,6 @@ MonoBehaviour:
   red: {fileID: 4770298886270615060}
   nameText: {fileID: 290502810277986068}
   effect: {fileID: 198802386839434042}
---- !u!114 &4416970623090174381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1206409100125579345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb83a918d20212e4487b088d662dacfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 0}
-  artworkImage: {fileID: 0}
-  keyCardIllustImage: {fileID: 0}
-  statsText: {fileID: 0}
-  effectText: {fileID: 0}
-  textBackgroundImage: {fileID: 0}
-  colorFrameSets: []
-  battleStatsGroup: {fileID: 0}
-  battleAPText: {fileID: 0}
-  battleBPText: {fileID: 0}
-  genericCostUI:
-    group: {fileID: 0}
-    text: {fileID: 0}
-  redCostUI:
-    group: {fileID: 0}
-    text: {fileID: 0}
-  greenCostUI:
-    group: {fileID: 0}
-    text: {fileID: 0}
-  blueCostUI:
-    group: {fileID: 0}
-    text: {fileID: 0}
-  yellowCostUI:
-    group: {fileID: 0}
-    text: {fileID: 0}
-  purpleCostUI:
-    group: {fileID: 0}
-    text: {fileID: 0}
-  rainbowCostUI:
-    group: {fileID: 0}
-    text: {fileID: 0}
-  keyCardTextColor: {r: 1, g: 1, b: 1, a: 1}
-  keyCardBackgroundColor: {r: 0, g: 0, b: 0, a: 0.5}
-  backgroundQuad: {fileID: 0}
-  battleFrameScale: 0.9
 --- !u!1 &1262920205275444073
 GameObject:
   m_ObjectHideFlags: 0

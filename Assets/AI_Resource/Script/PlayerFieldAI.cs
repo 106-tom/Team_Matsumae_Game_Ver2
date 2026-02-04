@@ -235,6 +235,8 @@ public class PlayerFieldAI : MonoBehaviour
 
 		GameObject fieldCardGO =
 			Instantiate(fieldCardPrefab, fieldParent);
+		fieldCardGO.name = cardData.cardName + "フィールド";
+		Debug.Log($"fieldCardGO.name {fieldCardGO.name}",this);
 
 		fieldCardGO.transform.localRotation = Quaternion.identity;
 		fieldCardGO.transform.localScale = Vector3.one * 2.0f;
@@ -242,6 +244,8 @@ public class PlayerFieldAI : MonoBehaviour
 		StartCoroutine(MotionManager.Instance.summon.StartSummon(fieldParent, fieldCardGO));
 		//HandManagerAI.Instance.ArrangeHand();
 		//fieldCardGO.transform.localPosition = Vector3.zero;
+
+	
 
 		FieldCardDisplayAI fieldCard =
 			fieldCardGO.GetComponent<FieldCardDisplayAI>();
@@ -287,6 +291,8 @@ public class PlayerFieldAI : MonoBehaviour
 
 		fieldCards.Add(fieldCard);
 		//UpdateFieldLayout();
+
+		this.StartCoroutine(fieldCardGO.GetComponentInChildren<FkingCardDisplay>().ShowStats());
 
 		return fieldCard; // ★ 召喚された実体を返す
 	}

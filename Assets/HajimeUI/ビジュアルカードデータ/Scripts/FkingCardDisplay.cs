@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic; // Listを使うために必要
+using System.Collections.Generic;
+using System.Collections; // Listを使うために必要
 
 // FkingCostUIElement クラス
 [System.Serializable]
@@ -84,10 +85,20 @@ public class FkingCardDisplay : MonoBehaviour
     private Color originalTextColor;
     private Color originalBackgroundColor;
     private bool originalColorsInitialized = false;
-    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
-    // --- FkingUpdateDisplay (手札表示 / 初期表示) ---
-    public void FkingUpdateDisplay(FkingCardData data)
+	public static FkingCardDisplay Instance;
+
+	void Awake()
+	{
+		Instance = this;
+	}
+	// ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
+
+	//battlestatsを表示する
+
+	// --- FkingUpdateDisplay (手札表示 / 初期表示) ---
+	public void FkingUpdateDisplay(FkingCardData data)
     {
         if (data == null) { Debug.LogError("データ無し"); return; }
         this.currentCardData = data;
@@ -245,8 +256,8 @@ public class FkingCardDisplay : MonoBehaviour
         if (battleStatsGroup != null)
         {
             battleStatsGroup.SetActive(true);
-            if (battleAPText != null) battleAPText.text = currentAP.ToString();
-            if (battleBPText != null) battleBPText.text = currentBP.ToString();
+            if (battleAPText != null) battleAPText.text = FieldCardDisplayAI.Instance.Attack.ToString();
+            if (battleBPText != null) battleBPText.text = FieldCardDisplayAI.Instance.Defense.ToString();
         }
 
         // (中略 ... 背景Quadのスケール縮小処理 ...)
@@ -261,10 +272,24 @@ public class FkingCardDisplay : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// UIを【永続効果モード】（通常フレーム、効果表示）にします
-    /// </summary>
-    private void SetPersistentEffectMode()
+	public void ShowbattleStats()
+	{
+        battleStatsGroup.SetActive(true);
+	}
+
+    public IEnumerator ShowStats()
+    {
+        Debug.Log("アクティブ待機");
+        yield return new WaitUntil(() => this.battleStatsGroup != null);
+		battleStatsGroup.SetActive(true);
+        Debug.Log("Statsアクティブ化");
+	}
+
+
+	/// <summary>
+	/// UIを【永続効果モード】（通常フレーム、効果表示）にします
+	/// </summary>
+	private void SetPersistentEffectMode()
     {
         InitializeOriginalColors(); // 元の色を記憶
 
@@ -320,7 +345,7 @@ public class FkingCardDisplay : MonoBehaviour
     /// CardDataの色に基づき、正しいフレームだけを表示する
     /// </summary>
     /// <param name="isBattleMode">バトルモードかどうか</param>
-    private void UpdateFrameDisplay(bool isBattleMode)
+    public void UpdateFrameDisplay(bool isBattleMode)
     {
         if (currentCardData == null) return;
 
@@ -351,7 +376,11 @@ public class FkingCardDisplay : MonoBehaviour
         {
             if (targetSet.battleFrame != null)
             {
-                targetSet.battleFrame.SetActive(true);
+                this.gameObject.name = this.currentCardData.cardName+"手札?";
+
+				Debug.Log($"カード名のアクティブ化:{this.currentCardData.cardName}", this);
+;                targetSet.battleFrame.SetActive(true);
+                ShowbattleStats();
             }
         }
         else // (HandState or PersistentEffectMode)

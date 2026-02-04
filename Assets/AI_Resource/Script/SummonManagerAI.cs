@@ -124,7 +124,9 @@ public class SummonManagerAI : MonoBehaviour
 			}
 		);
 
-		Debug.Log("[Summon] ¬Œ÷");
+		FkingCardDisplay.Instance.UpdateFrameDisplay(handCard);
+
+			Debug.Log("[Summon] ¬Œ÷");
 
 		return true;
 	}
