@@ -100,7 +100,6 @@ public class SummonManagerAI : MonoBehaviour
 		summonedCard.OwnerSide = currentTurn;
 		targetDeck.RemoveFromHand(handCard);
 
-<<<<<<< HEAD
 		// ===== “GƒJ[ƒh‚È‚ç¢Š«‚µ‚½uŠÔ‚É•\‚É–ß‚· =====
 		if (currentTurn == PlayerSide.Enemy)
 		{
@@ -120,13 +119,6 @@ public class SummonManagerAI : MonoBehaviour
 			StartCoroutine(FkingCardDisplay.Instance.ShowStats(summonedCard));
 		}
 
-
-
-=======
-        bool isPlayerTurn = (side == SummonSide.Player) ? true : false;
-        //StartCoroutine(MotionManager.Instance.spell.StartSpell(isPlayerTurn, summonedCard.transform));
-       
->>>>>>> origin/tom
 		// Effect ‚ð‰ðŒˆ
         EffectManager.Instance.Resolve(
 			CardAI.EffectTiming.Summon,
