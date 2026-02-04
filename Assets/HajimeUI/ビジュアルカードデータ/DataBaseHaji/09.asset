@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 09
   m_EditorClassIdentifier: 
   cardID: 09
-  cardName: "\u8001\u9F8D\u306E\u5F98\u5F8A"
+  cardName: "\u8001\u7ADC\u306E\u5F98\u5F8A"
   cardImage: {fileID: 21300000, guid: 1d2f4378d474e834f9ffb3c52dfa04a5, type: 3}
   keyCardImage: {fileID: 0}
   hasKeyCardIllust: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
   genericCost: 0
   specificColor: 1
   specificCost: 2
-  effectText: "BP300\u4EE5\u4E0B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u30922\u4F53\u7834\u58CA\u3059\u308B"
+  effectText: "\u76F8\u624B\u306EBP4000\u4EE5\u4E0B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC1\u4F53\u7834\u58CA"
   tags: 
   ap: 0
   bp: 0

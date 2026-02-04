@@ -21,7 +21,7 @@ MonoBehaviour:
   genericCost: 2
   specificColor: 1
   specificCost: 3
-  effectText: "500\u4EE5\u4E0B\u306E\u3059\u3079\u3066\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u3092\u7834\u58CA\u3059\u308B"
+  effectText: "5000\u4EE5\u4E0B\u5168\u3066\u7834\u58CA"
   tags: 
   ap: 0
   bp: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 03
   m_EditorClassIdentifier: 
   cardID: 03
-  cardName: "\u30D3\u30C3\u30AF\u30D0\u30C8\u30EB\u30DC\u30FC\u30EB\u30C9\u30E9\u30B4\u30F3\u5FCD"
+  cardName: "B\u30FBB\u30FBB\u30FBD\u30FB\u5FCD"
   cardImage: {fileID: 21300000, guid: 9fb04f6d83ca7d14daa86a39c0ead73b, type: 3}
   keyCardImage: {fileID: 0}
   hasKeyCardIllust: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
   genericCost: 0
   specificColor: 1
   specificCost: 3
-  effectText: "500\u4EE5\u4E0B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u3092\u7834\u58CA\u3059\u308B\n\u9F8D\u65CF\u3001\u6F5C\u4F0F"
+  effectText: "\u53EC\u559A\u6642\u3001BP2000\u4EE5\u4E0B\u306E\u76F8\u624B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC1\u4F53\u7834\u58CA"
   tags: "\u9F8D\u65CF\u3001\u6F5C\u4F0F"
   ap: 2
   bp: 200

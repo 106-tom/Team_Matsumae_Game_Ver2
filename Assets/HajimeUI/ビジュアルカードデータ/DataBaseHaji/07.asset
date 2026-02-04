@@ -21,7 +21,7 @@ MonoBehaviour:
   genericCost: 2
   specificColor: 1
   specificCost: 3
-  effectText: "300\u4EE5\u4E0B\u306E\u3059\u3079\u3066\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u3092\u7834\u58CA\u3059\u308B\n\u9F8D\u65CF"
+  effectText: "\u53EC\u559A\u6642\u3001BP3000\u4EE5\u4E0B\u306E\u76F8\u624B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u3059\u3079\u3066\u7834\u58CA"
   tags: "\u9F8D\u65CF"
   ap: 4
   bp: 500

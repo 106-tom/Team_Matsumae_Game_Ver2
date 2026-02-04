@@ -21,8 +21,9 @@ MonoBehaviour:
   genericCost: 0
   specificColor: 5
   specificCost: 1
-  effectText: "\u9F8D\u65CF"
+  effectText: 
   tags: "\u9F8D\u65CF"
   ap: 1
   bp: 100
   hasPostSummonEffect: 0
+  isWeariness: 0

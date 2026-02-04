@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 05
   m_EditorClassIdentifier: 
   cardID: 05
-  cardName: "\u8001\u9F8D\u3000\u5929\u81B3"
+  cardName: "\u8001\u9F8D\u3000\u5929\u7985"
   cardImage: {fileID: 21300000, guid: 09c50d9eef1daeb4983aff0ee2f8fcbb, type: 3}
   keyCardImage: {fileID: 0}
   hasKeyCardIllust: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
   genericCost: 0
   specificColor: 1
   specificCost: 4
-  effectText: "\u9F8D\u65CF\u3001\u6F5C\u4F0F"
+  effectText: 
   tags: "\u9F8D\u65CF\u3001\u6F5C\u4F0F"
   ap: 5
   bp: 500
