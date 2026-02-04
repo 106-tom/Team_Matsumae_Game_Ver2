@@ -16,6 +16,8 @@ public class PlayerDeckAI : MonoBehaviour
 	public Transform handParent;                   // 手札表示用の親オブジェクト
 	public GameObject cardPrefab;                  // カード表示用Prefab
 
+	bool isGameEnd = false;
+
 	//public HandManagerAI handManager;
 
 	[System.Serializable]
@@ -153,10 +155,20 @@ public class PlayerDeckAI : MonoBehaviour
 	// デッキから1枚ドロー
 	public void DrawCard(PlayerSide drawingPlayer)
 	{
+		if (isGameEnd) return;
+
+		// デッキ切れ = 負け
 		if (deck.Count == 0)
 		{
+			isGameEnd = true;
+
+			bool isWin =
+				(drawingPlayer == PlayerSide.Enemy); // 敵が引けない = 勝ち
+
+			ResultUI.Instance.ShowResult(isWin);
 			return;
 		}
+
 
 		if (hand.Count >= 8)
 		{
@@ -209,6 +221,7 @@ public class PlayerDeckAI : MonoBehaviour
 			// ドロー演出
 			StartCoroutine(MotionManager.Instance.draw.StartDraw(cardGO, handParent.gameObject));
 		}
+
 	}
 
 
