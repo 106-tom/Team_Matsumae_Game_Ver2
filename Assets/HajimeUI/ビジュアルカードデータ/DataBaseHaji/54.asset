@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardID: 54
   cardName: "\u7384\u6B66"
-  cardImage: {fileID: 21300000, guid: a909ac76a1df48d4f8be3b4c5fb5ca35, type: 3}
+  cardImage: {fileID: 21300000, guid: 1047d3db66351884d8c1dde4c34ce010, type: 3}
   keyCardImage: {fileID: 0}
   hasKeyCardIllust: 0
   cardType: Monster
