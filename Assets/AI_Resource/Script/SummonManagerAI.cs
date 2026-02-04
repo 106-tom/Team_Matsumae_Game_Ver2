@@ -100,11 +100,18 @@ public class SummonManagerAI : MonoBehaviour
 		summonedCard.OwnerSide = currentTurn;
 		targetDeck.RemoveFromHand(handCard);
 
-		FkingCardDisplay fkd = summonedCard.GetComponentInChildren<FkingCardDisplay>();
-		if (fkd != null && currentTurn != PlayerSide.Self) // 敵カードの場合
+		// ===== 敵カードなら召喚した瞬間に表に戻す =====
+		if (currentTurn == PlayerSide.Enemy)
 		{
-			fkd.ShowFront();
+			FkingCardDisplayAttacher visual =
+				summonedCard.GetComponentInChildren<FkingCardDisplayAttacher>();
+
+			if (visual != null)
+			{
+				visual.ChangeCard(card.cardID); // ★表に戻す
+			}
 		}
+
 
 		//summonedCard = targetField.AcceptSummonedCard(card, side);
 		if (summonedCard != null)

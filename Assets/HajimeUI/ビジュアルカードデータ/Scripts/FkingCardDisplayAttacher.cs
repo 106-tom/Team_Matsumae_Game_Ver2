@@ -180,6 +180,11 @@ public class FkingCardDisplayAttacher : MonoBehaviour
 	}
 
 
+	public void SetAIFaceDownMode()
+	{
+		if (cardDisplay != null)
+			cardDisplay.SetAIFaceDownMode();
+	}
 
 
 

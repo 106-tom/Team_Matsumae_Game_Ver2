@@ -536,4 +536,57 @@ public class FkingCardDisplay : MonoBehaviour
 		}
 	}
 
+	public void SetAIFaceDownMode()
+	{
+		// 裏面にする
+		ShowBack();
+
+		// 名前消す
+		if (nameText != null)
+			nameText.gameObject.SetActive(false);
+
+		// 効果消す
+		if (effectText != null)
+			effectText.gameObject.SetActive(false);
+
+		// 背景も消す
+		if (textBackgroundImage != null)
+			textBackgroundImage.gameObject.SetActive(false);
+
+		// Stats消す
+		if (statsText != null)
+			statsText.gameObject.SetActive(false);
+
+		// BattleStatsも消す
+		if (battleStatsGroup != null)
+			battleStatsGroup.SetActive(false);
+
+		// コスト全部消す
+		HideAllCostUI();
+
+		// フレーム全部消す
+		foreach (var frameSet in colorFrameSets)
+		{
+			if (frameSet.normalFrame != null)
+				frameSet.normalFrame.SetActive(false);
+
+			if (frameSet.battleFrame != null)
+				frameSet.battleFrame.SetActive(false);
+		}
+
+		// KeyCardIllustも消す
+		if (keyCardIllustImage != null)
+			keyCardIllustImage.gameObject.SetActive(false);
+	}
+
+	public void RevealCard()
+	{
+		ShowFront();
+
+		// UIを普通に戻す
+		if (currentCardData != null)
+			FkingUpdateDisplay(currentCardData);
+	}
+
+
 }

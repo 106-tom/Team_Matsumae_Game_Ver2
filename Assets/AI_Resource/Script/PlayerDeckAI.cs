@@ -185,15 +185,15 @@ public class PlayerDeckAI : MonoBehaviour
 			display.OwnerSide = drawingPlayer;
 			display.Location = CardLocation.Hand;
 
-			FkingCardDisplayAttacher visual =
-	cardGO.GetComponentInChildren<FkingCardDisplayAttacher>();
+			FkingCardDisplayAttacher visual = cardGO.GetComponentInChildren<FkingCardDisplayAttacher>();
+
 
 			if (visual != null)
 			{
 				// 敵の手札なら裏面表示
 				if (drawingPlayer == PlayerSide.Enemy)
 				{
-					visual.ShowBack();
+					visual.SetAIFaceDownMode();
 				}
 				else
 				{
