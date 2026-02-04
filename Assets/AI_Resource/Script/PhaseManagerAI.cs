@@ -135,9 +135,7 @@ public class PhaseManagerAI : MonoBehaviour
 		// UI更新
 		UpdateUI();
 
-		// フェーズUI更新
-		if (phaseDisplayUI != null)
-			phaseDisplayUI.UpdatePhaseText();
+
 	}
 
 	//==================================================
@@ -250,7 +248,7 @@ public class PhaseManagerAI : MonoBehaviour
 	//==================================================
 	// UI表示（日本語）
 	//==================================================
-	string GetPhaseName(Phase phase)
+	public string GetPhaseName(Phase phase)
 	{
 		switch (phase)
 		{
@@ -273,6 +271,8 @@ public class PhaseManagerAI : MonoBehaviour
 
 		phaseText.text =
 			$"【{playerName}のターン】\n現在のフェーズ：{GetPhaseName(currentPhase)}";
+
+
 	}
 
 	//==================================================
