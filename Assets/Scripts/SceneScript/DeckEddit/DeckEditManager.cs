@@ -191,18 +191,7 @@ public class DeckEditManager : MonoBehaviour
     {
         GameObject cardObj = DeckManager.instance.CreateCard(cardId, parent);
         cardObj.GetComponent<CardView>().SetCount(count);
-        if (cardId == 8 || cardId == 18 || cardId == 27 || cardId == 37 || cardId == 48||cardId>=51)
-        {
-            var overlay = cardObj.transform.Find("frame_1");
-            Image img = overlay.GetComponent<Image>();
-            Color c = img.color;
-            c.a = 0.75f;   // 0.0 = 完全透明 / 1.0 = 完全不透明
-            img.color = c;
-            overlay = cardObj.transform.Find("CardText");
-            overlay.gameObject.SetActive(false);
-            overlay = cardObj.transform.Find("Image");
-            overlay.gameObject.SetActive(false);
-        }
+        CardViewUpGrade(cardObj, cardId);
     }
 
     public void CreateOutCard(CardColor color, int cardId, bool limitTrg)
@@ -221,19 +210,6 @@ public class DeckEditManager : MonoBehaviour
                 cardObj = DeckManager.instance.AnyCreateCard(cardId, slot);
             else if (existingDeckCard == null)
                 cardObj = DeckManager.instance.AnyCreateCard(cardId, deckSlot);
-
-            if (cardId == 8 || cardId == 18 || cardId == 27 || cardId == 37 || cardId == 48 || cardId >= 51)
-            {
-                var overlay_1 = cardObj.transform.Find("frame_1");
-                Image img = overlay_1.GetComponent<Image>();
-                Color c = img.color;
-                c.a = 0.5f;   // 0.0 = 完全透明 / 1.0 = 完全不透明
-                img.color = c;
-                overlay_1 = cardObj.transform.Find("CardText");
-                overlay_1.gameObject.SetActive(false);
-                overlay_1 = cardObj.transform.Find("Image");
-                overlay_1.gameObject.SetActive(false);
-            }
             else
                 return;
         }
@@ -242,18 +218,8 @@ public class DeckEditManager : MonoBehaviour
             cardObj = DeckManager.instance.AnyCreateCard(cardId, slot);
         }
 
-        if (cardId == 8 || cardId == 18 || cardId == 27 || cardId == 37 || cardId == 48 || cardId >= 51)
-        {
-            var overlay_1 = cardObj.transform.Find("frame_1");
-            Image img = overlay_1.GetComponent<Image>();
-            Color c = img.color;
-            c.a = 0.75f;   // 0.0 = 完全透明 / 1.0 = 完全不透明
-            img.color = c;
-            overlay_1 = cardObj.transform.Find("CardText");
-            overlay_1.gameObject.SetActive(false);
-            overlay_1 = cardObj.transform.Find("Image");
-            overlay_1.gameObject.SetActive(false);
-        }
+        CardViewUpGrade(cardObj, cardId);
+
         var overlay = cardObj.transform.Find("DarkOverlayImage");
         overlay.gameObject.SetActive(true);
         Debug.Log("1枚生成");
@@ -335,16 +301,7 @@ public class DeckEditManager : MonoBehaviour
         GameObject cardObj = DeckManager.instance.AnyCreateCard(cardId, lastTouchedSlot);
         cardObj.GetComponent<CardController>().view.SetCount(1);
 
-        if (cardId == 8 || cardId == 18 || cardId == 27 || cardId == 37 || cardId == 48 || cardId >= 51)
-        {
-            var overlay = cardObj.transform.Find("Image");
-            overlay.gameObject.SetActive(false);
-            var overlay_1 = cardObj.transform.Find("frame_1");
-            Image img = overlay_1.GetComponent<Image>();
-            Color c = img.color;
-            c.a = 0.75f;   // 0.0 = 完全透明 / 1.0 = 完全不透明
-            img.color = c;
-        }
+        CardViewUpGrade(cardObj, cardId);
     }
 
     // =================================
@@ -486,5 +443,44 @@ public class DeckEditManager : MonoBehaviour
         foreach (int card in deckCardIds)
             if (card >= 0) ids.Add(card);
         return ids;
+    }
+
+    public void CardViewUpGrade(GameObject obj,int cardId)
+    {
+        if (cardId == 8 || cardId == 18 || cardId == 27 || cardId == 37 || cardId == 48 || cardId >= 51)
+        {
+            var overlay = obj.transform.Find("Image");
+            overlay.gameObject.SetActive(false);
+            var overlay_1 = obj.transform.Find("frame_1");
+            Image img = overlay_1.GetComponent<Image>();
+            Color c = img.color;
+            c.a = 0.75f;   // 0.0 = 完全透明 / 1.0 = 完全不透明
+            img.color = c;
+        }
+        if (cardId > 50)
+        {
+            var overlay = obj.transform.Find("Panel");
+            overlay.gameObject.SetActive(false);
+            overlay = obj.transform.Find("WhitePanel");
+            overlay.gameObject.SetActive(true);
+        }
+        else
+        {
+            var overlay = obj.transform.Find("Panel");
+            overlay.gameObject.SetActive(true);
+            overlay = obj.transform.Find("WhitePanel");
+            overlay.gameObject.SetActive(false);
+        }
+        if(obj.GetComponent<CardView>().category=="Spell")
+        {
+            var overlay = obj.transform.Find("ABPPanel");
+            overlay.gameObject.SetActive(false);
+        }
+        else
+        {
+            var overlay = obj.transform.Find("ABPPanel");
+            overlay.gameObject.SetActive(true);
+        }
+
     }
 }

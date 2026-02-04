@@ -15,6 +15,14 @@ public class CardView : MonoBehaviour
 	[SerializeField] Image frameImage;
 	[SerializeField] Image textFrameImage;
 
+	[SerializeField] Image manaImage;
+	[SerializeField] TextMeshProUGUI anyCost;
+	[SerializeField] TextMeshProUGUI Over50CardCost;
+	[SerializeField] TextMeshProUGUI AP;
+	[SerializeField] TextMeshProUGUI BP;
+
+	public string category;
+
 	[SerializeField] Color imageAlpha;
 	public Card CardData { get; private set; }   // ← public & get; private set;
 
@@ -22,7 +30,6 @@ public class CardView : MonoBehaviour
 	{
 		CardData = card;
 		nameText.text = $"Card {card.id}";
-		costText.text = $"Cost: {card.TotalCost()}";
 	}
 	public void Show(CardModel cardModel) // cardModelのデータ取得と反映
 	{
@@ -31,11 +38,18 @@ public class CardView : MonoBehaviour
 			BGiconImage.sprite = cardModel.cardImage;
 		if (cardModel.frameImage != null)
 			frameImage.sprite = cardModel.frameImage;
-		if (cardModel.TextframeImage == null) Debug.Log("エラー");
-		textFrameImage.sprite = cardModel.TextframeImage;
+		if (cardModel.TextframeImage != null)
+			textFrameImage.sprite = cardModel.TextframeImage;
+		if (cardModel.TextframeImage != null)
+			manaImage.sprite = cardModel.manaImage;
 		costText.text = cardModel.cost.ToString();
+		anyCost.text = cardModel.anyCost.ToString();
+		Over50CardCost.text = cardModel.anyCost.ToString();
+		AP.text = cardModel.ap.ToString();
+		BP.text = cardModel.bp.ToString();
 		nameText.text = cardModel.name.ToString();
 		effectText.text = cardModel.effectText.ToString();
+		category = cardModel.category;
 	}
 	public void Apply(CardEntity entity)
 	{
@@ -52,6 +66,9 @@ public class CardView : MonoBehaviour
 		var TextFrameSprite = Resources.Load<Sprite>(entity.TextFrameImagePath);
 		if (TextFrameSprite != null)
 			textFrameImage.sprite = TextFrameSprite;
+		var ManaSprite = Resources.Load<Sprite>(entity.ManaImagePath);
+		if (ManaSprite != null)
+			textFrameImage.sprite = ManaSprite;
 	}
 	public void SetCount(int count)
 	{

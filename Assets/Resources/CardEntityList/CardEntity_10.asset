@@ -22,5 +22,6 @@ MonoBehaviour:
   ImagePath: CardImages/01_10
   FrameImagePath: FrameImage/Red
   TextFrameImagePath: FrameImage/Red_1
+  ManaImagePath: ManaImage/red
   CardText: "5000\u4EE5\u4E0B\u5168\u3066\u7834\u58CA"
   category: Spell

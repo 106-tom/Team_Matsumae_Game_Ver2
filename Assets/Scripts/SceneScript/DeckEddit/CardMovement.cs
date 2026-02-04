@@ -57,7 +57,7 @@ public class CardMovement : MonoBehaviour,
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
-        Transform target = transform.Find("CountText");
+        Transform target = transform.Find("costBG");
         if (target != null)
         {
             target.gameObject.SetActive(false);

@@ -664,7 +664,7 @@
   {
     "cardID": 39,
     "category": "Spell",
-    "cardName": "unknown",
+    "cardName": "磔刑",
     "ap": 0,
     "bp": 0,
     "anyColorCost": 1,
@@ -756,7 +756,7 @@
     "manaCosts": [
       {
         "color": "Purple",
-        "cost": 22
+        "cost": 2
       }
     ],
     "color": "Purple",

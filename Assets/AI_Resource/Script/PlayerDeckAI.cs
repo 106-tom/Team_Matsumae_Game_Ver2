@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System.IO; 
+using System.IO;
 
 
 public class PlayerDeckAI : MonoBehaviour
@@ -175,9 +175,9 @@ public class PlayerDeckAI : MonoBehaviour
 			Vector3 pos = new Vector3(-0.35f, 0f, 0f);
 			Quaternion rot = Quaternion.Euler(90f, 0f, 180f); // この角度にしないとカードが正面向かない
 			GameObject cardGO = Instantiate(cardPrefab, pos, rot, handParent);
-            cardGO.transform.localPosition = new Vector3(0f, 0f, 0f);
-            // ① データをセット
-            CardDisplayAI display = cardGO.GetComponent<CardDisplayAI>();
+			cardGO.transform.localPosition = new Vector3(0f, 0f, 0f);
+			// ① データをセット
+			CardDisplayAI display = cardGO.GetComponent<CardDisplayAI>();
 			display.Setup(drawnCard);
 			//Debug.Log($"[Draw] cardName={drawnCard.cardName}, cardID={drawnCard.cardID}");
 
@@ -201,7 +201,7 @@ public class PlayerDeckAI : MonoBehaviour
 			StartCoroutine(MotionManager.Instance.draw.StartDraw(cardGO, handParent.gameObject));
 		}
 	}
-	
+
 
 	public void RemoveFromHand(CardDisplayAI display)
 	{
@@ -236,11 +236,11 @@ public class PlayerDeckAI : MonoBehaviour
 		if (visual != null)
 			visual.ChangeCard(drawnCard.cardID);
 
-        // 並び替え（これが絶対必要）
-        //if (HandManagerAI.Instance != null)
-        HandManagerAI.Instance.ArrangeHand();
+		// 並び替え（これが絶対必要）
+		//if (HandManagerAI.Instance != null)
+		HandManagerAI.Instance.ArrangeHand();
 
-        return display; // ★ これが超重要
+		return display; // ★ これが超重要
 	}
 
 

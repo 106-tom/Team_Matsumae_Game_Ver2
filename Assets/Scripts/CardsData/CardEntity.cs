@@ -18,6 +18,7 @@ public class CardEntity : ScriptableObject
     public string ImagePath;
     public string FrameImagePath;
     public string TextFrameImagePath;
+    public string ManaImagePath;
 
     public string CardText;
     public string category;
@@ -44,6 +45,7 @@ public class CardEntity : ScriptableObject
         ImagePath = data.imagePath;
         FrameImagePath = GetFrameImagePath(Color);
         TextFrameImagePath = GetTextFrameImagePath(Color);
+        ManaImagePath = GetManaImagePath(Color);
         CardText = data.CardText;
         category = data.category;
 
@@ -105,6 +107,32 @@ public class CardEntity : ScriptableObject
                 break;
             default:
                 path = "FrameImage/White_1";
+                break;
+        }
+        return path;
+    }
+    string GetManaImagePath(CardColor color)
+    {
+        string path = null;
+        switch (color)
+        {
+            case CardColor.Red:
+                path = "ManaImage/red";
+                break;
+            case CardColor.Blue:
+                path = "ManaImage/blue";
+                break;
+            case CardColor.Green:
+                path = "ManaImage/green";
+                break;
+            case CardColor.Yellow:
+                path = "ManaImage/yellow";
+                break;
+            case CardColor.Purple:
+                path = "ManaImage/purple";
+                break;
+            default:
+                path = "ManaImage/White";
                 break;
         }
         return path;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 44
   Name: "\u7A7A\u4E2D\u30D6\u30E9\u30F3\u30B3\u8759\u8760\u4EBA\u9593"
-  ManaCosts: 22
+  ManaCosts: 2
   AnyCost: 1
   Color: 3
   Ap: 2
@@ -22,5 +22,6 @@ MonoBehaviour:
   ImagePath: CardImages/05_04
   FrameImagePath: FrameImage/Purple
   TextFrameImagePath: FrameImage/Purple_1
+  ManaImagePath: ManaImage/purple
   CardText: "\u7834\u58CA\u6642\u3001\u76F8\u624B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u5168\u3066\u306E-BP2000"
   category: Monster

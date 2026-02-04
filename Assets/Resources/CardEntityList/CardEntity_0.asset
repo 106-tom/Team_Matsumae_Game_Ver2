@@ -22,5 +22,6 @@ MonoBehaviour:
   ImagePath: CardImages/00_00
   FrameImagePath: FrameImage/Blue
   TextFrameImagePath: FrameImage/Blue_1
+  ManaImagePath: ManaImage/blue
   CardText: 
   category: test
