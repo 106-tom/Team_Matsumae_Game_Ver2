@@ -282,7 +282,9 @@ public class FkingCardDisplay : MonoBehaviour
         Debug.Log("アクティブ待機");
         yield return new WaitUntil(() => this.battleStatsGroup != null);
 		battleStatsGroup.SetActive(true);
-        Debug.Log("Statsアクティブ化");
+		if (battleAPText != null) battleBPText.text = FieldCardDisplayAI.Instance.Attack.ToString();
+		if (battleBPText != null) battleAPText.text = FieldCardDisplayAI.Instance.Defense.ToString();
+		Debug.Log("Statsアクティブ化");
 	}
 
 

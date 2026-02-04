@@ -19,7 +19,6 @@ public class SummonManagerAI : MonoBehaviour
 		Instance = this;
 	}
 
-
 	public bool TrySummon(CardAI card, CardDisplayAI handCard, SummonSide side)
 	{
 		Debug.Log($"card:{card.cardID}");
