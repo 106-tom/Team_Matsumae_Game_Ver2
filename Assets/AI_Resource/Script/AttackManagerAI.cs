@@ -123,6 +123,8 @@ public class AttackManagerAI : MonoBehaviour
 			enemyPlayerField = enemyPlayerField
 		}
 		);
+
+		attackingCard.RefreshStatsUI();
 	}
 
 
@@ -162,6 +164,8 @@ public class AttackManagerAI : MonoBehaviour
 			targetField = attackingCard
 		}
 		);
+
+		blockCard.RefreshStatsUI();
 		
 		if (attackingCard == null)
 		{
@@ -305,6 +309,11 @@ public class AttackManagerAI : MonoBehaviour
 			blockCard.sacrificeOnBlockLose = false;
 		}
 
+		// 戦闘後
+		attackingCard?.RefreshStatsUI();
+		blockCard?.RefreshStatsUI();
+
+
 		EndAttack();
 	}
 
@@ -350,6 +359,10 @@ public class AttackManagerAI : MonoBehaviour
 			}
 		);
 
+		// ★破壊時効果で他カードのステータス変わる
+		selfPlayerField.RefreshAllStats();
+		enemyPlayerField.RefreshAllStats();
+
 		// カードオブジェクトを破壊
 		Destroy(card.gameObject);
 	}
@@ -392,8 +405,10 @@ public class AttackManagerAI : MonoBehaviour
 		Debug.Log($"[Life] {clickedSide} が {damage} ダメージを受ける");
 	
 		GetHp(clickedSide).TakeDamage(damage);
-	
-			// ★ 攻撃カードをレスト
+
+		attackingCard.RefreshStatsUI();
+
+		// ★ 攻撃カードをレスト
 		attackingCard.Rest();
 	
 	
@@ -422,6 +437,7 @@ public class AttackManagerAI : MonoBehaviour
 		{
 			attackingCard.ResetTempAttack();
 			attackingCard.SetAttacking(false);
+			attackingCard.RefreshStatsUI();
 		}
 			
 		attackingCard = null;

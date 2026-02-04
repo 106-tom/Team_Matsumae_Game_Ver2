@@ -147,7 +147,11 @@ public class EffectManager : MonoBehaviour
 					ResolveSpellSetBPZero(card, context);
 					break;
 			}
-		}	
+		}
+		context.selfField?.RefreshStatsUI();
+		context.targetField?.RefreshStatsUI();
+		context.selfPlayerField?.RefreshAllStats();
+		context.enemyPlayerField?.RefreshAllStats();
 	}
 
 	void ResolveDraw(CardEffect effect, CardAI card, EffectContextAI context)

@@ -69,6 +69,12 @@ public class FieldCardDisplayAI : MonoBehaviour, IPointerClickHandler
 		UpdateRestVisual();
 	}
 
+	void Update()
+	{
+		//RefreshStatsUI();
+	}
+
+
 	public void Rest()
 	{
 		isRested = true;
@@ -270,5 +276,15 @@ public class FieldCardDisplayAI : MonoBehaviour, IPointerClickHandler
 			return;
 		}
 	}
+
+	public void RefreshStatsUI()
+	{
+		FkingCardDisplay display = GetComponentInChildren<FkingCardDisplay>();
+		if (display != null)
+		{
+			display.UpdateBattleStats(Defense, Attack);
+		}
+	}
+
 
 }

@@ -417,5 +417,14 @@ public class PlayerFieldAI : MonoBehaviour
 		//Debug.Log("[Field] 全カードをアンレストしました");
 	}
 
+	public void RefreshAllStats()
+	{
+		foreach (var card in GetAllCards())
+		{
+			card.RefreshStatsUI();
+		}
+	}
+
+
 }
 

@@ -320,6 +320,19 @@ public class FkingCardDisplay : MonoBehaviour
 		Debug.Log($"Stats表示完了: {fieldCard.CardName}");
 	}
 
+	public void UpdateBattleStats(int ap, int bp)
+	{
+		if (battleStatsGroup != null)
+			battleStatsGroup.SetActive(true);
+
+		if (battleAPText != null)
+			battleAPText.text = ap.ToString();
+
+		if (battleBPText != null)
+			battleBPText.text = bp.ToString();
+	}
+
+
 
 
 
