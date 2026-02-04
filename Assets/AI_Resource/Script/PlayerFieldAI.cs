@@ -223,7 +223,7 @@ public class PlayerFieldAI : MonoBehaviour
 	// =========================
 	public FieldCardDisplayAI AcceptSummonedCard(CardAI cardData, SummonSide side)
 	{
-		Debug.Log("[Field] AcceptSummonedCard");
+		//Debug.Log("[Field] AcceptSummonedCard");
 
 		CleanupNullCards();
 
@@ -240,9 +240,9 @@ public class PlayerFieldAI : MonoBehaviour
 
 		fieldCardGO.transform.localRotation = Quaternion.identity;
 		fieldCardGO.transform.localScale = Vector3.one * 2.0f;
-		fieldCardGO.transform.position = cardData.position;
+		fieldCardGO.transform.localPosition = cardData.position;
+		Debug.Log("fieldCardPosition" + fieldCardGO.transform.localPosition);
 		StartCoroutine(MotionManager.Instance.summon.StartSummon(fieldParent, fieldCardGO));
-		//HandManagerAI.Instance.ArrangeHand();
 		//fieldCardGO.transform.localPosition = Vector3.zero;
 
 	
@@ -292,8 +292,12 @@ public class PlayerFieldAI : MonoBehaviour
 		fieldCards.Add(fieldCard);
 		//UpdateFieldLayout();
 
+<<<<<<< HEAD
 		fieldCardGO.GetComponentInChildren<FkingCardDisplay>().ShowStats();
 
+=======
+		
+>>>>>>> origin/tom
 		return fieldCard; // ★ 召喚された実体を返す
 	}
 
@@ -406,9 +410,13 @@ public class PlayerFieldAI : MonoBehaviour
 			if (card == null) continue;
 
 			card.Unrest();
+			Debug.Log("回復開始");
+            Transform visualChild = card.transform.Find("GameObject/CardVisualHajime");
+			var fxManager = card.GetComponent<FkingCardFXManager>();
+			StartCoroutine(MotionManager.Instance.heal.StartHeal(card.transform, visualChild.gameObject, fxManager));
 		}
 
-		Debug.Log("[Field] 全カードをアンレストしました");
+		//Debug.Log("[Field] 全カードをアンレストしました");
 	}
 
 }

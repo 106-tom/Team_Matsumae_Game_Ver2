@@ -10,10 +10,6 @@ using UnityEngine.VFX;
 /// </summary>
 public class Break : MonoBehaviour
 { 
-    [Header("ディゾルブする際に邪魔なので非アクティブにする : 光沢用オブジェクト")]
-    [SerializeField] private GameObject glassPlate;
-    [Space(10)]
-
     [Header("エフェクト類")]
     [Tooltip("発光エフェクト")]
     [SerializeField] private ParticleSystem flashEffect;
@@ -33,28 +29,34 @@ public class Break : MonoBehaviour
     [Header("ディゾルブする時間")]
     [SerializeField] private float dissolveTime;
 
-    [SerializeField] private FkingCardFXManager cardFXManager;
-
-    [Header("破壊用オブジェクトのRigidBody")]
-    [SerializeField] private Rigidbody[] rigidBodies;
-    [Header("破壊用オブジェクトのRigidBody")]
-    [SerializeField] private MeshRenderer[] renderers;
-
     private static readonly int colorID = Shader.PropertyToID("_Color");
     private static readonly int mainTexID = Shader.PropertyToID("_MainTex");
 
+    private Rigidbody[] rigidBodies;
+    private MeshRenderer[] renderers;
     /// <summary>
     /// 破壊演出開始
     /// </summary>
     /// <returns></returns>
-    public IEnumerator StartBreak(Transform cardTransform)
+    public IEnumerator StartBreak(
+        Transform cardTransform)
     {
+        Transform bo = cardTransform.Find("GameObject/BreakObject");
+        int i = 0;
+        foreach (Transform child in bo)
+        {
+            i++;
+            // 子要素（Plane.001など）からコンポーネントを取得
+            renderers[i] = child.GetComponent<MeshRenderer>();
+            rigidBodies[i] = child.GetComponent<Rigidbody>();
+        }
         Material[] materials = renderers.Select(r => r.material).ToArray();
         foreach (Material m in materials)
         {
             if (m.HasProperty(colorID)) m.SetColor(colorID, Color.black);
             if (m.HasProperty(mainTexID)) m.SetTexture(mainTexID, null);
         }
+        var cardFXManager = cardTransform.GetComponent<FkingCardFXManager>();
         cardFXManager.FadeCardOut(0f);
         
         // フラッシュエフェクト生成
@@ -67,7 +69,7 @@ public class Break : MonoBehaviour
         flashEffectInstance.Play();
 
         // 邪魔なので光沢用プレートを消す
-        glassPlate.SetActive(false);
+        //glassPlate.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
 

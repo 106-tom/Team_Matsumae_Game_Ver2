@@ -39,7 +39,7 @@ public class TurnManagerAI : MonoBehaviour
 
 		RestoreAllTemporaryDefense();
 
-		Debug.Log(currentTurn + "のターン開始");
+		//Debug.Log(currentTurn + "のターン開始");
 		UpdateUI();
 	}
 
@@ -63,7 +63,7 @@ public class TurnManagerAI : MonoBehaviour
 		foreach (var card in SummonManagerAI.Instance.enemyField.GetAllCards())
 			card.RestoreDefenseIfNeeded();
 
-		Debug.Log("[Turn] ターン終了：Defense0効果を解除");
+		//Debug.Log("[Turn] ターン終了：Defense0効果を解除");
 	}
 
 	// ============================

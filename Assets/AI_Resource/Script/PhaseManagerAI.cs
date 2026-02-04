@@ -145,7 +145,7 @@ public class PhaseManagerAI : MonoBehaviour
 			case Phase.Start:
 				// アンタップ
 				players[currentPlayerIndex].manaManager.UntapAll();
-				Debug.Log("Start Phase: UntapAll");
+				//Debug.Log("Start Phase: UntapAll");
 
 				// ★カードレスト解除
 				PlayerFieldAI field =
@@ -155,7 +155,7 @@ public class PhaseManagerAI : MonoBehaviour
 
 				field.UnrestAllCards();
 
-				Debug.Log("Start Phase: UnrestAllCards");
+				//Debug.Log("Start Phase: UnrestAllCards");
 
 				if (turnSide == PlayerSide.Enemy)
 					StartCoroutine(AutoAdvanceAfterDelay(0.5f));
@@ -174,7 +174,7 @@ public class PhaseManagerAI : MonoBehaviour
 				// ドロー処理
 				players[currentPlayerIndex].deck.DrawCard(turnSide);
 
-				Debug.Log("Draw Phase: DrawCard");
+				//Debug.Log("Draw Phase: DrawCard");
 
 				if (turnSide == PlayerSide.Enemy)
 					StartCoroutine(AutoAdvanceAfterDelay(0.5f));
@@ -184,13 +184,13 @@ public class PhaseManagerAI : MonoBehaviour
 				// 今ターンが敵かどうか
 				if (turnSide == PlayerSide.Enemy)
 				{
-					Debug.Log("敵のマナフェーズ：自動でマナ追加");
+					//Debug.Log("敵のマナフェーズ：自動でマナ追加");
 
 					StartCoroutine(EnemyAutoManaCharge());
 				}
 				else
 				{
-					Debug.Log("プレイヤーのマナフェーズ：パネル表示");
+					//Debug.Log("プレイヤーのマナフェーズ：パネル表示");
 
 					if (ManaUIAI.Instance != null)
 						ManaUIAI.Instance.OpenPanel();
@@ -202,20 +202,20 @@ public class PhaseManagerAI : MonoBehaviour
 
 				if (turnSide == PlayerSide.Enemy)
 				{
-					Debug.Log("敵の召喚フェーズ：自動召喚開始");
+					//Debug.Log("敵の召喚フェーズ：自動召喚開始");
 					StartCoroutine(EnemyAutoSummon());
 				}
 				else
 				{
-					Debug.Log("プレイヤーの召喚フェーズ");
+					//Debug.Log("プレイヤーの召喚フェーズ");
 				}
 
+
+
 				break;
-
-
 			case Phase.Attack:
-
-				if (turnSide == PlayerSide.Enemy)
+                HandManagerAI.Instance.ArrangeHand();
+                if (turnSide == PlayerSide.Enemy)
 				{
 					StartCoroutine(EnemyAutoAttack());
 				}
@@ -229,7 +229,7 @@ public class PhaseManagerAI : MonoBehaviour
 				break;
 
 			case Phase.End:
-				Debug.Log("End Phase");
+				//Debug.Log("End Phase");
 				break;
 		}
 	}
@@ -278,7 +278,7 @@ public class PhaseManagerAI : MonoBehaviour
 	{
 		int startHandCount = 4;
 
-		Debug.Log("=== 初期手札配布開始 ===");
+		//Debug.Log("=== 初期手札配布開始 ===");
 
 		// 自分に4枚
 		for (int i = 0; i < startHandCount; i++)
@@ -292,7 +292,7 @@ public class PhaseManagerAI : MonoBehaviour
 			players[1].deck.DrawCard(PlayerSide.Enemy);
 		}
 
-		Debug.Log("=== 両プレイヤー初期手札4枚配布完了 ===");
+		//Debug.Log("=== 両プレイヤー初期手札4枚配布完了 ===");
 	}
 
 	IEnumerator EnemyAutoManaCharge()
@@ -307,7 +307,7 @@ public class PhaseManagerAI : MonoBehaviour
 		// 敵プレイヤーのmanaManagerに追加
 		players[currentPlayerIndex].manaManager.AddMana(chosen);
 
-		Debug.Log($"敵がマナチャージした：{chosen}");
+		//Debug.Log($"敵がマナチャージした：{chosen}");
 
 		// 少し待ってから次のフェーズへ
 		yield return new WaitForSeconds(0.5f);
@@ -366,9 +366,14 @@ public class PhaseManagerAI : MonoBehaviour
 		// ===== ①召喚できるなら召喚 =====
 		if (bestMonster != null)
 		{
-			Debug.Log($"敵が召喚：{bestMonster.cardData.cardName}");
-
-			SummonManagerAI.Instance.TrySummon(
+            //Debug.Log($"敵が召喚：{bestMonster.cardData.cardName}");
+            bestMonster.cardData.position = 
+				new Vector3(
+					bestMonster.transform.localPosition.x - 884f, 
+					bestMonster.transform.localPosition.y + 150f, 
+					bestMonster.transform.localPosition.z);
+			Debug.Log("敵のローカル位置 : " + bestMonster.transform.localPosition);
+            SummonManagerAI.Instance.TrySummon(
 				bestMonster.cardData,
 				bestMonster,
 				SummonSide.Enemy
@@ -377,7 +382,7 @@ public class PhaseManagerAI : MonoBehaviour
 		// ===== ②召喚できないなら呪文を探す =====
 		else if (bestSpell != null)
 		{
-			Debug.Log($"敵が呪文を使用：{bestSpell.cardData.cardName}");
+			//Debug.Log($"敵が呪文を使用：{bestSpell.cardData.cardName}");
 
 			SummonManagerAI.Instance.TrySpell(
 				bestSpell.cardData,
@@ -388,7 +393,7 @@ public class PhaseManagerAI : MonoBehaviour
 		// ===== ③何もできない =====
 		else
 		{
-			Debug.Log("敵は召喚も呪文もできません");
+			//Debug.Log("敵は召喚も呪文もできません");
 		}
 
 		yield return new WaitForSeconds(0.5f);
@@ -408,7 +413,7 @@ public class PhaseManagerAI : MonoBehaviour
 
 		if (playerCards.Count > 0)
 		{
-			Debug.Log("プレイヤー場にカードがいるので敵は攻撃しません");
+			//Debug.Log("プレイヤー場にカードがいるので敵は攻撃しません");
 
 			AdvancePhase(); // 次フェーズへ
 			yield break;
@@ -434,7 +439,7 @@ public class PhaseManagerAI : MonoBehaviour
 		// 攻撃できるカードがいないなら終了
 		if (attacker == null)
 		{
-			Debug.Log("敵は攻撃できるカードがいないので攻撃終了");
+			//Debug.Log("敵は攻撃できるカードがいないので攻撃終了");
 
 			AdvancePhase(); // 次フェーズへ
 			yield break;

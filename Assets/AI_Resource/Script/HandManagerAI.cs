@@ -36,12 +36,18 @@ public class HandManagerAI : MonoBehaviour
 
 	void Awake()
 	{
+<<<<<<< HEAD
 		Instance = this;
 	}
 
 	public void ArrangeHand()
 	{
 		for (int i = 0; i < handParent.childCount; i++)
+=======
+		Debug.Log("ŽèŽD’²®");
+		int count = handZoneParent.childCount;
+		for (int i = 0; i < count; i++)
+>>>>>>> origin/tom
 		{
 			Transform card = handParent.GetChild(i);
 			card.localPosition = new Vector3(i * spacing, 0, 0);

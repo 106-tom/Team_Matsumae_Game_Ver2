@@ -31,7 +31,7 @@ public class ManaUIAI : MonoBehaviour
 	/// </summary>
 	private void OnManaSelected(string color)
 	{
-		Debug.Log("選ばれたマナ: " + color);
+		//Debug.Log("選ばれたマナ: " + color);
 
 		// 今ターンのプレイヤーを取得
 		var pm = PhaseManagerAI.Instance;

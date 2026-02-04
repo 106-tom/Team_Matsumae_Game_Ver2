@@ -36,6 +36,7 @@ public class Attack : MonoBehaviour
 	[Tooltip("回転速度変化グラフ")]
 	[SerializeField] private AnimationCurve rotateCurve;
 
+<<<<<<< HEAD
 	[Header("攻撃対象のアイコン位置")]
 	[SerializeField] private RectTransform playerRectTransform;
 	[SerializeField] private RectTransform enemyRectTransform;
@@ -43,6 +44,52 @@ public class Attack : MonoBehaviour
 	private CardMotionHelper cardMotionHelper;
 
 	private Vector3 blockPosition = new Vector3();
+=======
+    [Header("攻撃対象のアイコン位置")]
+    [SerializeField] private RectTransform playerRectTransform;
+    [SerializeField] private RectTransform enemyRectTransform;
+
+    private CardMotionHelper cardMotionHelper;
+
+    private Vector3 blockPosition = new Vector3();
+
+    private void Start()
+    {
+        cardMotionHelper = SystemManager.Instance.cardMotionHelper;
+    }
+    
+    /// <summary>
+    /// 攻撃演出開始
+    /// </summary>
+    /// <param name="blockCard">攻撃対象</param>
+    /// <param name="isDead">攻撃後破壊されるかどうか</param>
+    /// <param name="attackerSide">攻撃する側</param>
+    /// <returns></returns>
+    public IEnumerator StartAttack(
+        Transform attackCard, 
+        Transform blockCard, 
+        PlayerSide attackerSide,
+        bool isDirectAttack)
+    {
+        if (blockCard == null)
+        {
+            blockPosition = attackerSide == PlayerSide.Self
+                ? blockPosition = enemyRectTransform.localPosition
+                : enemyRectTransform.localPosition;
+        }
+        else
+        {
+            blockPosition = blockCard.position;
+            Debug.Log("敵カードに攻撃" + blockPosition);
+        }
+        Vector3 myFirstPosition = attackCard.localPosition;
+
+        // どれぐらい浮かせるか
+        // 上昇処理の始点と終点を設定
+        Vector3 upHeight = new Vector3(0f, 0f, -upOffset);
+        Vector3 upStartPosition = myFirstPosition;
+        Vector3 upEndPosition = myFirstPosition + upHeight;
+>>>>>>> origin/tom
 
 	private void Start()
 	{
@@ -80,9 +127,18 @@ public class Attack : MonoBehaviour
 		// 浮かせる
 		yield return StartCoroutine(cardMotionHelper.MoveTarget(attackCard, upTime, upStartPosition, upEndPosition, upCurve));
 
+<<<<<<< HEAD
 		// 下降処理の始点と終点を設定
 		Vector3 downStartPosition = attackCard.localPosition;
 		Vector3 downEndPosition = myFirstPosition;
+=======
+        // 攻撃対象へ向きを変えながら前進
+        //StartCoroutine(cardMotionHelper.RotationTarget(attackCard, rotateTime, startRotation, endRotation, rotateCurve));
+        yield return StartCoroutine(cardMotionHelper.MoveTarget(attackCard, forwardTime, forwardStartPosition, forwardEndPosition, forwardCurve));
+        // 一旦null
+        if(isDirectAttack)
+            StartCoroutine(MotionManager.Instance.block.StartBlock(null));
+>>>>>>> origin/tom
 
 		// 前進処理の始点と終点を設定
 		Vector3 forwardEndPosition = blockPosition + upHeight;

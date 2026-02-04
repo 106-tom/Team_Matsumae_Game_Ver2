@@ -23,6 +23,7 @@ public class CardMotionHelper : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / time;
+
             if (curve == null)
             {
                 targetTransform.localPosition = Vector3.Lerp(startPosition, endPosition, t);

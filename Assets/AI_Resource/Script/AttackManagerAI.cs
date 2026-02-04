@@ -128,7 +128,11 @@ public class AttackManagerAI : MonoBehaviour
 		if (blockCard.IsRested)
 		{
 			Debug.Log("このカードはレスト中なのでブロックできません");
+<<<<<<< HEAD
 			yield break;
+=======
+            yield break;
+>>>>>>> origin/tom
 		}
 
 
@@ -136,7 +140,11 @@ public class AttackManagerAI : MonoBehaviour
 		if (blockCard.OwnerSide != defendingSide)
 		{
 			Debug.Log("[Block] 防御側以外のカードが押された");
+<<<<<<< HEAD
 			yield break;
+=======
+            yield break;
+>>>>>>> origin/tom
 		}
 
 		EffectManager.Instance.Resolve(
@@ -150,11 +158,15 @@ public class AttackManagerAI : MonoBehaviour
 			targetField = attackingCard
 		}
 		);
-
+		
 		if (attackingCard == null)
 		{
 			Debug.LogError("[Block] attackingCard が存在しません");
+<<<<<<< HEAD
 			yield break;
+=======
+            yield break;
+>>>>>>> origin/tom
 		}
 
 
@@ -176,13 +188,21 @@ public class AttackManagerAI : MonoBehaviour
 		bool blockerAllWin =
 			blockCard.CardData.HasEffect(EffectType.AllWin);
 
+<<<<<<< HEAD
 		// 攻撃モーション
 		yield return StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, blockCard.transform, attackerSide));
 		// ブロックモーション
 		yield return StartCoroutine(MotionManager.Instance.block.StartBlock(attackingCard.transform));
 
+=======
+        // 攻撃モーション
+        yield return StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, blockCard.transform, attackerSide, false));
+        // ブロックモーション
+		//yield return StartCoroutine(MotionManager.Instance.block.StartBlock(attackingCard.transform));
+        
+>>>>>>> origin/tom
 		// 両方が持っているなら相打ち
-		if (attackerAllWin && blockerAllWin)
+        if (attackerAllWin && blockerAllWin)
 		{
 			Debug.Log("[Battle] 両方 AllWin → 相打ち");
 			MotionManager.Instance._break.StartBreak(attackingCard.transform);
@@ -191,7 +211,11 @@ public class AttackManagerAI : MonoBehaviour
 			DestroyCard(blockCard);
 
 			EndAttack();
+<<<<<<< HEAD
 			yield break;
+=======
+            yield break;
+>>>>>>> origin/tom
 		}
 
 		// 攻撃側だけAllWin → 防御破壊
@@ -206,7 +230,11 @@ public class AttackManagerAI : MonoBehaviour
 			attackingCard.Rest();
 
 			EndAttack();
+<<<<<<< HEAD
 			yield break;
+=======
+            yield break;
+>>>>>>> origin/tom
 		}
 
 		// 防御側だけAllWin → 攻撃破壊
@@ -221,7 +249,11 @@ public class AttackManagerAI : MonoBehaviour
 			blockCard.Rest();
 
 			EndAttack();
+<<<<<<< HEAD
 			yield break;
+=======
+            yield break;
+>>>>>>> origin/tom
 		}
 
 		bool attackerDestroyed = false;
@@ -367,7 +399,12 @@ public class AttackManagerAI : MonoBehaviour
 		// ★ 攻撃カードの攻撃力をダメージとして適用
 		int damage = attackingCard.Defense;
 
-		StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, null));
+		// 攻撃する側を引数に入れる
+		PlayerSide attackerSide = (clickedSide == PlayerSide.Self)
+			? attackerSide = PlayerSide.Enemy
+			: attackerSide = PlayerSide.Self;
+
+        StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, null, attackerSide, true));
 	
 		Debug.Log($"[Life] {clickedSide} が {damage} ダメージを受ける");
 	
