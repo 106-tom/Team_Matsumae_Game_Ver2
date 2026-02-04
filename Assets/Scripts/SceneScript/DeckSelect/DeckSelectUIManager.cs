@@ -10,6 +10,8 @@ public class DeckSelectUIManager : MonoBehaviour
     [SerializeField] GameObject deckButtonPrefab; // デッキボタンPrefab
     [SerializeField] int maxDeckViewCount = 9;
 
+    private Outline currentOutline;
+
     void Start()
     {
         // 使わない
@@ -59,13 +61,18 @@ public class DeckSelectUIManager : MonoBehaviour
         GameObject obj = Instantiate(deckButtonPrefab, deckGridParent);
         Button button = obj.GetComponent<Button>();
         TMP_Text text = obj.GetComponentInChildren<TMP_Text>();
+        Outline outline = obj.GetComponent<Outline>();
 
         text.text = deckName;
+
+        if (outline != null)
+            outline.enabled = false;
+
         button.onClick.RemoveAllListeners();
 
         button.onClick.AddListener(() =>
         {
-            OnSelectDeck(deckName);
+            OnSelectDeck(deckName, outline);
         });
     }
     void CreateNewDeckButton()
@@ -76,15 +83,31 @@ public class DeckSelectUIManager : MonoBehaviour
 
         text.text = "＋ 新規作成";
 
+        // 念のため Outline 無効
+        Outline outline = obj.GetComponent<Outline>();
+        if (outline != null)
+            outline.enabled = false;
+
         button.onClick.AddListener(OnCreateNewDeck);
     }
 
     // =========================
     // Button Events
     // =========================
-    void OnSelectDeck(string deckName)
+    void OnSelectDeck(string deckName, Outline outline)
     {
         Debug.Log("デッキ選択: " + deckName);
+
+        // 前の赤枠を消す
+        if (currentOutline != null)
+            currentOutline.enabled = false;
+
+        // 今回の赤枠をON
+        if (outline != null)
+        {
+            outline.enabled = true;
+            currentOutline = outline;
+        }
 
         DeckDataManager.Instance.SelectDeck(deckName);
     }
@@ -92,11 +115,14 @@ public class DeckSelectUIManager : MonoBehaviour
     void OnCreateNewDeck()
     {
         Debug.Log("新規デッキ作成");
-
+        // 前の赤枠を消す
+        if (currentOutline != null)
+            currentOutline.enabled = false;
         string deckName = DeckDataManager.Instance.CreateNewDeck();
         DeckDataManager.Instance.SelectDeck(deckName);
 
-        LoadEditScene();
+        //特例でシーン移動
+        SceneManager.LoadScene("DeckEddit");
     }
 
     // =========================
@@ -104,11 +130,17 @@ public class DeckSelectUIManager : MonoBehaviour
     // =========================
     public void LoadEditScene()
     {
-        SceneManager.LoadScene("DeckEddit");
+        if(IsAnyDeckSelected())
+            SceneManager.LoadScene("DeckEddit");
     }
     public void LoadBattleScene()
     {
-        SceneManager.LoadScene("GameAI");
+        if (IsAnyDeckSelected())
+            SceneManager.LoadScene("GameAI");
+    }
+    public void LoadTitleScene()
+    {
+        SceneManager.LoadScene("Title");
     }
 
     // =========================
@@ -128,5 +160,10 @@ public class DeckSelectUIManager : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    bool IsAnyDeckSelected()
+    {
+        return currentOutline != null && currentOutline.enabled;
     }
 }
