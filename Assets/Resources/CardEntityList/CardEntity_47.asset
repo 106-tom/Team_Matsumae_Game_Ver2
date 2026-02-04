@@ -22,5 +22,6 @@ MonoBehaviour:
   ImagePath: CardImages/05_07
   FrameImagePath: FrameImage/Purple
   TextFrameImagePath: FrameImage/Purple_1
+  ManaImagePath: ManaImage/purple
   CardText: 
   category: Monster

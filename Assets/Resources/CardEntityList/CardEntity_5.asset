@@ -22,5 +22,6 @@ MonoBehaviour:
   ImagePath: CardImages/01_05
   FrameImagePath: FrameImage/Red
   TextFrameImagePath: FrameImage/Red_1
+  ManaImagePath: ManaImage/red
   CardText: 
   category: Monster

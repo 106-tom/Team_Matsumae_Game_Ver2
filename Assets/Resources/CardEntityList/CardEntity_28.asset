@@ -22,5 +22,6 @@ MonoBehaviour:
   ImagePath: CardImages/03_08
   FrameImagePath: FrameImage/Green
   TextFrameImagePath: FrameImage/Green_1
+  ManaImagePath: ManaImage/green
   CardText: "\u4E92\u3044\u306EBP2000\u4EE5\u4E0B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u5168\u3066\u7834\u58CA"
   category: Spell

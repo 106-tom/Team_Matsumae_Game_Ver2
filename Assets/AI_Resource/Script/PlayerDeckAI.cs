@@ -1,6 +1,6 @@
 ï»¿using System.Collections.Generic;
 using UnityEngine;
-using System.IO; 
+using System.IO;
 
 
 public class PlayerDeckAI : MonoBehaviour
@@ -39,68 +39,7 @@ public class PlayerDeckAI : MonoBehaviour
 
 	void Start()
 	{
-		//InitializeDeck();
 		InitializeDeckFromSavedDeck();
-<<<<<<< HEAD
-	}
-
-	void InitializeDeckFromSavedDeck()
-	{
-		deck.Clear();
-
-		// ‡@ ‘I‘ğ’†‚ÌƒfƒbƒL–¼‚ğæ“¾
-		string deckName = DeckDataManager.Instance.SelectedDeckName;
-
-		if (string.IsNullOrEmpty(deckName))
-		{
-			Debug.LogError("BattleŠJn‚ÉƒfƒbƒL‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI");
-			return;
-		}
-
-		// ‡A JSONƒtƒ@ƒCƒ‹‚ÌƒpƒXæ“¾
-		string path = Path.Combine(
-			DeckDataManager.Instance.DeckDirectory,
-			deckName + ".json"
-		);
-
-		if (!File.Exists(path))
-		{
-			Debug.LogError("ƒfƒbƒLƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñ: " + path);
-			return;
-		}
-
-		// ‡B JSON“Ç‚İ‚İ
-		DeckSaveData data =
-			JsonUtility.FromJson<DeckSaveData>(File.ReadAllText(path));
-
-		Debug.Log($"Battle—pƒfƒbƒL“Ç‚İ‚İ¬Œ÷: {data.deckName}");
-
-		// ‡C cardIds ‚ğŒ³‚É40–‡ƒfƒbƒL¶¬
-		foreach (int id in data.cardIds)
-		{
-			// DeckEdit‘¤‚ÍintACardAI‘¤‚Ístring‚È‚Ì‚Å•ÏŠ·‚·‚é
-			string idString = id.ToString();
-
-			idString = idString.PadLeft(2, '0');
-
-			// allCards‚©‚çˆê’v‚·‚éƒJ[ƒh‚ğ’T‚·
-			CardAI cardData = allCards.Find(card => card.cardID == idString);
-
-			if (cardData == null)
-			{
-				Debug.LogWarning($"ƒJ[ƒhID‚ªallCards‚É‘¶İ‚µ‚Ü‚¹‚ñ: {idString}");
-				continue;
-			}
-
-			deck.Add(cardData);
-		}
-
-		// ‡D ƒVƒƒƒbƒtƒ‹
-		ShuffleDeck();
-
-		Debug.Log($"ƒfƒbƒL‰Šú‰»Š®—¹F{deck.Count}–‡");
-=======
->>>>>>> origin/washida
 	}
 
 	void InitializeDeckFromSavedDeck()
@@ -242,9 +181,9 @@ public class PlayerDeckAI : MonoBehaviour
 			Vector3 pos = new Vector3(-0.35f, 0f, 0f);
 			Quaternion rot = Quaternion.Euler(90f, 0f, 180f); // ã“ã®è§’åº¦ã«ã—ãªã„ã¨ã‚«ãƒ¼ãƒ‰ãŒæ­£é¢å‘ã‹ãªã„
 			GameObject cardGO = Instantiate(cardPrefab, pos, rot, handParent);
-            cardGO.transform.localPosition = new Vector3(0f, 0f, 0f);
-            // â‘  ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
-            CardDisplayAI display = cardGO.GetComponent<CardDisplayAI>();
+			cardGO.transform.localPosition = new Vector3(0f, 0f, 0f);
+			// â‘  ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
+			CardDisplayAI display = cardGO.GetComponent<CardDisplayAI>();
 			display.Setup(drawnCard);
 			Debug.Log($"[Draw] cardName={drawnCard.cardName}, cardID={drawnCard.cardID}");
 
@@ -271,7 +210,7 @@ public class PlayerDeckAI : MonoBehaviour
 
 		}
 	}
-	
+
 
 	public void RemoveFromHand(CardDisplayAI display)
 	{
@@ -307,11 +246,11 @@ public class PlayerDeckAI : MonoBehaviour
 		if (visual != null)
 			visual.ChangeCard(drawnCard.cardID);
 
-        // ä¸¦ã³æ›¿ãˆï¼ˆã“ã‚ŒãŒçµ¶å¯¾å¿…è¦ï¼‰
-        //if (HandManagerAI.Instance != null)
-        HandManagerAI.Instance.ArrangeHand();
+		// ä¸¦ã³æ›¿ãˆï¼ˆã“ã‚ŒãŒçµ¶å¯¾å¿…è¦ï¼‰
+		//if (HandManagerAI.Instance != null)
+		HandManagerAI.Instance.ArrangeHand();
 
-        return display; // â˜… ã“ã‚ŒãŒè¶…é‡è¦
+		return display; // â˜… ã“ã‚ŒãŒè¶…é‡è¦
 	}
 
 
