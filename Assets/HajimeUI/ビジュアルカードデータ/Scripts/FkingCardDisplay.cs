@@ -86,6 +86,9 @@ public class FkingCardDisplay : MonoBehaviour
     private Color originalBackgroundColor;
     private bool originalColorsInitialized = false;
 
+	public Sprite backSprite;  // Inspector で裏面画像をセット
+
+
 	public static FkingCardDisplay Instance;
 
 	void Awake()
@@ -516,4 +519,21 @@ public class FkingCardDisplay : MonoBehaviour
         if (purpleCostUI.group != null) purpleCostUI.group.SetActive(false);
         if (rainbowCostUI != null && rainbowCostUI.group != null) rainbowCostUI.group.SetActive(false);
     }
+
+	public void ShowBack()
+	{
+		if (artworkImage != null && backSprite != null)
+		{
+			artworkImage.sprite = backSprite;
+		}
+	}
+
+	public void ShowFront()
+	{
+		if (artworkImage != null && currentCardData != null)
+		{
+			artworkImage.sprite = currentCardData.cardImage;
+		}
+	}
+
 }

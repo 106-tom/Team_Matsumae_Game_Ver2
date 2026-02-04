@@ -39,6 +39,18 @@ public class AttackManagerAI : MonoBehaviour
 	{
 		if (state != AttackState.None) return;
 		// ★レスト中なら攻撃できない
+
+		// ★カードがフィールドにない場合は攻撃不可
+		PlayerFieldAI selfPlayerField_ = side == PlayerSide.Self
+			? SummonManagerAI.Instance.playerField
+			: SummonManagerAI.Instance.enemyField;
+
+		if (!selfPlayerField_.GetAllCards().Contains(card))
+		{
+			Debug.LogWarning("[Attack] フィールドにないカードは攻撃できません");
+			return;
+		}
+
 		if (card.IsRested)
 		{
 			Debug.Log("このカードはレスト中で攻撃できません");
