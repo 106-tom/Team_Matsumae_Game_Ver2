@@ -315,23 +315,25 @@ public class PlayerFieldAI : MonoBehaviour
 	private void UpdateFieldLayout()
 	{
 		CleanupNullCards();
+		Debug.Log("•Ï‚È”Õ–Ê‚É‚È‚Á‚Ä‚é‚æ");
+		HandManagerAI.Instance.ArrangeField();
+		EnemyHandManagerAI.Instance.ArrangeField();
+		//int count = fieldCards.Count;
+		//if (count == 0) return;
 
-		int count = fieldCards.Count;
-		if (count == 0) return;
+		//float centerIndex = (count - 1) * 0.5f;
 
-		float centerIndex = (count - 1) * 0.5f;
+		//for (int i = 0; i < count; i++)
+		//{
+		//	FieldCardDisplayAI card = fieldCards[i];
+		//	if (card == null) continue;
 
-		for (int i = 0; i < count; i++)
-		{
-			FieldCardDisplayAI card = fieldCards[i];
-			if (card == null) continue;
+		//	float x = (i - centerIndex) * offsetX * 200f;
 
-			float x = (i - centerIndex) * offsetX * 200f;
-
-			Transform t = card.transform;
-			t.localPosition = new Vector3(x, baseY, baseZ);
-			t.localRotation = Quaternion.identity;
-		}
+		//	Transform t = card.transform;
+		//	t.localPosition = new Vector3(x, baseY, baseZ);
+		//	t.localRotation = Quaternion.identity;
+		//}
 	}
 
 	// =========================
@@ -359,7 +361,7 @@ public class PlayerFieldAI : MonoBehaviour
 		{
 			fieldCards.Remove(card);
 		}
-
+		Debug.Log("RemoveFieldCard");
 		Destroy(card.gameObject);
 		UpdateFieldLayout();
 	}

@@ -106,5 +106,8 @@ public class CardEffectHelper : MonoBehaviour
         cardMaterial = renderer.material;
         int mainTexID = Shader.PropertyToID("_MainTex");
         cardMaterial.SetTexture(mainTexID, renderTexture);
+
+        Destroy(camera.gameObject);
+        Destroy(cardVisual.gameObject);
     }
 }

@@ -126,8 +126,6 @@ public class AttackManagerAI : MonoBehaviour
 		attackingCard.RefreshStatsUI();
 	}
 
-
-
 	// -----------------------------
 	// –hŒäƒJ[ƒh‚ÅƒuƒƒbƒN
 	// -----------------------------
@@ -200,7 +198,7 @@ public class AttackManagerAI : MonoBehaviour
 		{
 			Debug.Log("[Battle] —¼•û AllWin ¨ ‘Š‘Å‚¿");
 			StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
-            StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
+            yield return StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
 			DestroyCard(attackingCard);
 			DestroyCard(blockCard);
 
@@ -214,7 +212,7 @@ public class AttackManagerAI : MonoBehaviour
 		{
 			Debug.Log("[Battle] UŒ‚‘¤ AllWin ¨ –hŒä”j‰ó");
 
-            StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
+            yield return StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
 			DestroyCard(blockCard);
 
 			// UŒ‚‘¤‚Í¶‚«c‚é‚Ì‚ÅƒŒƒXƒg
@@ -229,7 +227,7 @@ public class AttackManagerAI : MonoBehaviour
 		{
 			Debug.Log("[Battle] –hŒä‘¤ AllWin ¨ UŒ‚”j‰ó");
 
-            StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
+            yield return StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
 			DestroyCard(attackingCard);
 
 			// –hŒä‘¤‚ÍƒuƒƒbƒNŒãƒŒƒXƒg
@@ -246,7 +244,7 @@ public class AttackManagerAI : MonoBehaviour
 		if (attackBP > blockBP)
 		{
 			Debug.Log("[Battle] UŒ‚‘¤Ÿ—˜i–hŒä”j‰ój");
-            StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
+            yield return StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
 			DestroyCard(blockCard);
 			blockerDestroyed = true;
 			// ============================
@@ -256,7 +254,7 @@ public class AttackManagerAI : MonoBehaviour
 			{
 				Debug.Log("[Effect] “¹˜A‚ê”­“®IUŒ‚‘¤‚à”j‰ó");
 
-                StartCoroutine(MotionManager.Instance._break.StartBreak((attackingCard.transform)));
+                yield return StartCoroutine(MotionManager.Instance._break.StartBreak((attackingCard.transform)));
 				DestroyCard(attackingCard);
 				attackerDestroyed = true;
 			}
@@ -264,7 +262,7 @@ public class AttackManagerAI : MonoBehaviour
 		else if (attackBP < blockBP)
 		{
 			Debug.Log("[Battle] –hŒä‘¤Ÿ—˜iUŒ‚”j‰ój");
-			StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
+            yield return StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
 			DestroyCard(attackingCard);
 			attackerDestroyed = true;
 		}
@@ -272,7 +270,7 @@ public class AttackManagerAI : MonoBehaviour
 		{
 			Debug.Log("[Battle] ‘Š‘Å‚¿i—¼•û”j‰ój");
 			StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
-			StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
+            yield return StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
 			DestroyCard(blockCard);
 			DestroyCard(attackingCard);
 			blockerDestroyed = true;
@@ -451,6 +449,9 @@ public class AttackManagerAI : MonoBehaviour
 		state = AttackState.None;
 
 		PhaseManagerAI.Instance.currentPhase = PhaseManagerAI.Phase.Attack;
+
+		//HandManagerAI.Instance.ArrangeField();
+		//EnemyHandManagerAI.Instance.ArrangeField();
 
 		Debug.Log("[Attack] UŒ‚I—¹");
 	}

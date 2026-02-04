@@ -453,6 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 202022199}
   - component: {fileID: 202022200}
+  - component: {fileID: 202022201}
   m_Layer: 5
   m_Name: HandPanel
   m_TagString: Untagged
@@ -492,7 +493,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handZoneParent: {fileID: 202022199}
+  fieldZoneParent: {fileID: 0}
   offsetX: 120
+--- !u!114 &202022201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202022198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a39d2151045ac4284dd02b2edd6c5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handZoneParent: {fileID: 202022199}
+  fieldZoneParent: {fileID: 1831794534}
+  offsetX: 120
+  fieldOffsetX: 200
 --- !u!1001 &218273705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3745,9 +3763,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashEffect: {fileID: 9170647839508439389, guid: d3994b8acb6a63d44a23bab11308df24, type: 3}
   lingEffect: {fileID: 11400000, guid: a4b289838219e5645b292c958a016929, type: 2}
-  amplitude: 3
-  frequency: 4
-  shakeTime: 1
+  amplitude: 1
+  frequency: 0.5
+  shakeTime: 0.2
   dissolveTime: 1
 --- !u!114 &698623703
 MonoBehaviour:
@@ -6427,6 +6445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handZoneParent: {fileID: 2044366851}
+  fieldZoneParent: {fileID: 1154069560}
   offsetX: 120
 --- !u!222 &25606809557022894
 CanvasRenderer:
