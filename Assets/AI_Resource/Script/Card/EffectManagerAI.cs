@@ -1,4 +1,5 @@
 using Photon.Pun.Demo.PunBasics;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -233,6 +234,10 @@ public class EffectManager : MonoBehaviour
 		isSelectingTarget = true;
 		effectCard = card;
 		effectContext = context;
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 
 		Debug.Log("[Effect] 破壊対象をクリックしてください");
 	}
@@ -521,6 +526,10 @@ public class EffectManager : MonoBehaviour
 		}
 
 		ApplyBuffToFieldCard(context.targetField, effect);
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 
@@ -595,6 +604,10 @@ public class EffectManager : MonoBehaviour
 				context.ownerDeck.RemoveFromHand(display);
 		}
 
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
+
 		Debug.Log("[Effect] 青以外を破壊");
 	}
 
@@ -624,6 +637,10 @@ public class EffectManager : MonoBehaviour
 		if (shouldDraw)
 			context.ownerDeck.DrawCardAndGetDisplay(playerSide);
 
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
+
 	}
 
 	void ResolveDestroyPerHandCount(CardEffect effect, CardAI card, EffectContextAI context)
@@ -647,6 +664,10 @@ public class EffectManager : MonoBehaviour
 		effectContext = context;
 
 		Debug.Log($"[Effect] {remainingDestroyCount}体破壊を選んでください");
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 	void ResolveDestroyByHandCountBP(CardEffect effect, CardAI card, EffectContextAI context)
@@ -674,6 +695,10 @@ public class EffectManager : MonoBehaviour
 		effectContext = context;
 
 		Debug.Log($"[Effect] BP{bpLimit}以下を破壊してください");
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 	void ResolveSetBPByHandCount(CardEffect effect, CardAI card, EffectContextAI context)
@@ -764,6 +789,10 @@ public class EffectManager : MonoBehaviour
 		effectContext = context;
 
 		Debug.Log("[Effect] 破壊対象を選択してください");
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 	void ResolveDrawThenSetEnemyDefenseZero(CardEffect effect, CardAI card, EffectContextAI context)
@@ -819,6 +848,10 @@ public class EffectManager : MonoBehaviour
 		pendingDefenseZero = true;
 
 		Debug.Log("[Effect] 対象をクリックしてください（打撃力0）");
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 	void ResolveDestroyThenDraw(CardEffect effect, EffectContextAI context)
@@ -849,6 +882,10 @@ public class EffectManager : MonoBehaviour
 
 		Debug.Log("[Effect] 相手モンスター1体を破壊 → その後1枚ドローします");
 		Debug.Log("[Effect] 破壊対象を選んでください");
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 	void ResolveRest(CardEffect effect, CardAI card, EffectContextAI context)
@@ -907,6 +944,10 @@ public class EffectManager : MonoBehaviour
 		pendingRest = true;
 
 		Debug.Log($"[Effect] レストする敵モンスターを {restCount}体選んでください");
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 	void RestAll(PlayerFieldAI field)
@@ -946,6 +987,9 @@ public class EffectManager : MonoBehaviour
 		pendingDestroyThenRest = true;
 
 		Debug.Log("[Effect] まず相手モンスター1体を破壊してください");
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 	void ResolveDrawPerRestEnemy(CardAI card, EffectContextAI context)
@@ -976,6 +1020,10 @@ public class EffectManager : MonoBehaviour
 		{
 			context.ownerDeck.DrawCard(playerSide);
 		}
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 	void ResolveDestroyAllRestEnemy(CardAI card, EffectContextAI context)
@@ -1133,6 +1181,10 @@ public class EffectManager : MonoBehaviour
 		remainingDebuffCount = effect.extraValue;
 
 		Debug.Log($"[Effect] 相手モンスターを {remainingDebuffCount}体選び、BPを {debuffValue} 下げてください");
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
 	}
 
 
@@ -1236,6 +1288,60 @@ public class EffectManager : MonoBehaviour
 		remainingDebuffCount = 1;
 
 		Debug.Log("[Effect] 相手モンスター1体をクリックしてBPを0にしてください");
+
+		if (context.ownerSide == SummonSide.Enemy)
+			AIResolveAllSelections();
+
+	}
+
+	//AI用
+	FieldCardDisplayAI SelectAITarget()
+	{
+		if (selectableTargets == null || selectableTargets.Count == 0)
+			return null;
+
+		// とりあえずBPが一番高い敵を狙う
+		return selectableTargets
+			.OrderByDescending(c => c.Attack)
+			.First();
+	}
+
+	public void AISelectTargetOnce()
+	{
+		if (!isSelectingTarget) return;
+
+		FieldCardDisplayAI target = SelectAITarget();
+		if (target == null) return;
+
+		Debug.Log($"[AI] 自動選択 → {target.CardName}");
+
+		// ★クリック処理を流用
+		OnTargetCardClicked(target);
+	}
+
+	public void AIResolveAllSelections()
+	{
+		StartCoroutine(AISelectionRoutine());
+	}
+
+	IEnumerator AISelectionRoutine()
+	{
+		while (isSelectingTarget)
+		{
+			yield return new WaitForSeconds(0.5f);
+
+			if (selectableTargets == null || selectableTargets.Count == 0)
+			{
+				EndDestroySelection();
+				yield break;
+			}
+
+			FieldCardDisplayAI target = SelectAITarget();
+
+			Debug.Log($"[AI] 自動選択 → {target.CardName}");
+
+			OnTargetCardClicked(target);
+		}
 	}
 
 }
