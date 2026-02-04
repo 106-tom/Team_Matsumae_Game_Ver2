@@ -460,6 +460,9 @@ public class EffectManager : MonoBehaviour
 		pendingDestroyThenDraw = false;
 		pendingDefenseZero = false;
 
+		HandManagerAI.Instance.ArrangeField();
+		EnemyHandManagerAI.Instance.ArrangeField();
+
 		Debug.Log("[Effect] ‘I‘ğI—¹");
 	}
 

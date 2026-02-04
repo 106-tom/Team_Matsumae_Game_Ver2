@@ -78,7 +78,8 @@ public class PhaseManagerAI : MonoBehaviour
 		switch (currentPhase)
 		{
 			case Phase.Start:
-				SetPhase(Phase.Draw);
+				
+                SetPhase(Phase.Draw);
 				break;
 
 			case Phase.Draw:
@@ -143,8 +144,13 @@ public class PhaseManagerAI : MonoBehaviour
 		switch (phase)
 		{
 			case Phase.Start:
-				// アンタップ
-				players[currentPlayerIndex].manaManager.UntapAll();
+                HandManagerAI.Instance.ArrangeField();
+                EnemyHandManagerAI.Instance.ArrangeField();
+                HandManagerAI.Instance.ArrangeHand();
+                HandManagerAI.Instance.ArrangeField();
+
+                // アンタップ
+                players[currentPlayerIndex].manaManager.UntapAll();
 				//Debug.Log("Start Phase: UntapAll");
 
 				// ★カードレスト解除
@@ -215,9 +221,9 @@ public class PhaseManagerAI : MonoBehaviour
 				break;
 			case Phase.Attack:
                 HandManagerAI.Instance.ArrangeHand();
+                EnemyHandManagerAI.Instance.ArrangeHand();
                 if (turnSide == PlayerSide.Enemy)
 				{
-					Debug.Log(turnSide);
 					StartCoroutine(EnemyAutoAttack());
 				}
 				else
@@ -454,9 +460,6 @@ public class PhaseManagerAI : MonoBehaviour
 		AttackManagerAI.Instance.StartAttack(PlayerSide.Enemy, attacker);
 
 		// 攻撃が終わるまで待つ
-
-		Debug.Log("攻撃中");
-
         yield return new WaitUntil(() =>
 			AttackManagerAI.Instance.state == AttackState.None
 		);

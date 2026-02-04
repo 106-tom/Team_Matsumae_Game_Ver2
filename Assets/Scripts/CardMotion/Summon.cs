@@ -47,19 +47,14 @@ public class Summon : MonoBehaviour
     [SerializeField] private float shiftOffset;
     [Space(10)]
 
-   // [SerializeField] private MeshRenderer[] renderers;
-
-    private Transform field;
-
     private CardMotionHelper cardMotionHelper;
-    private CameraManager cameraManager;// = CameraManager.Instance;
-    private CinemachineVirtualCamera virtualCamera;// = cameraManager.virtualCamera;
+    private CameraManager cameraManager;
+    private CinemachineVirtualCamera virtualCamera;
     private CinemachineBasicMultiChannelPerlin noise;
 
     private void Start()
     {
-        cardMotionHelper   = SystemManager.Instance.cardMotionHelper;
-        // 画面振動用カメラ取得
+        cardMotionHelper = SystemManager.Instance.cardMotionHelper;
         cameraManager = CameraManager.Instance;
         virtualCamera = cameraManager.virtualCamera;
         noise = cameraManager.noise;
@@ -69,42 +64,52 @@ public class Summon : MonoBehaviour
     /// 召喚演出
     /// </summary>
     /// <param name="myFieldCards">自分のフィールド</param>
+    /// <param name="summonCard">召喚するカード</param>
     /// <returns></returns>
     public IEnumerator StartSummon(Transform myFieldCards, GameObject summonCard)
     {
-        //foreach (MeshRenderer m in renderers)
-        //{
-        //    m.shadowCastingMode = ShadowCastingMode.On;
-        //}
+        Vector3 forwardEndPosition = Vector3.zero;
 
-        Vector3 forwardEndPosition;
-        // 一番右のカード(最新の子オブジェクト)を取得
-        // 1. 直前の座標に頼らず、インデックス（何枚目か）から計算する
-        int childCount = myFieldCards.childCount - 1;
-
-        // 2. フィールドの基準点（1枚目が入る場所）
-        Vector3 baseCenter = AdjustCardPosition.Instance.fieldCenter;
-
-        // 3. このカードが最終的に行くべき「ローカル座標」を計算
-        // childCount枚目の位置 = 中心 + (ずらし量 * 枚数)
-        forwardEndPosition = baseCenter + new Vector3(shiftOffset * childCount, 0, 0);
-
-        // 画面中央まで上昇
+        // --- 画面中央まで上昇 ---
         Vector3 upStartPosition = summonCard.transform.localPosition;
         yield return StartCoroutine(cardMotionHelper.MoveTarget(summonCard.transform, upTime, upStartPosition, upEndPosition, upCurve));
 
         yield return new WaitForSeconds(0.1f);
 
-        // 前進しフィールドに置く
+        // --- フィールド整列と前進 ---
+        int totalCards = myFieldCards.childCount;
+        Vector3 baseCenter = AdjustCardPosition.Instance.fieldCenter;
+
+        // 全体の幅の半分から開始位置を計算 (中央揃え用)
+        float totalWidth = shiftOffset * (totalCards - 1);
+        float startX = -totalWidth / 2f;
+
+        for (int i = 0; i < totalCards; i++)
+        {
+            Transform card = myFieldCards.GetChild(i);
+            Vector3 targetPos = baseCenter + new Vector3(startX + (shiftOffset * i), 0, 0);
+
+            if (card == summonCard.transform)
+            {
+                // 召喚中のカードの目的地を保存
+                forwardEndPosition = targetPos;
+            }
+            else
+            {
+                // すでに場にあるカードを新しい位置へスライドさせる
+                StartCoroutine(cardMotionHelper.MoveTarget(card, forwardTime, card.localPosition, targetPos, forwardCurve));
+            }
+        }
+
+        // 召喚カードをフィールドへ移動
         Vector3 forwardStartPosition = summonCard.transform.localPosition;
         yield return StartCoroutine(cardMotionHelper.MoveTarget(summonCard.transform, forwardTime, forwardStartPosition, forwardEndPosition, forwardCurve));
 
-        // 全てのエフェクトを少し上に上げる
+        // --- エフェクト処理 ---
         float yAxisOffset = 0.05f;
         Vector3 effectPosition = summonCard.transform.localPosition;
         effectPosition.z += yAxisOffset;
 
-        // エフェクト取得
         EffectPoolManager effectPool = EffectPoolManager.Instance;
 
         GameObject flashObj = effectPool.Get(flashEffect.gameObject, effectPosition);
@@ -119,28 +124,26 @@ public class Summon : MonoBehaviour
         Vector3 effectScale = new Vector3(0.05f, 0.05f, 0.05f);
         flashEffectInstance.transform.localScale = effectScale;
         smokeEffectInstance.transform.localScale = effectScale;
-        rockEffectInstance.transform.localScale  = effectScale;
+        rockEffectInstance.transform.localScale = effectScale;
 
-        //エフェクト再生
         flashEffectInstance.Play();
         smokeEffectInstance.Play();
         rockEffectInstance.Play();
 
-        // 画面振動開始
+        // --- 画面振動演出 ---
         float elapsedTime = 0f;
         while (elapsedTime < shakeTime)
         {
             elapsedTime += Time.deltaTime;
-
             float t = elapsedTime / shakeTime;
             noise.m_AmplitudeGain = Mathf.Lerp(0.0f, amplitude, t);
             noise.m_FrequencyGain = Mathf.Lerp(0.0f, frequency, t);
             yield return null;
         }
-        noise.m_AmplitudeGain = 5.0f;
-        noise.m_FrequencyGain = 6.0f;
 
-        // 画面振動を徐々に抑える
+        noise.m_AmplitudeGain = amplitude;
+        noise.m_FrequencyGain = frequency;
+
         elapsedTime = 0f;
         while (elapsedTime < shakeTime)
         {
@@ -150,6 +153,7 @@ public class Summon : MonoBehaviour
             noise.m_FrequencyGain = Mathf.Lerp(frequency, 0.0f, t);
             yield return null;
         }
+
         noise.m_AmplitudeGain = 0.0f;
         noise.m_FrequencyGain = 0.0f;
     }

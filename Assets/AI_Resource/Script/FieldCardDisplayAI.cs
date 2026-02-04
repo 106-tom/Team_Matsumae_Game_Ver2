@@ -59,7 +59,7 @@ public class FieldCardDisplayAI : MonoBehaviour, IPointerClickHandler
 
 		if (visual == null)
 		{
-			Debug.LogError("CardVisualController ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ", this);
+			//Debug.LogError("CardVisualController ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ", this);
 			return;
 		}
 
