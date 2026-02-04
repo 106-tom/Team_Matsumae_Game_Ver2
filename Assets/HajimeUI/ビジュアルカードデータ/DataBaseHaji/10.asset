@@ -20,7 +20,7 @@ MonoBehaviour:
   cardType: Spell
   genericCost: 2
   specificColor: 1
-  specificCost: 3
+  specificCost: 4
   effectText: "5000\u4EE5\u4E0B\u5168\u3066\u7834\u58CA"
   tags: 
   ap: 0
