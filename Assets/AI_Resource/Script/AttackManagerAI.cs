@@ -91,7 +91,7 @@ public class AttackManagerAI : MonoBehaviour
 			Debug.Log($"[Debug] 攻撃側デッキ取得成功。手札枚数: {ownerDeck.HandCount}");
 		}
 
-		if (defendingSide == PlayerSide.Enemy)
+		if (defendingSide == PlayerSide.Self)
 		{
 			StartCoroutine(EnemyAutoBlock());
 		}
@@ -262,8 +262,13 @@ public class AttackManagerAI : MonoBehaviour
 			attackerDestroyed = true;
 		}
 
-		// 攻撃モーション
-        StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, blockCard.transform));
+		if (!attackerDestroyed && !blockerDestroyed)
+		{
+			StartCoroutine(MotionManager.Instance.attack.StartAttack(
+				attackingCard.transform,
+				blockCard.transform
+			));
+		}
 
 		// ============================
 		// ★ 生き残ったカードはレスト
