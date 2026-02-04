@@ -124,6 +124,15 @@ public class DeckEditManager : MonoBehaviour
     // =================================
     public void OnClickSave()
     {
+        if (GetDeckCardIds().Count != 30)
+        {
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(nameInput.GetDeckName()))
+        {
+            return;
+        }
+
         SaveDeck();
         ReturnToDeckSelect();
     }
@@ -131,7 +140,6 @@ public class DeckEditManager : MonoBehaviour
     private void SaveDeck()
     {
         DeckDataManager.Instance.SaveDeckSmart();
-        Debug.Log("デッキ保存完了");
     }
 
     private void ReturnToDeckSelect()

@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052d4de7cb362e0438a79df50e6f17cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Menu
+  nextSceneName: DeckSelect
 --- !u!4 &1799200799
 Transform:
   m_ObjectHideFlags: 0
