@@ -39,6 +39,15 @@ public class Attack : MonoBehaviour
     [Header("UŒ‚‘ÎÛ‚ÌƒAƒCƒRƒ“ˆÊ’u")]
     [SerializeField] private RectTransform playerRectTransform;
     [SerializeField] private RectTransform enemyRectTransform;
+    [Space(10)]
+
+    [Header("‰æ–ÊU“®—p")]
+    [Tooltip("U“®‚Ì‹­‚³")]
+    [SerializeField] private float amplitude;
+    [Tooltip("U“®‚Ì‘¬‚³")]
+    [SerializeField] private float frequency;
+    [Tooltip("U“®ŠÔ")]
+    [SerializeField] private float shakeTime;
 
     private CardMotionHelper cardMotionHelper;
 
@@ -66,11 +75,12 @@ public class Attack : MonoBehaviour
         {
             blockPosition = attackerSide == PlayerSide.Self
                 ? blockPosition = enemyRectTransform.localPosition
-                : enemyRectTransform.localPosition;
+                : playerRectTransform.localPosition;
         }
         else
         {
-            blockPosition = blockCard.position;
+            blockPosition = blockCard.localPosition;
+            blockPosition += new Vector3(0f, 150f, 0f);
             Debug.Log("“GƒJ[ƒh‚ÉUŒ‚" + blockPosition);
         }
         Vector3 myFirstPosition = attackCard.localPosition;
@@ -101,11 +111,14 @@ public class Attack : MonoBehaviour
         //StartCoroutine(cardMotionHelper.RotationTarget(attackCard, rotateTime, startRotation, endRotation, rotateCurve));
         yield return StartCoroutine(cardMotionHelper.MoveTarget(attackCard, forwardTime, forwardStartPosition, forwardEndPosition, forwardCurve));
         // ˆê’Unull
-        if(isDirectAttack)
+        if(!isDirectAttack)
             StartCoroutine(MotionManager.Instance.block.StartBlock(null));
-
-        // Œ³‚ÌˆÊ’u‚É–ß‚é
+        // ‰æ–ÊU“®ŠJn
+        CameraManager cameraManager = CameraManager.Instance;
+        yield return StartCoroutine(cameraManager.CameraShake(0f, amplitude, frequency, shakeTime));
+        StartCoroutine(cameraManager.CameraShake(amplitude, 0f, frequency, shakeTime));
         yield return StartCoroutine(cardMotionHelper.MoveTarget(attackCard, upTime, forwardEndPosition, forwardStartPosition, upCurve));
+        // Œ³‚ÌˆÊ’u‚É–ß‚é
 
         // ‰º‚°‚È‚ª‚çŒü‚«‚ğ–ß‚·
         StartCoroutine(cardMotionHelper.MoveTarget(attackCard, downTime, downStartPosition, downEndPosition, downCurve));

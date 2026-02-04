@@ -41,8 +41,11 @@ public class Break : MonoBehaviour
     public IEnumerator StartBreak(
         Transform cardTransform)
     {
+
         Transform bo = cardTransform.Find("GameObject/BreakObject");
         int i = 0;
+        if(bo == null)
+        Debug.Log("bo‚È‚¢");
         foreach (Transform child in bo)
         {
             i++;

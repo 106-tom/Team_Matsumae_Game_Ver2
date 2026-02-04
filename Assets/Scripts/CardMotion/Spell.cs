@@ -11,10 +11,6 @@ using UnityEngine.Rendering;
 /// </summary>
 public class Spell : MonoBehaviour
 {
-    [Header("ディゾルブする際に邪魔なので非アクティブにする : 破壊用オブジェクト")]
-    [SerializeField] private GameObject breakObject;
-    [Space(10)]
-
     [Header("表示したいカードの見た目を映すカメラ")]
     [SerializeField] private GameObject UICamera;
     [Space(10)]
@@ -23,9 +19,13 @@ public class Spell : MonoBehaviour
     [SerializeField] private RenderTexture renderTexture;
     [Space(10)]
 
-    [Header("実際に表示するカード")]
-    [SerializeField] private GameObject mainCardIDDisplay;
+    [Header("ディゾルブする際に邪魔なので非アクティブにする : 破壊用オブジェクト")]
+    [SerializeField] private GameObject breakObject;
     [Space(10)]
+
+    //[Header("実際に表示するカード")]
+    //[SerializeField] private GameObject mainCardIDDisplay;
+    //[Space(10)]
 
     [Header("エフェクト類")]
     [Tooltip("円エフェクト")]
@@ -65,14 +65,15 @@ public class Spell : MonoBehaviour
     [SerializeField] private AnimationCurve dissolveCurve;
     [Space(10)]
 
-    [Header("カットイン")]
-    [SerializeField] private GameObject cutInAnim;
-    [Space(10)]
+   //[Header("カットイン")]
+   //[SerializeField] private GameObject cutInAnim;
+   //[Space(10)]
+    private GameObject cutInAnim;
+    private GameObject mainCardIDDisplay;
 
     private static readonly int thresholdID = Shader.PropertyToID("_Threshold");
 
     private GameObject glassPlate;
-
     private FkingCardFXManager cardFXManager;
 
     private CardEffectHelper cardEffectHelper;
@@ -85,8 +86,25 @@ public class Spell : MonoBehaviour
         cardEffectHelper = SystemManager.Instance.cardEffectHelper;
         cardMotionHelper = SystemManager.Instance.cardMotionHelper;
         uiHelper = SystemManager.Instance.uiHelper;
-        cutIn = cutInAnim.GetComponent<CutIn>();
         cardFXManager = GetComponent<FkingCardFXManager>();
+    }
+
+    public IEnumerator StartSpell(bool isPlayerTurn, Transform cardTransform)
+    {
+        Debug.Log("呪文演出開始");
+        // カットインアニメーション開始
+        cutInAnim = cardTransform.Find("CutInAnim").gameObject;
+        cutIn = cutInAnim.GetComponent<CutIn>();
+        yield return StartCoroutine(cutIn.StartCutIn(isPlayerTurn));
+
+        // 移動の開始位置
+        //Vector3 startPosition = transform.position;
+        // 移動
+        //yield return cardMotionHelper.MoveTarget(transform, moveTime, startPosition, moveEndPosition, moveCurve);
+      
+        mainCardIDDisplay = cardTransform.Find("GameObject/CardVisualHajime").gameObject;
+        // ディゾルブ処理
+        //yield return StartCoroutine(Dissolve(mainCardIDDisplay));
     }
 
     /// <summary>
@@ -160,7 +178,7 @@ public class Spell : MonoBehaviour
         explosionEmberEffectInstance.Play();
 
         // ディゾルブ処理
-        yield return StartCoroutine(Dissolve());
+        //yield return StartCoroutine(Dissolve());
     }
 
     /// <summary>
@@ -222,7 +240,7 @@ public class Spell : MonoBehaviour
         StartCoroutine(uiHelper.SpriteFadeOut(forkSpriteInstance.GetComponent<SpriteRenderer>(), 0.5f));
        
         // ディゾルブ処理
-        yield return StartCoroutine(Dissolve());
+        //yield return StartCoroutine(Dissolve());
 
         // エフェクト削除
         Destroy(forkSpriteInstance);
@@ -231,7 +249,7 @@ public class Spell : MonoBehaviour
     /// <summary>
     /// ディゾルブ処理
     /// </summary>
-    private IEnumerator Dissolve()
+    private IEnumerator Dissolve(GameObject mainCardIDDisplay)
     {
         // レンダーテクスチャの絵柄を設定
         GameObject camera;
@@ -242,7 +260,7 @@ public class Spell : MonoBehaviour
 
         // 邪魔なのでカードUIと破壊演出用オブジェクトを非表示にする
         mainCardIDDisplay.SetActive(false);
-        breakObject.SetActive(false);
+        //breakObject.SetActive(false);
 
         cardMaterial.SetFloat(thresholdID, 0.0f);
 

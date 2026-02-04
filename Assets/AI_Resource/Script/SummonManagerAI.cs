@@ -101,8 +101,11 @@ public class SummonManagerAI : MonoBehaviour
 		summonedCard.OwnerSide = currentTurn;
 		targetDeck.RemoveFromHand(handCard);
 
+        bool isPlayerTurn = (side == SummonSide.Player) ? true : false;
+        //StartCoroutine(MotionManager.Instance.spell.StartSpell(isPlayerTurn, summonedCard.transform));
+       
 		// Effect ‚ğ‰ğŒˆ
-		EffectManager.Instance.Resolve(
+        EffectManager.Instance.Resolve(
 			CardAI.EffectTiming.Summon,
 			card,
 			new EffectContextAI
@@ -153,8 +156,8 @@ public class SummonManagerAI : MonoBehaviour
 
 		// ===== g—p¬Œ÷ =====
 		targetMana.PayCost(card);
-
-		//MotionManager.Instance.spell.StartRedSpell();
+		bool isPlayerTurn = (side == SummonSide.Player) ? true : false;
+        //StartCoroutine(MotionManager.Instance.spell.StartSpell(isPlayerTurn, handCard.transform));
 
 		// èD‚©‚ç•æ’n‚Ö
 		Destroy(handCard.gameObject);

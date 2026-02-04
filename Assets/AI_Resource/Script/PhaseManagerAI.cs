@@ -217,6 +217,7 @@ public class PhaseManagerAI : MonoBehaviour
                 HandManagerAI.Instance.ArrangeHand();
                 if (turnSide == PlayerSide.Enemy)
 				{
+					Debug.Log(turnSide);
 					StartCoroutine(EnemyAutoAttack());
 				}
 				else
@@ -453,7 +454,10 @@ public class PhaseManagerAI : MonoBehaviour
 		AttackManagerAI.Instance.StartAttack(PlayerSide.Enemy, attacker);
 
 		// 攻撃が終わるまで待つ
-		yield return new WaitUntil(() =>
+
+		Debug.Log("攻撃中");
+
+        yield return new WaitUntil(() =>
 			AttackManagerAI.Instance.state == AttackState.None
 		);
 
