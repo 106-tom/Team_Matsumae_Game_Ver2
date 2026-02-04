@@ -108,7 +108,6 @@ public class AttackManagerAI : MonoBehaviour
 			StartCoroutine(EnemyAutoBlock());
 		}
 
-
 		EffectManager.Instance.Resolve(
 		CardAI.EffectTiming.Attack,
 		attackingCard.CardData,
@@ -192,18 +191,16 @@ public class AttackManagerAI : MonoBehaviour
 
 		bool blockerAllWin =
 			blockCard.CardData.HasEffect(EffectType.AllWin);
-
+        //yield return StartCoroutine(MotionManager.Instance.spell.StartSpell(true, attackingCard.transform));
         // UŒ‚ƒ‚[ƒVƒ‡ƒ“
         yield return StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, blockCard.transform, attackerSide, false));
-        // ƒuƒƒbƒNƒ‚[ƒVƒ‡ƒ“
-		//yield return StartCoroutine(MotionManager.Instance.block.StartBlock(attackingCard.transform));
-        
+       
 		// —¼•û‚ª‚Á‚Ä‚¢‚é‚È‚ç‘Š‘Å‚¿
         if (attackerAllWin && blockerAllWin)
 		{
 			Debug.Log("[Battle] —¼•û AllWin ¨ ‘Š‘Å‚¿");
-			MotionManager.Instance._break.StartBreak(attackingCard.transform);
-			MotionManager.Instance._break.StartBreak(blockCard.transform);
+			StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
+            StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
 			DestroyCard(attackingCard);
 			DestroyCard(blockCard);
 
@@ -217,7 +214,7 @@ public class AttackManagerAI : MonoBehaviour
 		{
 			Debug.Log("[Battle] UŒ‚‘¤ AllWin ¨ –hŒä”j‰ó");
 
-			MotionManager.Instance._break.StartBreak(blockCard.transform);
+            StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
 			DestroyCard(blockCard);
 
 			// UŒ‚‘¤‚Í¶‚«c‚é‚Ì‚ÅƒŒƒXƒg
@@ -232,7 +229,7 @@ public class AttackManagerAI : MonoBehaviour
 		{
 			Debug.Log("[Battle] –hŒä‘¤ AllWin ¨ UŒ‚”j‰ó");
 
-			MotionManager.Instance._break.StartBreak(attackingCard.transform);
+            StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
 			DestroyCard(attackingCard);
 
 			// –hŒä‘¤‚ÍƒuƒƒbƒNŒãƒŒƒXƒg
@@ -249,7 +246,7 @@ public class AttackManagerAI : MonoBehaviour
 		if (attackBP > blockBP)
 		{
 			Debug.Log("[Battle] UŒ‚‘¤Ÿ—˜i–hŒä”j‰ój");
-			MotionManager.Instance._break.StartBreak(blockCard.transform);
+            StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
 			DestroyCard(blockCard);
 			blockerDestroyed = true;
 			// ============================
@@ -259,7 +256,7 @@ public class AttackManagerAI : MonoBehaviour
 			{
 				Debug.Log("[Effect] “¹˜A‚ê”­“®IUŒ‚‘¤‚à”j‰ó");
 
-				MotionManager.Instance._break.StartBreak(attackingCard.transform);
+                StartCoroutine(MotionManager.Instance._break.StartBreak((attackingCard.transform)));
 				DestroyCard(attackingCard);
 				attackerDestroyed = true;
 			}
@@ -267,15 +264,15 @@ public class AttackManagerAI : MonoBehaviour
 		else if (attackBP < blockBP)
 		{
 			Debug.Log("[Battle] –hŒä‘¤Ÿ—˜iUŒ‚”j‰ój");
-			MotionManager.Instance._break.StartBreak(attackingCard.transform);
+			StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
 			DestroyCard(attackingCard);
 			attackerDestroyed = true;
 		}
 		else
 		{
 			Debug.Log("[Battle] ‘Š‘Å‚¿i—¼•û”j‰ój");
-			MotionManager.Instance._break.StartBreak(blockCard.transform);
-			MotionManager.Instance._break.StartBreak(attackingCard.transform);
+			StartCoroutine(MotionManager.Instance._break.StartBreak(blockCard.transform));
+			StartCoroutine(MotionManager.Instance._break.StartBreak(attackingCard.transform));
 			DestroyCard(blockCard);
 			DestroyCard(attackingCard);
 			blockerDestroyed = true;
@@ -399,7 +396,7 @@ public class AttackManagerAI : MonoBehaviour
 		PlayerSide attackerSide = (clickedSide == PlayerSide.Self)
 			? attackerSide = PlayerSide.Enemy
 			: attackerSide = PlayerSide.Self;
-
+		Debug.Log("PlayerSide : " + attackerSide);
         StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, null, attackerSide, true));
 	
 		Debug.Log($"[Life] {clickedSide} ‚ª {damage} ƒ_ƒ[ƒW‚ğó‚¯‚é");

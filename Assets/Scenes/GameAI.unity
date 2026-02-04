@@ -503,11 +503,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2339989345858629541, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_text
-      value: BLOCK!!!
+      value: BLOCK!!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2339989345858629541, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2339989345858629541, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 16730400
+      value: 4294920480
       objectReference: {fileID: 0}
     - target: {fileID: 2690873000884373652, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_Name
@@ -547,11 +551,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3111.1152
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3111.1162
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -563,31 +571,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1772994.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
-      propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70693415
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.70727944
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2683961
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -855.4445
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8824164574592163310, guid: cf7b54891c216e441b04d7810e2011c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2995,6 +3003,7 @@ GameObject:
   - component: {fileID: 698623694}
   - component: {fileID: 698623700}
   - component: {fileID: 698623697}
+  - component: {fileID: 698623704}
   m_Layer: 0
   m_Name: MotionManager
   m_TagString: Untagged
@@ -3058,7 +3067,7 @@ MonoBehaviour:
   _draw: {fileID: 698623694}
   _heal: {fileID: 698623700}
   _summon: {fileID: 698623697}
-  _spell: {fileID: 0}
+  _spell: {fileID: 698623704}
 --- !u!4 &698623696
 Transform:
   m_ObjectHideFlags: 0
@@ -3089,19 +3098,19 @@ MonoBehaviour:
   flashEffect: {fileID: 9170647839508439389, guid: d3994b8acb6a63d44a23bab11308df24, type: 3}
   smokeEffect: {fileID: 7851895710597457874, guid: 88be9d731ac142a4ab1e9eca40d25675, type: 3}
   rockEffect: {fileID: 6385453197138243580, guid: ee9bd18e253afb94682e0124e954e4e3, type: 3}
-  amplitude: 5
-  frequency: 4
-  shakeTime: 1
-  upEndPosition: {x: 0, y: 0, z: -100}
-  upTime: 0.5
+  amplitude: 1
+  frequency: 0.5
+  shakeTime: 0.2
+  upEndPosition: {x: 0, y: 0, z: -400}
+  upTime: 0.8
   upCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -3109,8 +3118,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -3125,17 +3134,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1.6764085
-      outSlope: 1.6764085
+      inSlope: 1.773489
+      outSlope: 1.773489
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.5965124
-      value: 0.99999845
-      inSlope: 1.6764085
-      outSlope: 1.6764085
+      time: 0.5559082
+      value: 0.98589706
+      inSlope: 1.773489
+      outSlope: 1.773489
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -3163,18 +3172,18 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      time: 0.698761
+      value: 0.98321533
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -3232,25 +3241,34 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rotateTime: 0.1
+  rotateTime: 0.2
   rotateCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      time: 0.15164165
+      value: 0.23419258
+      inSlope: 2.7055104
+      outSlope: 2.7055104
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.41119385
+      value: 0.99056625
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -3259,6 +3277,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   playerRectTransform: {fileID: 108575631}
   enemyRectTransform: {fileID: 938952062}
+  amplitude: 1.5
+  frequency: 1
+  shakeTime: 0.15
 --- !u!114 &698623700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3472,6 +3493,62 @@ MonoBehaviour:
   scalingTime: 0.3
   fadeOutTime: 0.4
   rotationTime: 0.3
+--- !u!114 &698623704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698623693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0704c0f2ef267f24a9ab96812b820909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UICamera: {fileID: 8163545475946294749, guid: 180d166ec5bb8f245ba367632050112f, type: 3}
+  renderTexture: {fileID: 8400000, guid: 68f0ddac35971d94194566564d9bedb0, type: 2}
+  breakObject: {fileID: 0}
+  lingEffect: {fileID: 0}
+  smokeEffect: {fileID: 0}
+  fireBallEffect: {fileID: 0}
+  explosionFlashEffect: {fileID: 0}
+  explosionEmberEffect: {fileID: 0}
+  forkSprite: {fileID: 0}
+  redSmokeColor: {r: 0, g: 0, b: 0, a: 0}
+  greenSmokeColor: {r: 0, g: 0, b: 0, a: 0}
+  moveEndPosition: {x: 0, y: 0, z: 0}
+  moveTime: 0
+  moveCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dissolveTime: 1
+  dissolveCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &851139560
 GameObject:
   m_ObjectHideFlags: 0

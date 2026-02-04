@@ -100,6 +100,7 @@ public class SummonManagerAI : MonoBehaviour
 		summonedCard.OwnerSide = currentTurn;
 		targetDeck.RemoveFromHand(handCard);
 
+<<<<<<< HEAD
 		// ===== 敵カードなら召喚した瞬間に表に戻す =====
 		if (currentTurn == PlayerSide.Enemy)
 		{
@@ -121,8 +122,13 @@ public class SummonManagerAI : MonoBehaviour
 
 
 
+=======
+        bool isPlayerTurn = (side == SummonSide.Player) ? true : false;
+        //StartCoroutine(MotionManager.Instance.spell.StartSpell(isPlayerTurn, summonedCard.transform));
+       
+>>>>>>> origin/tom
 		// Effect を解決
-		EffectManager.Instance.Resolve(
+        EffectManager.Instance.Resolve(
 			CardAI.EffectTiming.Summon,
 			card,
 			new EffectContextAI
@@ -175,8 +181,8 @@ public class SummonManagerAI : MonoBehaviour
 
 		// ===== 使用成功 =====
 		targetMana.PayCost(card);
-
-		//MotionManager.Instance.spell.StartRedSpell();
+		bool isPlayerTurn = (side == SummonSide.Player) ? true : false;
+        //StartCoroutine(MotionManager.Instance.spell.StartSpell(isPlayerTurn, handCard.transform));
 
 		// 手札から墓地へ
 		Destroy(handCard.gameObject);

@@ -36,18 +36,67 @@ public class Attack : MonoBehaviour
 	[Tooltip("回転速度変化グラフ")]
 	[SerializeField] private AnimationCurve rotateCurve;
 
+<<<<<<< HEAD
 	[Header("攻撃対象のアイコン位置")]
 	[SerializeField] private RectTransform playerRectTransform;
 	[SerializeField] private RectTransform enemyRectTransform;
+=======
+    [Header("攻撃対象のアイコン位置")]
+    [SerializeField] private RectTransform playerRectTransform;
+    [SerializeField] private RectTransform enemyRectTransform;
+    [Space(10)]
+
+    [Header("画面振動用")]
+    [Tooltip("振動の強さ")]
+    [SerializeField] private float amplitude;
+    [Tooltip("振動の速さ")]
+    [SerializeField] private float frequency;
+    [Tooltip("振動時間")]
+    [SerializeField] private float shakeTime;
+>>>>>>> origin/tom
 
 	private CardMotionHelper cardMotionHelper;
 
 	private Vector3 blockPosition = new Vector3();
 
+<<<<<<< HEAD
 	private void Start()
 	{
 		cardMotionHelper = SystemManager.Instance.cardMotionHelper;
 	}
+=======
+    private void Start()
+    {
+        cardMotionHelper = SystemManager.Instance.cardMotionHelper;
+    }
+    
+    /// <summary>
+    /// 攻撃演出開始
+    /// </summary>
+    /// <param name="blockCard">攻撃対象</param>
+    /// <param name="isDead">攻撃後破壊されるかどうか</param>
+    /// <param name="attackerSide">攻撃する側</param>
+    /// <returns></returns>
+    public IEnumerator StartAttack(
+        Transform attackCard, 
+        Transform blockCard, 
+        PlayerSide attackerSide,
+        bool isDirectAttack)
+    {
+        if (blockCard == null)
+        {
+            blockPosition = attackerSide == PlayerSide.Self
+                ? blockPosition = enemyRectTransform.localPosition
+                : playerRectTransform.localPosition;
+        }
+        else
+        {
+            blockPosition = blockCard.localPosition;
+            blockPosition += new Vector3(0f, 150f, 0f);
+            Debug.Log("敵カードに攻撃" + blockPosition);
+        }
+        Vector3 myFirstPosition = attackCard.localPosition;
+>>>>>>> origin/tom
 
 	/// <summary>
 	/// 攻撃演出開始
@@ -92,6 +141,7 @@ public class Attack : MonoBehaviour
 		Vector3 forwardEndPosition = blockPosition + upHeight;
 		Vector3 forwardStartPosition = attackCard.localPosition;
 
+<<<<<<< HEAD
 		// 回転の始点と終点を計算
 		Quaternion startRotation = attackCard.localRotation;
 		float targetYAngle = cardMotionHelper.GetYAngleToTarget(myFirstPosition, blockPosition);
@@ -103,6 +153,20 @@ public class Attack : MonoBehaviour
 		// 一旦null
 		if (!isDirectAttack)
 			StartCoroutine(MotionManager.Instance.block.StartBlock(null));
+=======
+        // 攻撃対象へ向きを変えながら前進
+        //StartCoroutine(cardMotionHelper.RotationTarget(attackCard, rotateTime, startRotation, endRotation, rotateCurve));
+        yield return StartCoroutine(cardMotionHelper.MoveTarget(attackCard, forwardTime, forwardStartPosition, forwardEndPosition, forwardCurve));
+        // 一旦null
+        if(!isDirectAttack)
+            StartCoroutine(MotionManager.Instance.block.StartBlock(null));
+        // 画面振動開始
+        CameraManager cameraManager = CameraManager.Instance;
+        yield return StartCoroutine(cameraManager.CameraShake(0f, amplitude, frequency, shakeTime));
+        StartCoroutine(cameraManager.CameraShake(amplitude, 0f, frequency, shakeTime));
+        yield return StartCoroutine(cardMotionHelper.MoveTarget(attackCard, upTime, forwardEndPosition, forwardStartPosition, upCurve));
+        // 元の位置に戻る
+>>>>>>> origin/tom
 
 		// 元の位置に戻る
 		yield return StartCoroutine(cardMotionHelper.MoveTarget(attackCard, upTime, forwardEndPosition, forwardStartPosition, upCurve));

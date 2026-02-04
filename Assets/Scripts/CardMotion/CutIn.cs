@@ -58,6 +58,7 @@ public class CutIn : MonoBehaviour
     /// <returns></returns>
     public IEnumerator StartCutIn(bool isPlayerTurn)
     {
+        Debug.Log("アニメーション開始");
         // 雷アニメーション再生
         animator.speed = 1f;
         animator.Play("CutInAnimation", 0, 0f);
@@ -68,14 +69,16 @@ public class CutIn : MonoBehaviour
 
         // スプライト拡大、透明値いじって表示
         Color endColor = new Color(1f, 1f, 1f, 1f);
+        uiHelper = SystemManager.Instance.uiHelper;
         StartCoroutine(uiHelper.TextColoring(targetText, 0f, endColor));
 
-        Vector3 endTextScale = new Vector3(rectTransform.localScale.x, 1, rectTransform.localScale.z);
+        Vector3 endTextScale = new Vector3(rectTransform.localScale.x, 10, rectTransform.localScale.z);
         StartCoroutine(uiHelper.TextScaling(rectTransform, fadeInTime, endTextScale));
 
         // キャラクターイラスト、横から登場
         characterIllust.GetComponent<SpriteRenderer>().sprite = image.sprite;
-        characterIllust.transform.localScale = characterIllustScale;
+        characterIllust.transform.localScale = new Vector3(10f, 100f, 1f);
+        cardMotionHelper = SystemManager.Instance.cardMotionHelper;
         StartCoroutine(cardMotionHelper.MoveTarget(characterIllust.transform, 0.1f, characterIllustStartPosition, characterIllustEndPosition, moveCurve));
 
         // フェードイン開始
@@ -111,5 +114,7 @@ public class CutIn : MonoBehaviour
         yield return StartCoroutine(cardMotionHelper.ScalingTarget(characterIllust.transform, fadeOutTime, startScale, endScale));
 
         animator.speed = 0f;
+
+        Debug.Log("アニメーション￥終わり");
     }
 }   
