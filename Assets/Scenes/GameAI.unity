@@ -1340,7 +1340,7 @@ MonoBehaviour:
     - effectTimings: 3
       target: 2
       effectType: 13
-      effectValue: 3
+      effectValue: 2
       extraValue: 0
       buffDuration: 2
       conditionalDrawType: 0
@@ -1647,7 +1647,14 @@ MonoBehaviour:
     defense: 3
     requireAllColors: 0
     allColorsCost: 2
-    effects: []
+    effects:
+    - effectTimings: 5
+      target: 2
+      effectType: 1
+      effectValue: 100000
+      extraValue: 0
+      buffDuration: 0
+      conditionalDrawType: 0
   - cardID: 46
     cardName: Monster46
     costColor: 2
