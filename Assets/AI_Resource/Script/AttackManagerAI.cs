@@ -412,7 +412,7 @@ public class AttackManagerAI : MonoBehaviour
 		EndAttack();
 
 		//HPゼロの時のエンドフラグーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-		if (GetHp(clickedSide).hp == 0)
+		if (GetHp(clickedSide).hp <= 0)
 		{
 			bool isWin =
 				(clickedSide == PlayerSide.Enemy);

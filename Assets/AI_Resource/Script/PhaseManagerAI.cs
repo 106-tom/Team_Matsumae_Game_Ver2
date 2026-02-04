@@ -8,6 +8,8 @@ public class PhaseManagerAI : MonoBehaviour
 	public enum Phase { Start, Draw, Mana, Summon, Attack, Block, End }
 	public static PhaseManagerAI Instance { get; private set; }
 
+	public PhaseDisplayUI phaseDisplayUI;
+
 	[Header("UI")]
 	public Text phaseText;
 
@@ -131,6 +133,10 @@ public class PhaseManagerAI : MonoBehaviour
 
 		// UI更新
 		UpdateUI();
+
+		// フェーズUI更新
+		if (phaseDisplayUI != null)
+			phaseDisplayUI.UpdatePhaseText();
 	}
 
 	//==================================================
