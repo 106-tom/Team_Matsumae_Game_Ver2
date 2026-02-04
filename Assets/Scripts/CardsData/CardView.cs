@@ -11,6 +11,7 @@ public class CardView : MonoBehaviour
 	[SerializeField] TextMeshProUGUI stack;
 
 	[SerializeField] Image iconImage;
+	[SerializeField] Image BGiconImage;
 	[SerializeField] Image frameImage;
 	[SerializeField] Image textFrameImage;
 
@@ -27,12 +28,14 @@ public class CardView : MonoBehaviour
 	{
 		if (cardModel.cardImage != null)
 			iconImage.sprite = cardModel.cardImage;
+			BGiconImage.sprite = cardModel.cardImage;
 		if (cardModel.frameImage != null)
 			frameImage.sprite = cardModel.frameImage;
 		if (cardModel.TextframeImage == null) Debug.Log("ÉGÉâÅ[");
 		textFrameImage.sprite = cardModel.TextframeImage;
 		costText.text = cardModel.cost.ToString();
 		nameText.text = cardModel.name.ToString();
+		effectText.text = cardModel.effectText.ToString();
 	}
 	public void Apply(CardEntity entity)
 	{
@@ -41,6 +44,7 @@ public class CardView : MonoBehaviour
 		var CardSprite = Resources.Load<Sprite>(entity.ImagePath);
 		if (CardSprite != null)
 			iconImage.sprite = CardSprite;
+			BGiconImage.sprite = CardSprite;
 
 		var FrameSprite = Resources.Load<Sprite>(entity.FrameImagePath);
 		if (FrameSprite != null)

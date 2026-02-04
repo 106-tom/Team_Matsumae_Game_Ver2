@@ -20,7 +20,7 @@
     "category": "Monster",
     "cardName": "竜脚軽",
     "ap": 1,
-    "bp": 100,
+    "bp": 1000,
     "anyColorCost": 0,
     "manaCosts": [
       {
@@ -30,15 +30,32 @@
     ],
     "color": "Red",
     "imagePath": "CardImages/01_01",
-    "CardText": ""
+    "CardText": "自分のターン中このモンスターの+BP500"
   },
   {
     "cardID": 2,
     "category": "Monster",
-    "cardName": "どら侍",
+    "cardName": "ドラ衛門",
     "ap": 2,
-    "bp": 200,
-    "anyColorCost": 0,
+    "bp": 1000,
+    "anyColorCost": 1,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 1
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_02",
+    "CardText": "自分のターン中このモンスターの+BP1000"
+  },
+  {
+    "cardID": 3,
+    "category": "Monster",
+    "cardName": "B・B・B・D・忍",
+    "ap": 2,
+    "bp": 2000,
+    "anyColorCost": 1,
     "manaCosts": [
       {
         "color": "Red",
@@ -46,37 +63,15 @@
       }
     ],
     "color": "Red",
-    "imagePath": "CardImages/01_02"
-  },
-  {
-    "cardID": 3,
-    "category": "Monster",
-    "cardName": "ビックバトルボールドラゴン忍",
-    "ap": 2,
-    "bp": 200,
-    "anyColorCost": 0,
-    "manaCosts": [
-      {
-        "color": "Red",
-        "cost": 3
-      }
-    ],
-    "color": "Red",
     "imagePath": "CardImages/01_03",
-    "onSummon": [
-      {
-        "effectType": "Destroy",
-        "mathValue": 500,
-        "timeValue": 1
-      }
-    ]
+    "CardText": "召喚時、BP2000以下の相手のモンスター1体破壊"
   },
   {
     "cardID": 4,
     "category": "Monster",
     "cardName": "龍使いの少女",
-    "ap": 3,
-    "bp": 100,
+    "ap": 2,
+    "bp": 2000,
     "anyColorCost": 1,
     "manaCosts": [
       {
@@ -86,107 +81,32 @@
     ],
     "color": "Red",
     "imagePath": "CardImages/01_04",
-    "onSummon": [
-      {
-        "effectType": "Draw",
-        "mathValue": 0,
-        "timeValue": 1
-      }
-    ]
+    "CardText": "召喚時、1枚ドロー"
   },
   {
     "cardID": 5,
     "category": "Monster",
-    "cardName": "老龍天禅",
-    "ap": 5,
-    "bp": 500,
-    "anyColorCost": 0,
+    "cardName": "老龍 天禅",
+    "ap": 4,
+    "bp": 4000,
+    "anyColorCost": 3,
     "manaCosts": [
       {
         "color": "Red",
-        "cost": 4
+        "cost": 1
       }
     ],
     "color": "Red",
-    "imagePath": "CardImages/01_05"
+    "imagePath": "CardImages/01_05",
+    "CardText": ""
   },
   {
     "cardID": 6,
     "category": "Monster",
     "cardName": "博麗蒼竜",
-    "ap": 3,
-    "bp": 500,
-    "anyColorCost": 1,
-    "manaCosts": [
-      {
-        "color": "Red",
-        "cost": 4
-      }
-    ],
-    "color": "Red",
-    "imagePath": "CardImages/01_06",
-    "onSummon": [
-      {
-        "effectType": "Destroy",
-        "mathValue": 9999,
-        "timeValue": 1
-      }
-    ]
-  },
-  {
-    "cardID": 7,
-    "category": "Monster",
-    "cardName": "大将軍無敵火",
-    "ap": 4,
-    "bp": 500,
+    "ap": 2,
+    "bp": 4000,
     "anyColorCost": 2,
-    "manaCosts": [
-      {
-        "color": "Red",
-        "cost": 3
-      }
-    ],
-    "color": "Red",
-    "imagePath": "CardImages/01_07",
-    "onSummon": [
-      {
-        "effectType": "DestroyAll",
-        "mathValue": 300,
-        "timeValue": 0
-      }
-    ]
-  },
-  {
-    "cardID": 8,
-    "category": "Monster",
-    "cardName": "皇姫ヴアル",
-    "ap": 4,
-    "bp": 500,
-    "anyColorCost": 2,
-    "manaCosts": [
-      {
-        "color": "Red",
-        "cost": 4
-      }
-    ],
-    "color": "Red",
-    "imagePath": "CardImages/01_08",
-    "onSummon": [
-      {
-        "effectType": "GrantTag_APBuff_Allies",
-        "mathValue": 0,
-        "timeValue": 0
-      }
-    ],
-    "Fininsher": true
-  },
-  {
-    "cardID": 9,
-    "category": "Spell",
-    "cardName": "老龍の徘徊",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
     "manaCosts": [
       {
         "color": "Red",
@@ -194,14 +114,59 @@
       }
     ],
     "color": "Red",
-    "imagePath": "CardImages/01_09",
-    "onSummon": [
+    "imagePath": "CardImages/01_06",
+    "CardText": "召喚時、相手のモンスター1体破壊"
+  },
+  {
+    "cardID": 7,
+    "category": "Monster",
+    "cardName": "大将軍 無敵火",
+    "ap": 4,
+    "bp": 5000,
+    "anyColorCost": 3,
+    "manaCosts": [
       {
-        "effectType": "Destroy",
-        "mathValue": 300,
-        "timeValue": 2
+        "color": "Red",
+        "cost": 2
       }
-    ]
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_07",
+    "CardText": "召喚時、BP3000以下の相手のモンスターすべて破壊"
+  },
+  {
+    "cardID": 8,
+    "category": "Monster",
+    "cardName": "皇姫 ヴァル",
+    "ap": 4,
+    "bp": 6000,
+    "anyColorCost": 3,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 3
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_08",
+    "CardText": "召喚時と自分のターンの開始時に自分のモンスター全て+AP1/BP1000"
+  },
+  {
+    "cardID": 9,
+    "category": "Spell",
+    "cardName": "老竜の徘徊",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 1,
+    "manaCosts": [
+      {
+        "color": "Red",
+        "cost": 1
+      }
+    ],
+    "color": "Red",
+    "imagePath": "CardImages/01_09",
+    "CardText": "相手のBP4000以下のモンスター1体破壊"
   },
   {
     "cardID": 10,
@@ -213,657 +178,746 @@
     "manaCosts": [
       {
         "color": "Red",
-        "cost": 3
+        "cost": 2
       }
     ],
     "color": "Red",
     "imagePath": "CardImages/01_10",
-    "onSummon": [
-      {
-        "effectType": "DestroyAll",
-        "mathValue": 500,
-        "timeValue": 0
-      }
-    ]
+    "CardText": "5000以下全て破壊"
   },
   {
     "cardID": 11,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Monster",
+    "cardName": "マーメイドヴァイオリニスト",
     "ap": 0,
-    "bp": 0,
+    "bp": 1000,
     "anyColorCost": 0,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 1
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_01"
+    "imagePath": "CardImages/02_01",
+    "CardText": "破壊時、1枚ドロー"
   },
   {
     "cardID": 12,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Monster",
+    "cardName": "フルートマーメイド",
     "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "bp": 1000,
+    "anyColorCost": 1,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 1
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_02"
+    "imagePath": "CardImages/02_02",
+    "CardText": "召喚時、2枚ドローしてその中の青以外のカードを捨てる"
   },
   {
     "cardID": 13,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "チェロガール",
+    "ap": 1,
+    "bp": 2000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 1
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_03"
+    "imagePath": "CardImages/02_03",
+    "CardText": "召喚時、1枚ドローしてそのカードのコストが奇数ならもう1枚ドロー"
   },
   {
     "cardID": 14,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "ホルンマーフォク",
+    "ap": 2,
+    "bp": 2000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 1
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_04"
+    "imagePath": "CardImages/02_04",
+    "CardText": "召喚時、1枚ドローしてそのカードが青ならもう1枚ドロー"
   },
   {
     "cardID": 15,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "マーフォクトランぺッター",
+    "ap": 1,
+    "bp": 4000,
+    "anyColorCost": 1,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 2
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_05"
+    "imagePath": "CardImages/02_05",
+    "CardText": "召喚時、手札3枚につき1体まで相手のモンスター破壊"
   },
   {
     "cardID": 16,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
+    "category": "Monster",
+    "cardName": "マーフォークティンパニー",
+    "ap": 3,
     "bp": 0,
-    "anyColorCost": 0,
+    "anyColorCost": 2,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 2
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_06"
+    "imagePath": "CardImages/02_06",
+    "CardText": "召喚時、手札の枚数×1000BP以下の相手のモンスター1体破壊"
   },
   {
     "cardID": 17,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Monster",
+    "cardName": "マーフォークオーボエ",
     "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "bp": 10000,
+    "anyColorCost": 4,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 3
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_07"
+    "imagePath": "CardImages/02_07",
+    "CardText": "召喚時、自分の手札の枚数まで相手のモンスター破壊"
   },
   {
     "cardID": 18,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
+    "category": "Monster",
+    "cardName": "ポセイドンの指揮者",
+    "ap": 2,
     "bp": 0,
-    "anyColorCost": 0,
+    "anyColorCost": 5,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 3
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_08"
+    "imagePath": "CardImages/02_08",
+    "CardText": "召喚時、自分の手札の枚数だけ相手のライフ-1"
   },
   {
     "cardID": 19,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Spell",
+    "cardName": "アンコール",
     "ap": 0,
     "bp": 0,
     "anyColorCost": 0,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 3
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_09"
+    "imagePath": "CardImages/02_09",
+    "CardText": "1枚ドローしそのカードが青なら相手のモンスター1体AP0にする"
   },
   {
     "cardID": 20,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Spell",
+    "cardName": "海の旋律",
     "ap": 0,
     "bp": 0,
-    "anyColorCost": 0,
+    "anyColorCost": 1,
     "manaCosts": [
       {
         "color": "Blue",
-        "cost": 0
+        "cost": 2
       }
     ],
     "color": "Blue",
-    "imagePath": "CardImages/03_10"
+    "imagePath": "CardImages/02_10",
+    "CardText": "相手のモンスター1体破壊し破壊出来たら1枚ドロー"
   },
   {
     "cardID": 21,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
+    "category": "Monster",
+    "cardName": "タイミーゴブリン",
+    "ap": 1,
+    "bp": 1000,
     "anyColorCost": 0,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 1
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_01"
+    "imagePath": "CardImages/03_01",
+    "CardText": "召喚時、相手のモンスター1体レスト"
   },
   {
     "cardID": 22,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "清掃ゴブリン",
+    "ap": 2,
+    "bp": 3000,
+    "anyColorCost": 1,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 1
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_02"
+    "imagePath": "CardImages/03_02",
+    "CardText": "召喚時と破壊時に相手のモンスター1体レスト"
   },
   {
     "cardID": 23,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "ウェイターゴブリン",
+    "ap": 1,
+    "bp": 3000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 2
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_03"
+    "imagePath": "CardImages/03_03",
+    "CardText": "召喚時、相手のモンスター1体破壊し、相手のモンスター1体レスト"
   },
   {
     "cardID": 24,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "ゴブリンバーテンダー",
+    "ap": 3,
+    "bp": 3000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 2
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_04"
+    "imagePath": "CardImages/03_04",
+    "CardText": "召喚時、レストしているモンスターの数ドロー"
   },
   {
     "cardID": 25,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "ソムリエゴブリン",
+    "ap": 2,
+    "bp": 4000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 2
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_05"
+    "imagePath": "CardImages/03_05",
+    "CardText": "召喚時、レストしているモンスターを全て破壊"
   },
   {
     "cardID": 26,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "ゴブリンコック",
+    "ap": 4,
+    "bp": 2000,
+    "anyColorCost": 4,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 2
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_06"
+    "imagePath": "CardImages/03_06",
+    "CardText": "召喚時、レストしているモンスター数だけ+BP1000"
   },
   {
     "cardID": 27,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "ゴブリンオーナー",
+    "ap": 1,
+    "bp": 1000,
+    "anyColorCost": 4,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 3
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_07"
+    "imagePath": "CardImages/03_07",
+    "CardText": "召喚時、相手のモンスター全てレストし,このターンの間レストしているモンスター分だけ+AP1"
   },
   {
     "cardID": 28,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Spell",
+    "cardName": "ゴブリンバイトテロ",
     "ap": 0,
     "bp": 0,
-    "anyColorCost": 0,
+    "anyColorCost": 1,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 1
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_08"
+    "imagePath": "CardImages/03_08",
+    "CardText": "互いのBP2000以下のモンスター全て破壊"
   },
   {
     "cardID": 29,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Spell",
+    "cardName": "エリマネ襲来",
     "ap": 0,
     "bp": 0,
-    "anyColorCost": 0,
+    "anyColorCost": 1,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 1
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_09"
+    "imagePath": "CardImages/03_09",
+    "CardText": "相手のモンスター3体までレスト"
   },
   {
     "cardID": 30,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Spell",
+    "cardName": "ゴブリン食中毒",
     "ap": 0,
     "bp": 0,
-    "anyColorCost": 0,
+    "anyColorCost": 2,
     "manaCosts": [
       {
         "color": "Green",
-        "cost": 0
+        "cost": 2
       }
     ],
     "color": "Green",
-    "imagePath": "CardImages/03_10"
+    "imagePath": "CardImages/03_10",
+    "CardText": "相手のモンスター全てレスト"
   },
   {
     "cardID": 31,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Monster",
+    "cardName": "ベビー天使",
     "ap": 0,
-    "bp": 0,
+    "bp": 3000,
     "anyColorCost": 0,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 1
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_01"
+    "imagePath": "CardImages/04_01",
+    "CardText": "召喚時、自分のライフを+1"
   },
   {
     "cardID": 32,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "天使2等兵",
+    "ap": 1,
+    "bp": 2000,
+    "anyColorCost": 1,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 1
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_02"
+    "imagePath": "CardImages/04_02",
+    "CardText": "召喚時、相手のモンスター1体の-BP2000"
   },
   {
     "cardID": 33,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "天使1等兵",
+    "ap": 3,
+    "bp": 3000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 1
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_03"
+    "imagePath": "CardImages/04_03",
+    "CardText": "ブロック時、このモンスターの +BP1000"
   },
   {
     "cardID": 34,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "兵長-守護天使",
+    "ap": 4,
+    "bp": 1000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 1
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_04"
+    "imagePath": "CardImages/04_04",
+    "CardText": "ブロック時、負けても道連れにする"
   },
   {
     "cardID": 35,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "上級騎兵-天使",
+    "ap": 2,
+    "bp": 3000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 2
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_05"
+    "imagePath": "CardImages/04_05",
+    "CardText": "召喚時、相手のモンスター2体の-BP4000"
   },
   {
     "cardID": 36,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "特殊任務-天使",
+    "ap": 2,
+    "bp": 5000,
+    "anyColorCost": 4,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 2
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_06"
+    "imagePath": "CardImages/04_06",
+    "CardText": "ブロック時、レスト状態にならない"
   },
   {
     "cardID": 37,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "元帥-ガトリング天使",
+    "ap": 2,
+    "bp": 4000,
+    "anyColorCost": 4,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 2
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_07"
+    "imagePath": "CardImages/04_07",
+    "CardText": "バトル時にBPに関係なく勝つ、破壊時、破壊時効果を持たないこのカードを召喚"
   },
   {
     "cardID": 38,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "脱走兵-堕天使",
+    "ap": 3,
+    "bp": 3000,
+    "anyColorCost": 5,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 2
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_08"
+    "imagePath": "CardImages/04_08",
+    "CardText": "召喚時、自分のライフ+３相手のライフ-３、破壊時、お互いのモンスター全てを破壊"
   },
   {
     "cardID": 39,
-    "category": "unknown",
+    "category": "Spell",
     "cardName": "unknown",
     "ap": 0,
     "bp": 0,
-    "anyColorCost": 0,
+    "anyColorCost": 1,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 1
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_09"
+    "imagePath": "CardImages/04_09",
+    "CardText": "相手のモンスター2体の-BP3000"
   },
   {
     "cardID": 40,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Spell",
+    "cardName": "戦場の休息",
     "ap": 0,
     "bp": 0,
-    "anyColorCost": 0,
+    "anyColorCost": 1,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Yellow",
+        "cost": 2
       }
     ],
     "color": "Yellow",
-    "imagePath": "CardImages/03_10"
+    "imagePath": "CardImages/04_10",
+    "CardText": "自分のライフを+3"
   },
   {
     "cardID": 41,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
+    "category": "Monster",
+    "cardName": "玉乗りピエロ",
+    "ap": 1,
+    "bp": 1000,
     "anyColorCost": 0,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 1
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_01"
+    "imagePath": "CardImages/05_01",
+    "CardText": "破壊時、相手のモンスター1体の-BP2000"
   },
   {
     "cardID": 42,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
+    "category": "Monster",
+    "cardName": "バルーンアートブランケン",
+    "ap": 1,
+    "bp": 1000,
     "anyColorCost": 0,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 2
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_02"
+    "imagePath": "CardImages/05_02",
+    "CardText": "破壊時、相手のライフ-1"
   },
   {
     "cardID": 43,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "綱渡りゾンビ",
+    "ap": 2,
+    "bp": 1000,
+    "anyColorCost": 1,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 2
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_03"
+    "imagePath": "CardImages/05_03",
+    "CardText": "破壊時、2枚ドロー"
   },
   {
     "cardID": 44,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "空中ブランコ蝙蝠人間",
+    "ap": 2,
+    "bp": 2000,
+    "anyColorCost": 1,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 22
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_04"
+    "imagePath": "CardImages/05_04",
+    "CardText": "破壊時、相手のモンスター全ての-BP2000"
   },
   {
     "cardID": 45,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "ファイヤーパフォーマンスミイラ",
+    "ap": 3,
+    "bp": 3000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 2
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_05"
+    "imagePath": "CardImages/05_05",
+    "CardText": "破壊時、相手のモンスター1体を破壊する"
   },
   {
     "cardID": 46,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Monster",
+    "cardName": "ジャグリングスケルトン",
     "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "bp": 4000,
+    "anyColorCost": 2,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 2
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_06"
+    "imagePath": "CardImages/05_06",
+    "CardText": "召喚時、自分のモンスター1体につき+AP1"
   },
   {
     "cardID": 47,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "猛獣使い魔女",
+    "ap": 5,
+    "bp": 5000,
+    "anyColorCost": 4,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 1
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_07"
+    "imagePath": "CardImages/05_07",
+    "CardText": ""
   },
   {
     "cardID": 48,
-    "category": "unknown",
-    "cardName": "unknown",
-    "ap": 0,
-    "bp": 0,
-    "anyColorCost": 0,
+    "category": "Monster",
+    "cardName": "サーカスリーダーヴァンパイア",
+    "ap": 3,
+    "bp": 6000,
+    "anyColorCost": 5,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 3
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_08"
+    "imagePath": "CardImages/05_08",
+    "CardText": "召喚時、このモンスター以外のモンスター全てを破壊　破壊した数だけ自分ライフ+1"
   },
   {
     "cardID": 49,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Spell",
+    "cardName": "人間大砲",
     "ap": 0,
     "bp": 0,
     "anyColorCost": 0,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 2
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_09"
+    "imagePath": "CardImages/05_09",
+    "CardText": "相手1体を破壊"
   },
   {
     "cardID": 50,
-    "category": "unknown",
-    "cardName": "unknown",
+    "category": "Spell",
+    "cardName": "大団円",
     "ap": 0,
     "bp": 0,
-    "anyColorCost": 0,
+    "anyColorCost": 4,
     "manaCosts": [
       {
-        "color": "Green",
-        "cost": 0
+        "color": "Purple",
+        "cost": 1
       }
     ],
     "color": "Purple",
-    "imagePath": "CardImages/03_10"
+    "imagePath": "CardImages/05_10",
+    "CardText": "フィールド全破壊（味方/敵）"
+  },
+  {
+    "cardID": 51,
+    "category": "Monster",
+    "cardName": "朱雀",
+    "ap": 1,
+    "bp": 1000,
+    "anyColorCost": 1,
+    "color": "White",
+    "imagePath": "CardImages/06_01",
+    "CardText": "アタック時1枚ドロー"
+  },
+  {
+    "cardID": 52,
+    "category": "Monster",
+    "cardName": "青龍",
+    "ap": 2,
+    "bp": 3000,
+    "anyColorCost": 3,
+    "color": "White",
+    "imagePath": "CardImages/06_02",
+    "CardText": "召喚時と破壊時に1枚ドロー"
+  },
+  {
+    "cardID": 53,
+    "category": "Monster",
+    "cardName": "白虎",
+    "ap": 2,
+    "bp": 3000,
+    "anyColorCost": 3,
+    "color": "White",
+    "imagePath": "CardImages/06_03",
+    "CardText": "召喚時、相手のモンスター1体を破壊する"
+  },
+  {
+    "cardID": 54,
+    "category": "Spell",
+    "cardName": "玄武",
+    "ap": 0,
+    "bp": 0,
+    "anyColorCost": 3,
+    "color": "White",
+    "imagePath": "CardImages/06_04",
+    "CardText": "相手のモンスター1体AP0にする"
+  },
+  {
+    "cardID": 55,
+    "category": "Monster",
+    "cardName": "麒麟",
+    "ap": 10,
+    "bp": 1000,
+    "anyColorCost": 10,
+    "color": "White",
+    "imagePath": "CardImages/06_05",
+    "CardText": "召喚時、相手のライフ-20"
   }
 ]

@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: CardEntity_19
   m_EditorClassIdentifier: 
   Id: 19
-  Name: unknown
-  ManaCosts: 0
+  Name: "\u30A2\u30F3\u30B3\u30FC\u30EB"
+  ManaCosts: 3
   AnyCost: 0
   Color: 1
   Ap: 0
   Bp: 0
-  ImagePath: CardImages/03_09
+  ImagePath: CardImages/02_09
   FrameImagePath: FrameImage/Blue
   TextFrameImagePath: FrameImage/Blue_1
-  CardText: 
+  CardText: "1\u679A\u30C9\u30ED\u30FC\u3057\u305D\u306E\u30AB\u30FC\u30C9\u304C\u9752\u306A\u3089\u76F8\u624B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC1\u4F53AP0\u306B\u3059\u308B"
+  category: Spell

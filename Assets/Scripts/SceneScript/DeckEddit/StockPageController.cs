@@ -10,6 +10,7 @@ public class StockPageController : MonoBehaviour
     [SerializeField] GameObject greenPage;
     [SerializeField] GameObject yellowPage;
     [SerializeField] GameObject purplePage;
+    [SerializeField] GameObject whitePage;
 
     [Header("Buttons")]
     [SerializeField] Button redButton;
@@ -17,6 +18,7 @@ public class StockPageController : MonoBehaviour
     [SerializeField] Button greenButton;
     [SerializeField] Button yellowButton;
     [SerializeField] Button purpleButton;
+    [SerializeField] Button whiteButton;
 
     GameObject[] pages;
     Button[] buttons;
@@ -33,7 +35,8 @@ public class StockPageController : MonoBehaviour
             bluePage,
             greenPage,
             yellowPage,
-            purplePage
+            purplePage,
+            whitePage
         };
 
         buttons = new Button[]
@@ -42,7 +45,8 @@ public class StockPageController : MonoBehaviour
             blueButton,
             greenButton,
             yellowButton,
-            purpleButton
+            purpleButton,
+            whiteButton
         };
     }
 
@@ -88,6 +92,11 @@ public class StockPageController : MonoBehaviour
     public void ShowPurple()
     {
         ShowPage(purplePage, purpleButton);
+    }
+    
+    public void ShowWhite()
+    {
+        ShowPage(whitePage, whiteButton);
     }
 
 }

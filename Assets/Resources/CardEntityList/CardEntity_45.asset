@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: CardEntity_45
   m_EditorClassIdentifier: 
   Id: 45
-  Name: unknown
-  ManaCosts: 0
-  AnyCost: 0
+  Name: "\u30D5\u30A1\u30A4\u30E4\u30FC\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u30DF\u30A4\u30E9"
+  ManaCosts: 2
+  AnyCost: 2
   Color: 3
-  Ap: 0
-  Bp: 0
-  ImagePath: CardImages/03_05
+  Ap: 3
+  Bp: 3000
+  ImagePath: CardImages/05_05
   FrameImagePath: FrameImage/Purple
   TextFrameImagePath: FrameImage/Purple_1
-  CardText: 
+  CardText: "\u7834\u58CA\u6642\u3001\u76F8\u624B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC1\u4F53\u3092\u7834\u58CA\u3059\u308B"
+  category: Monster

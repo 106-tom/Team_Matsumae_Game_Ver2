@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 10
   Name: "\u7344\u708E\u9F8D"
-  ManaCosts: 3
+  ManaCosts: 2
   AnyCost: 2
   Color: 0
   Ap: 0
@@ -22,4 +22,5 @@ MonoBehaviour:
   ImagePath: CardImages/01_10
   FrameImagePath: FrameImage/Red
   TextFrameImagePath: FrameImage/Red_1
-  CardText: 
+  CardText: "5000\u4EE5\u4E0B\u5168\u3066\u7834\u58CA"
+  category: Spell

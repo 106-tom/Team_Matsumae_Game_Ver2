@@ -33,6 +33,8 @@ public class Card
 
     public CardData Data; // ← 静的データへの参照
 
+    public string CardText;
+
     // --- 内部処理用の辞書 ---
     private Dictionary<ManaColor, int> manaCost = new Dictionary<ManaColor, int>();
     public IReadOnlyDictionary<ManaColor, int> ManaCost => manaCost;

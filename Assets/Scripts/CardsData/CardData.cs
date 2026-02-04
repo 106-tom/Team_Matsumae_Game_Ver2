@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public enum CardColor
 {
-    Red, Blue, Yellow, Purple, Green, Colorless
+    Red, Blue, Yellow, Purple, Green, White,Colorless
 }
 [System.Serializable]
 public class CardTriggerEffects
@@ -62,7 +62,7 @@ public class CardData
     public string imagePath;
     public string color;
     [TextArea(3, 5)]
-    public string text;
+    public string CardText;
 
     [Header("”\—Í’l")]
     public int ap;

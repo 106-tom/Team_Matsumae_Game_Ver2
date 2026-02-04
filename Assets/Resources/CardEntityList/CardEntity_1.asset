@@ -18,8 +18,9 @@ MonoBehaviour:
   AnyCost: 0
   Color: 0
   Ap: 1
-  Bp: 100
+  Bp: 1000
   ImagePath: CardImages/01_01
   FrameImagePath: FrameImage/Red
   TextFrameImagePath: FrameImage/Red_1
-  CardText: 
+  CardText: "\u81EA\u5206\u306E\u30BF\u30FC\u30F3\u4E2D\u3053\u306E\u30E2\u30F3\u30B9\u30BF\u30FC\u306E+BP500"
+  category: Monster

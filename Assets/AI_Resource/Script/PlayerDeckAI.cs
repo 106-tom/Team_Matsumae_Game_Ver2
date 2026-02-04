@@ -41,6 +41,66 @@ public class PlayerDeckAI : MonoBehaviour
 	{
 		//InitializeDeck();
 		InitializeDeckFromSavedDeck();
+<<<<<<< HEAD
+	}
+
+	void InitializeDeckFromSavedDeck()
+	{
+		deck.Clear();
+
+		// ① 選択中のデッキ名を取得
+		string deckName = DeckDataManager.Instance.SelectedDeckName;
+
+		if (string.IsNullOrEmpty(deckName))
+		{
+			Debug.LogError("Battle開始時にデッキが選択されていません！");
+			return;
+		}
+
+		// ② JSONファイルのパス取得
+		string path = Path.Combine(
+			DeckDataManager.Instance.DeckDirectory,
+			deckName + ".json"
+		);
+
+		if (!File.Exists(path))
+		{
+			Debug.LogError("デッキファイルが存在しません: " + path);
+			return;
+		}
+
+		// ③ JSON読み込み
+		DeckSaveData data =
+			JsonUtility.FromJson<DeckSaveData>(File.ReadAllText(path));
+
+		Debug.Log($"Battle用デッキ読み込み成功: {data.deckName}");
+
+		// ④ cardIds を元に40枚デッキ生成
+		foreach (int id in data.cardIds)
+		{
+			// DeckEdit側はint、CardAI側はstringなので変換する
+			string idString = id.ToString();
+
+			idString = idString.PadLeft(2, '0');
+
+			// allCardsから一致するカードを探す
+			CardAI cardData = allCards.Find(card => card.cardID == idString);
+
+			if (cardData == null)
+			{
+				Debug.LogWarning($"カードIDがallCardsに存在しません: {idString}");
+				continue;
+			}
+
+			deck.Add(cardData);
+		}
+
+		// ⑤ シャッフル
+		ShuffleDeck();
+
+		Debug.Log($"デッキ初期化完了：{deck.Count}枚");
+=======
+>>>>>>> origin/washida
 	}
 
 	void InitializeDeckFromSavedDeck()
