@@ -66,7 +66,7 @@ public class PhaseManagerAI : MonoBehaviour
 		// Enterキーでフェーズ進行（デバッグ用）
 		if (Input.GetKeyDown(KeyCode.Return))
 		{
-			AdvancePhase();
+			//AdvancePhase();
 		}
 	}
 
