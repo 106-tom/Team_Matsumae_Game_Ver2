@@ -118,17 +118,17 @@ public class AttackManagerAI : MonoBehaviour
 	// -----------------------------
 	// 防御カードでブロック
 	// -----------------------------
-	public void BlockWithCard(FieldCardDisplayAI blockCard)
+	public IEnumerator BlockWithCard(FieldCardDisplayAI blockCard)
 	{
 		// 状態チェック
 		if (state != AttackState.Blocking)
-			return;
+			yield break;
 
 		// ★レスト中のカードはブロックできない
 		if (blockCard.IsRested)
 		{
 			Debug.Log("このカードはレスト中なのでブロックできません");
-			return;
+			yield break;
 		}
 
 
@@ -136,7 +136,7 @@ public class AttackManagerAI : MonoBehaviour
 		if (blockCard.OwnerSide != defendingSide)
 		{
 			Debug.Log("[Block] 防御側以外のカードが押された");
-			return;
+			yield break;
 		}
 
 		EffectManager.Instance.Resolve(
@@ -154,7 +154,7 @@ public class AttackManagerAI : MonoBehaviour
 		if (attackingCard == null)
 		{
 			Debug.LogError("[Block] attackingCard が存在しません");
-			return;
+			yield break;
 		}
 
 
@@ -176,7 +176,10 @@ public class AttackManagerAI : MonoBehaviour
 		bool blockerAllWin =
 			blockCard.CardData.HasEffect(EffectType.AllWin);
 
-		MotionManager.Instance.block.StartBlock(attackingCard.transform);
+		// 攻撃モーション
+		yield return StartCoroutine(MotionManager.Instance.attack.StartAttack(attackingCard.transform, blockCard.transform, attackerSide));
+		// ブロックモーション
+		yield return StartCoroutine(MotionManager.Instance.block.StartBlock(attackingCard.transform));
 
 		// 両方が持っているなら相打ち
 		if (attackerAllWin && blockerAllWin)
@@ -188,11 +191,11 @@ public class AttackManagerAI : MonoBehaviour
 			DestroyCard(blockCard);
 
 			EndAttack();
-			return;
+			yield break;
 		}
 
-        // 攻撃側だけAllWin → 防御破壊
-        if (attackerAllWin)
+		// 攻撃側だけAllWin → 防御破壊
+		if (attackerAllWin)
 		{
 			Debug.Log("[Battle] 攻撃側 AllWin → 防御破壊");
 
@@ -203,7 +206,7 @@ public class AttackManagerAI : MonoBehaviour
 			attackingCard.Rest();
 
 			EndAttack();
-			return;
+			yield break;
 		}
 
 		// 防御側だけAllWin → 攻撃破壊
@@ -218,15 +221,13 @@ public class AttackManagerAI : MonoBehaviour
 			blockCard.Rest();
 
 			EndAttack();
-			return;
+			yield break;
 		}
-
-
 
 		bool attackerDestroyed = false;
 		bool blockerDestroyed = false;
 
-        if (attackBP > blockBP)
+		if (attackBP > blockBP)
 		{
 			Debug.Log("[Battle] 攻撃側勝利（防御破壊）");
 			MotionManager.Instance._break.StartBreak(blockCard.transform);
@@ -261,14 +262,6 @@ public class AttackManagerAI : MonoBehaviour
 			blockerDestroyed = true;
 			attackerDestroyed = true;
 		}
-
-		if (!attackerDestroyed && !blockerDestroyed)
-{
-    StartCoroutine(MotionManager.Instance.attack.StartAttack(
-        attackingCard.transform,
-        blockCard.transform
-    ));
-}
 
 		// ============================
 		// ★ 生き残ったカードはレスト
@@ -446,7 +439,7 @@ public class AttackManagerAI : MonoBehaviour
 		if (blocker != null)
 		{
 			Debug.Log($"[AI Block] ブロックします → {blocker.CardName}");
-			BlockWithCard(blocker);
+			StartCoroutine(BlockWithCard(blocker));
 			yield break;
 		}
 

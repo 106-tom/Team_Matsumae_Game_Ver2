@@ -256,8 +256,8 @@ public class FkingCardDisplay : MonoBehaviour
         if (battleStatsGroup != null)
         {
             battleStatsGroup.SetActive(true);
-            if (battleAPText != null) battleAPText.text = FieldCardDisplayAI.Instance.Attack.ToString();
-            if (battleBPText != null) battleBPText.text = FieldCardDisplayAI.Instance.Defense.ToString();
+            //if (battleAPText != null) battleAPText.text = FieldCardDisplayAI.Instance.Attack.ToString();
+            //if (battleBPText != null) battleBPText.text = FieldCardDisplayAI.Instance.Defense.ToString();
         }
 
         // (中略 ... 背景Quadのスケール縮小処理 ...)
@@ -282,8 +282,8 @@ public class FkingCardDisplay : MonoBehaviour
         Debug.Log("アクティブ待機");
         yield return new WaitUntil(() => this.battleStatsGroup != null);
 		battleStatsGroup.SetActive(true);
-		if (battleAPText != null) battleBPText.text = FieldCardDisplayAI.Instance.Attack.ToString();
-		if (battleBPText != null) battleAPText.text = FieldCardDisplayAI.Instance.Defense.ToString();
+		if (battleAPText != null) battleAPText.text = FieldCardDisplayAI.Instance.Attack.ToString();
+		if (battleBPText != null) battleBPText.text = FieldCardDisplayAI.Instance.Defense.ToString();
 		Debug.Log("Statsアクティブ化");
 	}
 
