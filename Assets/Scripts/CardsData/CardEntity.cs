@@ -44,7 +44,7 @@ public class CardEntity : ScriptableObject
         ImagePath = data.imagePath;
         FrameImagePath = GetFrameImagePath(Color);
         TextFrameImagePath = GetTextFrameImagePath(Color);
-        CardText = data.text;
+        CardText = data.CardText;
         category = data.category;
 
     }

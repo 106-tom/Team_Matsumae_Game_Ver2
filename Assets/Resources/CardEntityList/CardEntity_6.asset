@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 6
   Name: "\u535A\u9E97\u84BC\u7ADC"
-  ManaCosts: 4
-  AnyCost: 1
+  ManaCosts: 2
+  AnyCost: 2
   Color: 0
-  Ap: 3
-  Bp: 500
+  Ap: 2
+  Bp: 4000
   ImagePath: CardImages/01_06
   FrameImagePath: FrameImage/Red
   TextFrameImagePath: FrameImage/Red_1
-  CardText: 
+  CardText: "\u53EC\u559A\u6642\u3001\u76F8\u624B\u306E\u30E2\u30F3\u30B9\u30BF\u30FC1\u4F53\u7834\u58CA"
+  category: Monster

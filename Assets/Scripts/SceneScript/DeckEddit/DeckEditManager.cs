@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class DeckEditManager : MonoBehaviour
@@ -25,6 +26,7 @@ public class DeckEditManager : MonoBehaviour
     [SerializeField] private Transform greenStockContent;
     [SerializeField] private Transform yellowStockContent;
     [SerializeField] private Transform purpleStockContent;
+    [SerializeField] private Transform whiteStockContent;
 
     private Dictionary<CardColor, Transform[]> stockSlotsByColor;
     private Transform[] deckSlots;
@@ -83,7 +85,8 @@ public class DeckEditManager : MonoBehaviour
             { CardColor.Blue,   GetChildren(blueStockContent) },
             { CardColor.Green,  GetChildren(greenStockContent) },
             { CardColor.Yellow, GetChildren(yellowStockContent) },
-            { CardColor.Purple, GetChildren(purpleStockContent) }
+            { CardColor.Purple, GetChildren(purpleStockContent) },
+            { CardColor.White, GetChildren(whiteStockContent) },
         };
     }
 
@@ -188,6 +191,18 @@ public class DeckEditManager : MonoBehaviour
     {
         GameObject cardObj = DeckManager.instance.CreateCard(cardId, parent);
         cardObj.GetComponent<CardView>().SetCount(count);
+        if (cardId == 8 || cardId == 18 || cardId == 27 || cardId == 37 || cardId == 48||cardId>=51)
+        {
+            var overlay = cardObj.transform.Find("frame_1");
+            Image img = overlay.GetComponent<Image>();
+            Color c = img.color;
+            c.a = 0.75f;   // 0.0 = 完全透明 / 1.0 = 完全不透明
+            img.color = c;
+            overlay = cardObj.transform.Find("CardText");
+            overlay.gameObject.SetActive(false);
+            overlay = cardObj.transform.Find("Image");
+            overlay.gameObject.SetActive(false);
+        }
     }
 
     public void CreateOutCard(CardColor color, int cardId, bool limitTrg)
@@ -206,6 +221,19 @@ public class DeckEditManager : MonoBehaviour
                 cardObj = DeckManager.instance.AnyCreateCard(cardId, slot);
             else if (existingDeckCard == null)
                 cardObj = DeckManager.instance.AnyCreateCard(cardId, deckSlot);
+
+            if (cardId == 8 || cardId == 18 || cardId == 27 || cardId == 37 || cardId == 48 || cardId >= 51)
+            {
+                var overlay_1 = cardObj.transform.Find("frame_1");
+                Image img = overlay_1.GetComponent<Image>();
+                Color c = img.color;
+                c.a = 0.5f;   // 0.0 = 完全透明 / 1.0 = 完全不透明
+                img.color = c;
+                overlay_1 = cardObj.transform.Find("CardText");
+                overlay_1.gameObject.SetActive(false);
+                overlay_1 = cardObj.transform.Find("Image");
+                overlay_1.gameObject.SetActive(false);
+            }
             else
                 return;
         }
@@ -214,6 +242,18 @@ public class DeckEditManager : MonoBehaviour
             cardObj = DeckManager.instance.AnyCreateCard(cardId, slot);
         }
 
+        if (cardId == 8 || cardId == 18 || cardId == 27 || cardId == 37 || cardId == 48 || cardId >= 51)
+        {
+            var overlay_1 = cardObj.transform.Find("frame_1");
+            Image img = overlay_1.GetComponent<Image>();
+            Color c = img.color;
+            c.a = 0.75f;   // 0.0 = 完全透明 / 1.0 = 完全不透明
+            img.color = c;
+            overlay_1 = cardObj.transform.Find("CardText");
+            overlay_1.gameObject.SetActive(false);
+            overlay_1 = cardObj.transform.Find("Image");
+            overlay_1.gameObject.SetActive(false);
+        }
         var overlay = cardObj.transform.Find("DarkOverlayImage");
         overlay.gameObject.SetActive(true);
         Debug.Log("1枚生成");
@@ -268,6 +308,7 @@ public class DeckEditManager : MonoBehaviour
             case CardColor.Green: greenStockContent.gameObject.SetActive(true); break;
             case CardColor.Yellow: yellowStockContent.gameObject.SetActive(true); break;
             case CardColor.Purple: purpleStockContent.gameObject.SetActive(true); break;
+            case CardColor.White: whiteStockContent.gameObject.SetActive(true); break;
         }
     }
 
@@ -278,6 +319,7 @@ public class DeckEditManager : MonoBehaviour
         greenStockContent.gameObject.SetActive(false);
         yellowStockContent.gameObject.SetActive(false);
         purpleStockContent.gameObject.SetActive(false);
+        whiteStockContent.gameObject.SetActive(false);
     }
 
     // =================================
@@ -292,6 +334,17 @@ public class DeckEditManager : MonoBehaviour
 
         GameObject cardObj = DeckManager.instance.AnyCreateCard(cardId, lastTouchedSlot);
         cardObj.GetComponent<CardController>().view.SetCount(1);
+
+        if (cardId == 8 || cardId == 18 || cardId == 27 || cardId == 37 || cardId == 48 || cardId >= 51)
+        {
+            var overlay = cardObj.transform.Find("Image");
+            overlay.gameObject.SetActive(false);
+            var overlay_1 = cardObj.transform.Find("frame_1");
+            Image img = overlay_1.GetComponent<Image>();
+            Color c = img.color;
+            c.a = 0.75f;   // 0.0 = 完全透明 / 1.0 = 完全不透明
+            img.color = c;
+        }
     }
 
     // =================================
@@ -394,6 +447,7 @@ public class DeckEditManager : MonoBehaviour
             CardColor.Green => 21,
             CardColor.Yellow => 31,
             CardColor.Purple => 41,
+            CardColor.White => 51,
             _ => 0
         };
         return baseId + index;
@@ -408,6 +462,7 @@ public class DeckEditManager : MonoBehaviour
             CardColor.Green => 21,
             CardColor.Yellow => 31,
             CardColor.Purple => 41,
+            CardColor.White => 51,
             _ => 0
         };
         return cardId - baseId;

@@ -37,7 +37,7 @@ public class DeckDataManager : MonoBehaviour
     // =========================
     // Deck Directory
     // =========================
-    string DeckDirectory
+    public string DeckDirectory
     {
         get
         {

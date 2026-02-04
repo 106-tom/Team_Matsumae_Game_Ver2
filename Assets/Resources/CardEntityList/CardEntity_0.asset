@@ -23,3 +23,4 @@ MonoBehaviour:
   FrameImagePath: FrameImage/Blue
   TextFrameImagePath: FrameImage/Blue_1
   CardText: 
+  category: test
