@@ -91,20 +91,19 @@ public class Spell : MonoBehaviour
 
     public IEnumerator StartSpell(bool isPlayerTurn, Transform cardTransform)
     {
-        Debug.Log("呪文演出開始");
+        // 移動の開始位置
+        Vector3 startPosition = transform.localPosition;
+        // 移動
+        yield return cardMotionHelper.MoveTarget(transform, moveTime, startPosition, moveEndPosition, moveCurve);
+      
         // カットインアニメーション開始
         cutInAnim = cardTransform.Find("CutInAnim").gameObject;
         cutIn = cutInAnim.GetComponent<CutIn>();
         yield return StartCoroutine(cutIn.StartCutIn(isPlayerTurn));
 
-        // 移動の開始位置
-        //Vector3 startPosition = transform.position;
-        // 移動
-        //yield return cardMotionHelper.MoveTarget(transform, moveTime, startPosition, moveEndPosition, moveCurve);
-      
         mainCardIDDisplay = cardTransform.Find("GameObject/CardVisualHajime").gameObject;
         // ディゾルブ処理
-        //yield return StartCoroutine(Dissolve(mainCardIDDisplay));
+        yield return StartCoroutine(Dissolve(mainCardIDDisplay));
     }
 
     /// <summary>

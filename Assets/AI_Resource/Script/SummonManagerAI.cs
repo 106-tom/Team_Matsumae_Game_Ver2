@@ -174,7 +174,7 @@ public class SummonManagerAI : MonoBehaviour
 		// ===== g—p¬Œ÷ =====
 		targetMana.PayCost(card);
 		bool isPlayerTurn = (side == SummonSide.Player) ? true : false;
-        //StartCoroutine(MotionManager.Instance.spell.StartSpell(isPlayerTurn, handCard.transform));
+        StartCoroutine(MotionManager.Instance.spell.StartSpell(isPlayerTurn, handCard.transform));
 
 		// èD‚©‚ç•æ’n‚Ö
 		Destroy(handCard.gameObject);

@@ -243,6 +243,8 @@ public class PlayerFieldAI : MonoBehaviour
 		fieldCardGO.transform.localPosition = cardData.position;
 		Debug.Log("fieldCardPosition" + fieldCardGO.transform.localPosition);
 		StartCoroutine(MotionManager.Instance.summon.StartSummon(fieldParent, fieldCardGO));
+		//StartCoroutine(MotionManager.Instance.spell.StartSpell(true, fieldCardGO.transform));
+
 		//fieldCardGO.transform.localPosition = Vector3.zero;
 
 	
