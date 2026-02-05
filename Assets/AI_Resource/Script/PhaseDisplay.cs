@@ -1,12 +1,14 @@
 using UnityEngine;
-using UnityEngine.UI; // Text を使う場合
-using TMPro; // TextMeshPro の場合はこちら
+using TMPro;
 
 public class PhaseDisplayUI : MonoBehaviour
 {
-	public PhaseManagerAI phaseManager; // PhaseManager への参照
-	//public Text phaseText;            // フェーズ表示用のText
-	public TMP_Text phaseText;     // TextMeshPro の場合はこちら
+	[Header("PhaseManager 参照")]
+	public PhaseManagerAI phaseManager; // Inspectorで設定
+	[Header("表示するテキスト")]
+	public TMP_Text phaseText;          // 板の上に置く TextMeshPro
+
+	private PhaseManagerAI.Phase lastPhase;
 
 	void Start()
 	{
@@ -16,15 +18,39 @@ public class PhaseDisplayUI : MonoBehaviour
 			return;
 		}
 
-		// 最初のフェーズ表示を更新
-		UpdatePhaseText();
+		if (phaseText == null)
+		{
+			Debug.LogError("phaseText が設定されていません！");
+			return;
+		}
+
+		// 初回更新
+		UpdatePhaseText(true);
 	}
 
-	public void UpdatePhaseText()
+	void Update()
 	{
-		if (phaseText != null)
+		// フェーズが変わったら更新
+		if (phaseManager.currentPhase != lastPhase)
 		{
-			phaseText.text = phaseManager.currentPhase.ToString(); // フェーズ名を表示
+			UpdatePhaseText();
 		}
 	}
+
+	public void UpdatePhaseText(bool force = false)
+	{
+		if (phaseText == null || phaseManager == null) return;
+
+		if (!force && lastPhase == phaseManager.currentPhase) return;
+
+		string playerName = phaseManager.players[phaseManager.currentPlayerIndex].playerName;
+
+		// ★ ここを英語名に変更
+		string phaseName = phaseManager.currentPhase.ToString(); // 例：Start, Draw, Mana ...
+
+		phaseText.text = phaseName;
+
+		lastPhase = phaseManager.currentPhase;
+	}
+
 }
