@@ -5353,7 +5353,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1538093631}
-  m_PlaneDistance: 0.6
+  m_PlaneDistance: 0.8
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5571,11 +5571,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8679353660253150268, guid: f4ea31ef9a3c0e648856df14b338eaa0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000000047219714
+      value: 0.000000047219743
       objectReference: {fileID: 0}
     - target: {fileID: 8679353660253150268, guid: f4ea31ef9a3c0e648856df14b338eaa0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000004397305
+      value: 0.000000043973074
       objectReference: {fileID: 0}
     - target: {fileID: 8679353660253150268, guid: f4ea31ef9a3c0e648856df14b338eaa0, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5975,11 +5975,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7484633217754778508, guid: 6c80e1b83db54fb40b627e5be4718be5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000000047219714
+      value: 0.000000047219743
       objectReference: {fileID: 0}
     - target: {fileID: 7484633217754778508, guid: 6c80e1b83db54fb40b627e5be4718be5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000004397305
+      value: 0.000000043973074
       objectReference: {fileID: 0}
     - target: {fileID: 7484633217754778508, guid: 6c80e1b83db54fb40b627e5be4718be5, type: 3}
       propertyPath: m_LocalRotation.y
