@@ -1,4 +1,6 @@
+//using System.Drawing;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public enum CardLocation
@@ -25,6 +27,18 @@ public class CardDisplayAI : MonoBehaviour, IPointerClickHandler
 	void Awake()
 	{
 		visualBinder = GetComponent<CardToFkingVisualBinderAI>();
+		if (visualBinder != null)
+			visualBinder.ApplyCardData(cardData);
+
+		// Prefab 内の Image を自動取得
+		if (artworkImage == null)
+		{
+			artworkImage = GetComponentInChildren<Image>();
+			if (artworkImage == null)
+			{
+				Debug.LogWarning("Card内に Image が見つかりません", this);
+			}
+		}
 	}
 
 	/// <summary>
@@ -43,6 +57,25 @@ public class CardDisplayAI : MonoBehaviour, IPointerClickHandler
 			Debug.LogWarning("CardToFkingVisualBinder がありません", this);
 		}
 	}
+
+	// CardDisplayAI のクラス内に追加
+	public UnityEngine.UI.Image artworkImage; // 手札カードの画像
+
+	void Update()
+	{
+		// マナチェック例
+		PlayerManaManagerAI targetMana = summonSide == SummonSide.Player
+			? SummonManagerAI.Instance.playerMana
+			: SummonManagerAI.Instance.enemyMana;
+
+		if (artworkImage != null && targetMana != null && cardData != null)
+		{
+			artworkImage.color = targetMana.CanPayCost(cardData)
+				? Color.white  // 足りる場合
+				: Color.gray;  // 足りない場合
+		}
+	}
+
 
 
 
