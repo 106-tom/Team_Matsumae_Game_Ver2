@@ -39,7 +39,7 @@ public class TurnManagerAI : MonoBehaviour
 
 		RestoreAllTemporaryDefense();
 
-		//Debug.Log(currentTurn + "のターン開始");
+		Debug.Log(currentTurn + "のターン開始");
 		UpdateUI();
 	}
 

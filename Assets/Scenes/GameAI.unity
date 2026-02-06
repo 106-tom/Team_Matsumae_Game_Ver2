@@ -1867,6 +1867,7 @@ MonoBehaviour:
   hand: []
   handParent: {fileID: 2044366851}
   cardPrefab: {fileID: 1206409100125579345, guid: d78c692d410332545a9e7392ba036afa, type: 3}
+  playerAi: {fileID: 642718611}
   deckRecipe:
   - cardID: 41
     count: 4
@@ -2022,7 +2023,6 @@ RectTransform:
   - {fileID: 1222726091}
   - {fileID: 1172261383}
   - {fileID: 599241486}
-  - {fileID: 839181260}
   m_Father: {fileID: 1483533860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2073,12 +2073,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511788366}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 538.75, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.00000004397305, y: -0.7318177, z: 0.68150043, w: -0.000000047219714}
+  m_LocalPosition: {x: -2423076.5, y: 96501.82, z: -1355423.1}
+  m_LocalScale: {x: 2523.2046, y: 2523.2046, z: 2523.2046}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1555624264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &560028213
 GameObject:
@@ -2800,6 +2800,7 @@ MonoBehaviour:
   hand: []
   handParent: {fileID: 202022199}
   cardPrefab: {fileID: 1206409100125579345, guid: d78c692d410332545a9e7392ba036afa, type: 3}
+  playerAi: {fileID: 560028213}
   deckRecipe:
   - cardID: 01
     count: 4
@@ -2867,7 +2868,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597253456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2875,7 +2876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -19, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &597253458
@@ -2961,7 +2962,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -36.707436, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3912,7 +3913,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 444122112}
+  m_Father: {fileID: 1483533860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5648,11 +5649,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8679353660253150268, guid: f4ea31ef9a3c0e648856df14b338eaa0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000000047219714
+      value: 0.000000047219743
       objectReference: {fileID: 0}
     - target: {fileID: 8679353660253150268, guid: f4ea31ef9a3c0e648856df14b338eaa0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000004397305
+      value: 0.000000043973074
       objectReference: {fileID: 0}
     - target: {fileID: 8679353660253150268, guid: f4ea31ef9a3c0e648856df14b338eaa0, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5723,6 +5724,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 597253457}
+  - {fileID: 511788368}
   m_Father: {fileID: 1483533860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6052,11 +6054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7484633217754778508, guid: 6c80e1b83db54fb40b627e5be4718be5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000000047219714
+      value: 0.000000047219743
       objectReference: {fileID: 0}
     - target: {fileID: 7484633217754778508, guid: 6c80e1b83db54fb40b627e5be4718be5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000004397305
+      value: 0.000000043973074
       objectReference: {fileID: 0}
     - target: {fileID: 7484633217754778508, guid: 6c80e1b83db54fb40b627e5be4718be5, type: 3}
       propertyPath: m_LocalRotation.y
@@ -6239,7 +6241,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: next
+  m_text: Next
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8062,7 +8064,6 @@ SceneRoots:
   - {fileID: 1276067614}
   - {fileID: 1483533860}
   - {fileID: 1548256214}
-  - {fileID: 511788368}
   - {fileID: 1578186639}
   - {fileID: 698623696}
   - {fileID: 90527665}

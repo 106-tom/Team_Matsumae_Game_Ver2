@@ -7,7 +7,7 @@ public class PhaseButtonAI : MonoBehaviour
 	// ボタンクリックでフェーズを進める
 	public void OnClickAdvancePhase()
 	{
-		if (phaseManager != null)
+		if (phaseManager != null && phaseManager.currentPlayerIndex == 0)
 		{
 			phaseManager.AdvancePhase();
 		}

@@ -97,10 +97,12 @@ public class PhaseManagerAI : MonoBehaviour
 				break;
 
 			case Phase.Attack:
+				Debug.Log("アタックターン");
 				SetPhase(Phase.End);
 				break;
 
 			case Phase.End:
+				Debug.Log("エンドターン");
 				EndTurn();
 				break;
 		}
@@ -240,7 +242,7 @@ public class PhaseManagerAI : MonoBehaviour
 				break;
 
 			case Phase.End:
-				//Debug.Log("End Phase");
+				Debug.Log("End Phase");
 				break;
 		}
 	}

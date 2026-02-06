@@ -15,6 +15,7 @@ public class PlayerDeckAI : MonoBehaviour
 	[Header("手札UI")]
 	public Transform handParent;                   // 手札表示用の親オブジェクト
 	public GameObject cardPrefab;                  // カード表示用Prefab
+	public GameObject playerAi;
 
 	bool isGameEnd = false;
 
@@ -47,21 +48,23 @@ public class PlayerDeckAI : MonoBehaviour
 	void InitializeDeckFromSavedDeck()
 	{
 		deck.Clear();
-
+		string path = null;
 		// ① 選択中のデッキ名を取得
 		string deckName = DeckDataManager.Instance.SelectedDeckName;
-
-		if (string.IsNullOrEmpty(deckName))
+        if (string.IsNullOrEmpty(deckName))
+        {
+            Debug.LogError("Battle開始時にデッキが選択されていません！");
+            return;
+        }
+        if (playerAi.GetComponent<PlayerAI>().playerName == "0")
 		{
-			Debug.LogError("Battle開始時にデッキが選択されていません！");
-			return;
-		}
+            // ② JSONファイルのパス取得
+            path = Path.Combine(
+                DeckDataManager.Instance.DeckDirectory,
+                deckName + ".json"
+            );
+        }
 
-		// ② JSONファイルのパス取得
-		string path = Path.Combine(
-			DeckDataManager.Instance.DeckDirectory,
-			deckName + ".json"
-		);
 
 		if (!File.Exists(path))
 		{
