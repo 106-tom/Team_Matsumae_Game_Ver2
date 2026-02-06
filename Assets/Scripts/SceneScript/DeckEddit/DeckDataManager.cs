@@ -19,6 +19,9 @@ public class DeckDataManager : MonoBehaviour
     public string SelectedDeckName =>
         PlayerPrefs.GetString(SELECTED_DECK_KEY, "");
 
+    List<string> sampleDeckNames = new List<string>();
+    List<string> userDeckNames = new List<string>();
+
     string editingDeckName;
 
     void Awake()
@@ -71,7 +74,21 @@ public class DeckDataManager : MonoBehaviour
     // =========================
     public void LoadDeckList()
     {
-        deckNames.Clear();
+        LoadSampleDeckList();
+        LoadUserDeckList();
+    }
+    public List<string> GetDeckListForDisplay()
+    {
+        List<string> result = new List<string>();
+
+        result.AddRange(sampleDeckNames);
+        result.AddRange(userDeckNames);
+
+        return result;
+    }
+    void LoadUserDeckList()
+    {
+        userDeckNames.Clear();
 
         foreach (var file in Directory.GetFiles(DeckDirectory, "*.json"))
         {
@@ -79,16 +96,31 @@ public class DeckDataManager : MonoBehaviour
                 File.ReadAllText(file)
             );
 
-            // デッキ名が無い or 未保存なら除外
             if (string.IsNullOrEmpty(data.deckName))
                 continue;
 
-            deckNames.Add(data.deckName);
+            userDeckNames.Add(data.deckName);
         }
 
-        deckNames.Sort();
+        userDeckNames.Sort();
     }
 
+    void LoadSampleDeckList()
+    {
+        sampleDeckNames.Clear();
+
+        TextAsset[] samples = Resources.LoadAll<TextAsset>("Decks");
+        foreach (var textAsset in samples)
+        {
+            var data = JsonUtility.FromJson<DeckSaveData>(textAsset.text);
+
+            if (string.IsNullOrEmpty(data.deckName))
+                continue;
+
+            sampleDeckNames.Add(data.deckName);
+        }
+        sampleDeckNames.Sort();
+    }
     public string GetDeckName(int index)
     {
         if (index < 0 || index >= deckNames.Count)
@@ -198,8 +230,6 @@ public class DeckDataManager : MonoBehaviour
         Debug.Log($"デッキ保存（上書き）: {inputName}");
     }
 
-
-
     void SaveDeckInternal(string deckName, List<int> cardIds)
     {
         var data = new DeckSaveData
@@ -229,31 +259,30 @@ public class DeckDataManager : MonoBehaviour
 
     public void LoadDeck(string deckName)
     {
+
         if (editManager == null || nameInput == null)
         {
             Debug.LogError("EditScene が未登録です");
             return;
         }
 
-        string path = Path.Combine(
-            DeckDirectory,
-            deckName + ".json"
-        );
-
-        if (!File.Exists(path))
+        // ① ユーザーデッキ優先
+        string userPath = Path.Combine(DeckDirectory, deckName + ".json");
+        if (File.Exists(userPath))
         {
-            Debug.LogError("デッキが存在しません: " + deckName);
+            LoadFromJson(File.ReadAllText(userPath));
             return;
         }
 
-        var data = JsonUtility.FromJson<DeckSaveData>(
-            File.ReadAllText(path)
-        );
+        // ② サンプルデッキ
+        TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
+        if (sample != null)
+        {
+            LoadFromJson(sample.text);
+            return;
+        }
 
-        nameInput.SetDeckName(data.deckName);
-        editManager.LoadFromData(data);
-
-        Debug.Log("デッキロード: " + data.deckName);
+        Debug.LogError("デッキが存在しません: " + deckName);
     }
 
     // =========================
@@ -287,6 +316,14 @@ public class DeckDataManager : MonoBehaviour
     // =========================
     // Helper
     // =========================
-
-
+    void LoadFromJson(string json)
+    {
+        var data = JsonUtility.FromJson<DeckSaveData>(json);
+        nameInput.SetDeckName(data.deckName);
+        editManager.LoadFromData(data);
+    }
+    public bool IsSampleDeck(string deckName)
+    {
+        return sampleDeckNames.Contains(deckName);
+    }
 }

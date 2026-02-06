@@ -17,6 +17,8 @@ public class PlayerDeckAI : MonoBehaviour
 	public GameObject cardPrefab;                  // カード表示用Prefab
 	public GameObject playerAi;
 
+	public GameObject playerAI;
+
 	bool isGameEnd = false;
 
 	//public HandManagerAI handManager;
@@ -65,7 +67,32 @@ public class PlayerDeckAI : MonoBehaviour
             );
         }
 
+<<<<<<< HEAD
+=======
+		// ---------------------------
+		//ユーザーデッキ優先
+		// ---------------------------
+		string userPath = Path.Combine(
+			DeckDataManager.Instance.DeckDirectory,
+			deckName + ".json"
+		);
+		if (File.Exists(userPath))
+		{
+			path = File.ReadAllText(userPath);
+		}
+		else
+		{
+			// ---------------------------
+			//サンプルデッキ
+			// ---------------------------
+			TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
+>>>>>>> origin/tsukasa_2
 
+			if (sample != null)
+			{
+				path = sample.text;
+			}
+		}
 		if (!File.Exists(path))
 		{
 			Debug.LogError("デッキファイルが存在しません: " + path);
