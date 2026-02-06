@@ -8,6 +8,7 @@ public class DeckSelectUIManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] Transform deckGridParent;   // GridLayoutGroup が付いた親
     [SerializeField] GameObject deckButtonPrefab; // デッキボタンPrefab
+    [SerializeField] Button deleteButton;
     [SerializeField] int maxDeckViewCount = 9;
 
     private Outline currentOutline;
@@ -29,6 +30,7 @@ public class DeckSelectUIManager : MonoBehaviour
 
         DeckDataManager.Instance.LoadDeckList();
         Refresh();
+        UpdateDeleteButtonState();
     }
 
     // =========================
@@ -108,6 +110,17 @@ public class DeckSelectUIManager : MonoBehaviour
         }
 
         DeckDataManager.Instance.SelectDeck(deckName);
+        UpdateDeleteButtonState();
+    }
+
+    public void OnClickDeleteDeck()
+    {
+        if (!DeckDataManager.Instance.DeleteSelectedDeck())
+            return;
+
+        currentOutline = null;
+        Refresh();
+        UpdateDeleteButtonState();
     }
 
     void OnCreateNewDeck()
@@ -163,5 +176,26 @@ public class DeckSelectUIManager : MonoBehaviour
     bool IsAnyDeckSelected()
     {
         return currentOutline != null && currentOutline.enabled;
+    }
+
+    void UpdateDeleteButtonState()
+    {
+        if (deleteButton == null)
+            return;
+
+        string selected = DeckDataManager.Instance.SelectedDeckName;
+
+        bool canDelete =
+            !string.IsNullOrEmpty(selected) &&
+            !DeckDataManager.Instance.IsSampleDeck(selected);
+
+        if (canDelete&& IsAnyDeckSelected())
+        {
+            deleteButton.interactable = true;
+        }
+        else
+        {
+            deleteButton.interactable = false;
+        }
     }
 }

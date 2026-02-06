@@ -490,5 +490,17 @@ public class DeckEditManager : MonoBehaviour
             overlay.gameObject.SetActive(true);
         }
 
+        if(cardId == 55)
+        {
+            var overlay = obj.transform.Find("WhitePanel");
+            overlay.gameObject.SetActive(false);
+            overlay = obj.transform.Find("mana_55");
+            overlay.gameObject.SetActive(true);
+        }
+        else
+        {
+            var overlay = obj.transform.Find("mana_55");
+            overlay.gameObject.SetActive(false);
+        }
     }
 }
