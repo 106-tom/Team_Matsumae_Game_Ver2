@@ -1,7 +1,18 @@
+// ================= Editor 用名前空間 =================
+#if UNITY_EDITOR
+using UnityEditor;           // MenuItem などの Editor 機能
+using UnityEditorInternal;   // ReorderableList
+#endif
+
+// ================= 通常名前空間 =================
 using System.Collections;
 using System.Collections.Generic;
+<<<<<<< HEAD
 //using Unity.VisualScripting.ReorderableList.Internal;
+=======
+>>>>>>> origin/washida2
 using UnityEngine;
+
 
 public class SystemManager : MonoBehaviour
 {

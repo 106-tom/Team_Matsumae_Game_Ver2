@@ -88,17 +88,40 @@ public class FieldCardDisplayAI : MonoBehaviour, IPointerClickHandler
 	}
 
 	// ★レスト状態の見た目更新
+	// ★レスト状態の見た目更新
 	public void UpdateRestVisual()
 	{
+		if (artworkImage == null || cardData == null) return;
+
 		if (isRested)
 		{
-			transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+			// レスト時はカードを横向きに
+			transform.localRotation = Quaternion.Euler(0f, 0f, 90f);
+
+			// マナ足りるかチェック
+			PlayerManaManagerAI targetMana = OwnerSide == PlayerSide.Self
+				? SummonManagerAI.Instance.playerMana
+				: SummonManagerAI.Instance.enemyMana;
+
+			if (targetMana != null)
+			{
+				// 攻撃中は赤、マナ不足ならグレー、それ以外は白
+				if (isAttacking)
+					artworkImage.color = Color.red;
+				else
+					artworkImage.color = targetMana.CanPayCost(cardData) ? Color.white : Color.gray;
+			}
 		}
 		else
 		{
+			// アンレスト時は通常の向きに戻す
 			transform.localRotation = Quaternion.identity;
+
+			// 攻撃中は赤、それ以外は白
+			artworkImage.color = isAttacking ? Color.red : Color.white;
 		}
 	}
+
 
 
 	public void SetAttacking(bool value)
@@ -244,7 +267,7 @@ public class FieldCardDisplayAI : MonoBehaviour, IPointerClickHandler
 			AttackManagerAI.Instance.StartAttack(OwnerSide, this);
 
 			// 攻撃したらブロックへ移行
-			PhaseManagerAI.Instance.currentPhase = PhaseManagerAI.Phase.Block;
+			//PhaseManagerAI.Instance.currentPhase = PhaseManagerAI.Phase.Block;
 			return;
 		}
 

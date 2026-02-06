@@ -5,7 +5,7 @@ using System.Collections;
 
 public class ResultUI : MonoBehaviour
 {
-    public static ResultUI Instance;
+    public static ResultUI Instance { get; private set; }
 
     [SerializeField] GameObject panel;
     [SerializeField] Image resultImage;

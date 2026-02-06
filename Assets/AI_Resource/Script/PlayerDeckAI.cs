@@ -188,6 +188,7 @@ public class PlayerDeckAI : MonoBehaviour
 			Quaternion rot = Quaternion.Euler(90f, 0f, 180f); // この角度にしないとカードが正面向かない
 			GameObject cardGO = Instantiate(cardPrefab, pos, rot, handParent);
 			cardGO.transform.localPosition = new Vector3(0f, 0f, 0f);
+			cardGO.transform.localScale = Vector3.one * 2.0f;
 			// ① データをセット
 			CardDisplayAI display = cardGO.GetComponent<CardDisplayAI>();
 			display.Setup(drawnCard);

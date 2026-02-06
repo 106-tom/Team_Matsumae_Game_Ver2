@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public enum PlayerSide
 {
@@ -16,6 +17,8 @@ public class PlayerHpUIAI : MonoBehaviour
 	[Header("HP")]
 	public int hp = 20;
 	public Text hpText;
+
+	public GameObject panel;
 
 	private bool gameEnded = false; // š’Ç‰ÁF‘JˆÚ‚ª•¡”‰ñ‹N‚«‚È‚¢‚æ‚¤‚É‚·‚é
 
@@ -68,6 +71,9 @@ public class PlayerHpUIAI : MonoBehaviour
 
 	private void GoResult()
 	{
+		//panel.SetActive(true);
+		if(ResultUI.Instance == null) Debug.Log("kita");
+		ResultUI.Instance.ShowResult(true);
 		// side‚ªSelf‚È‚ç©•ª‚ª•‰‚¯
 		if (side == PlayerSide.Self)
 		{

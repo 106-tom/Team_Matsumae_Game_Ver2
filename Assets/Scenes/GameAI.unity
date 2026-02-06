@@ -252,7 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldCenter: {x: 0, y: 0, z: 0}
   handCenter: {x: 0, y: 0, z: 0}
-  handCardSpaceLength: 120
+  handCardSpaceLength: 140
   fieldCardSpaceLength: 1
   moveTime: 0.2
 --- !u!1 &92838879 stripped
@@ -2109,7 +2109,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2533635643862334108}
   - {fileID: 577788077}
   - {fileID: 272232037}
   - {fileID: 202022199}
@@ -3424,10 +3423,10 @@ MonoBehaviour:
   flashEffect: {fileID: 9170647839508439389, guid: d3994b8acb6a63d44a23bab11308df24, type: 3}
   smokeEffect: {fileID: 7851895710597457874, guid: 88be9d731ac142a4ab1e9eca40d25675, type: 3}
   rockEffect: {fileID: 6385453197138243580, guid: ee9bd18e253afb94682e0124e954e4e3, type: 3}
-  amplitude: 5
-  frequency: 4
-  shakeTime: 1
-  upEndPosition: {x: 0, y: 0, z: -100}
+  amplitude: 1
+  frequency: 1
+  shakeTime: 0.2
+  upEndPosition: {x: 0, y: 0, z: 0}
   upTime: 0.5
   upCurve:
     serializedVersion: 2
@@ -5256,6 +5255,7 @@ MonoBehaviour:
   side: 1
   hp: 20
   hpText: {fileID: 1192736991}
+  panel: {fileID: 0}
 --- !u!1 &1478682053
 GameObject:
   m_ObjectHideFlags: 0
@@ -5429,7 +5429,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1538093631}
-  m_PlaneDistance: 0.6
+  m_PlaneDistance: 0.8
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5453,6 +5453,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2533635643862334108}
   - {fileID: 303118763}
   - {fileID: 589477152}
   - {fileID: 101584731}
@@ -5468,6 +5469,7 @@ RectTransform:
   - {fileID: 906303164}
   - {fileID: 1205714994}
   - {fileID: 1555624264}
+  - {fileID: 839181260}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6421,6 +6423,7 @@ MonoBehaviour:
   side: 0
   hp: 20
   hpText: {fileID: 656316685}
+  panel: {fileID: 0}
 --- !u!1 &1953008740
 GameObject:
   m_ObjectHideFlags: 0
@@ -6874,7 +6877,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9212914469271279727}
-  m_Father: {fileID: 560028214}
+  m_Father: {fileID: 1483533860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2798618098789131621
 PrefabInstance:
@@ -8036,7 +8039,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460835461440416410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
