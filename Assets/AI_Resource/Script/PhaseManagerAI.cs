@@ -8,6 +8,8 @@ public class PhaseManagerAI : MonoBehaviour
 	public enum Phase { Start, Draw, Mana, Summon, Attack, Block, End }
 	public static PhaseManagerAI Instance { get; private set; }
 
+	public PhaseDisplayUI phaseDisplayUI;
+
 	[Header("UI")]
 	public Text phaseText;
 
@@ -66,7 +68,7 @@ public class PhaseManagerAI : MonoBehaviour
 		// Enterキーでフェーズ進行（デバッグ用）
 		if (Input.GetKeyDown(KeyCode.Return))
 		{
-			AdvancePhase();
+			//AdvancePhase();
 		}
 	}
 
@@ -78,7 +80,8 @@ public class PhaseManagerAI : MonoBehaviour
 		switch (currentPhase)
 		{
 			case Phase.Start:
-				SetPhase(Phase.Draw);
+				
+                SetPhase(Phase.Draw);
 				break;
 
 			case Phase.Draw:
@@ -131,6 +134,8 @@ public class PhaseManagerAI : MonoBehaviour
 
 		// UI更新
 		UpdateUI();
+
+
 	}
 
 	//==================================================
@@ -143,8 +148,13 @@ public class PhaseManagerAI : MonoBehaviour
 		switch (phase)
 		{
 			case Phase.Start:
-				// アンタップ
-				players[currentPlayerIndex].manaManager.UntapAll();
+                HandManagerAI.Instance.ArrangeField();
+                EnemyHandManagerAI.Instance.ArrangeField();
+                HandManagerAI.Instance.ArrangeHand();
+                HandManagerAI.Instance.ArrangeField();
+
+                // アンタップ
+                players[currentPlayerIndex].manaManager.UntapAll();
 				//Debug.Log("Start Phase: UntapAll");
 
 				// ★カードレスト解除
@@ -215,6 +225,7 @@ public class PhaseManagerAI : MonoBehaviour
 				break;
 			case Phase.Attack:
                 HandManagerAI.Instance.ArrangeHand();
+                EnemyHandManagerAI.Instance.ArrangeHand();
                 if (turnSide == PlayerSide.Enemy)
 				{
 					StartCoroutine(EnemyAutoAttack());
@@ -237,7 +248,7 @@ public class PhaseManagerAI : MonoBehaviour
 	//==================================================
 	// UI表示（日本語）
 	//==================================================
-	string GetPhaseName(Phase phase)
+	public string GetPhaseName(Phase phase)
 	{
 		switch (phase)
 		{
@@ -260,6 +271,8 @@ public class PhaseManagerAI : MonoBehaviour
 
 		phaseText.text =
 			$"【{playerName}のターン】\n現在のフェーズ：{GetPhaseName(currentPhase)}";
+
+
 	}
 
 	//==================================================
@@ -453,7 +466,7 @@ public class PhaseManagerAI : MonoBehaviour
 		AttackManagerAI.Instance.StartAttack(PlayerSide.Enemy, attacker);
 
 		// 攻撃が終わるまで待つ
-		yield return new WaitUntil(() =>
+        yield return new WaitUntil(() =>
 			AttackManagerAI.Instance.state == AttackState.None
 		);
 

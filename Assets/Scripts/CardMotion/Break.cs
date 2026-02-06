@@ -41,14 +41,22 @@ public class Break : MonoBehaviour
     public IEnumerator StartBreak(
         Transform cardTransform)
     {
+
         Transform bo = cardTransform.Find("GameObject/BreakObject");
+        int childCount = bo.childCount;
+        renderers = new MeshRenderer[childCount];
+        rigidBodies = new Rigidbody[childCount];
         int i = 0;
+        if(bo == null)
+            Debug.Log("boない");
         foreach (Transform child in bo)
         {
-            i++;
             // 子要素（Plane.001など）からコンポーネントを取得
             renderers[i] = child.GetComponent<MeshRenderer>();
             rigidBodies[i] = child.GetComponent<Rigidbody>();
+            if (renderers[i] == null) Debug.Log("renderers[i] + がない");
+            if (rigidBodies[i] == null) Debug.Log("rigidBodies[i] + がない");
+            i++;
         }
         Material[] materials = renderers.Select(r => r.material).ToArray();
         foreach (Material m in materials)
@@ -84,7 +92,7 @@ public class Break : MonoBehaviour
         yield return StartCoroutine(cameraManager.CameraShake(0f, amplitude, frequency, shakeTime));
         yield return StartCoroutine(cameraManager.CameraShake(amplitude, 0f, frequency, shakeTime));
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
 
         // ディゾルブ開始
         float elapsedTime = 0f;

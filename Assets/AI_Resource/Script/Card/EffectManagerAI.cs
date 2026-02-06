@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using static CardAI;
 //using static UnityEditor.Timeline.TimelinePlaybackControls;
+//
 
 public class EffectManager : MonoBehaviour
 {
@@ -147,7 +148,11 @@ public class EffectManager : MonoBehaviour
 					ResolveSpellSetBPZero(card, context);
 					break;
 			}
-		}	
+		}
+		context.selfField?.RefreshStatsUI();
+		context.targetField?.RefreshStatsUI();
+		context.selfPlayerField?.RefreshAllStats();
+		context.enemyPlayerField?.RefreshAllStats();
 	}
 
 	void ResolveDraw(CardEffect effect, CardAI card, EffectContextAI context)
@@ -464,6 +469,9 @@ public class EffectManager : MonoBehaviour
 		pendingDestroyThenRest = false;
 		pendingDestroyThenDraw = false;
 		pendingDefenseZero = false;
+
+		HandManagerAI.Instance.ArrangeField();
+		EnemyHandManagerAI.Instance.ArrangeField();
 
 		Debug.Log("[Effect] ëIëèIóπ");
 	}

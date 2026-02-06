@@ -100,11 +100,18 @@ public class SummonManagerAI : MonoBehaviour
 		summonedCard.OwnerSide = currentTurn;
 		targetDeck.RemoveFromHand(handCard);
 
-		FkingCardDisplay fkd = summonedCard.GetComponentInChildren<FkingCardDisplay>();
-		if (fkd != null && currentTurn != PlayerSide.Self) // 敵カードの場合
+		// ===== 敵カードなら召喚した瞬間に表に戻す =====
+		if (currentTurn == PlayerSide.Enemy)
 		{
-			fkd.ShowFront();
+			FkingCardDisplayAttacher visual =
+				summonedCard.GetComponentInChildren<FkingCardDisplayAttacher>();
+
+			if (visual != null)
+			{
+				visual.ChangeCard(card.cardID); // ★表に戻す
+			}
 		}
+
 
 		//summonedCard = targetField.AcceptSummonedCard(card, side);
 		if (summonedCard != null)
@@ -112,10 +119,8 @@ public class SummonManagerAI : MonoBehaviour
 			StartCoroutine(FkingCardDisplay.Instance.ShowStats(summonedCard));
 		}
 
-
-
 		// Effect を解決
-		EffectManager.Instance.Resolve(
+        EffectManager.Instance.Resolve(
 			CardAI.EffectTiming.Summon,
 			card,
 			new EffectContextAI
@@ -168,8 +173,8 @@ public class SummonManagerAI : MonoBehaviour
 
 		// ===== 使用成功 =====
 		targetMana.PayCost(card);
-
-		//MotionManager.Instance.spell.StartRedSpell();
+		bool isPlayerTurn = (side == SummonSide.Player) ? true : false;
+        StartCoroutine(MotionManager.Instance.spell.StartSpell(isPlayerTurn, handCard.transform));
 
 		// 手札から墓地へ
 		Destroy(handCard.gameObject);

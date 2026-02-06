@@ -320,6 +320,19 @@ public class FkingCardDisplay : MonoBehaviour
 		Debug.Log($"Stats表示完了: {fieldCard.CardName}");
 	}
 
+	public void UpdateBattleStats(int ap, int bp)
+	{
+		if (battleStatsGroup != null)
+			battleStatsGroup.SetActive(true);
+
+		if (battleAPText != null)
+			battleAPText.text = ap.ToString();
+
+		if (battleBPText != null)
+			battleBPText.text = bp.ToString();
+	}
+
+
 
 
 
@@ -535,5 +548,58 @@ public class FkingCardDisplay : MonoBehaviour
 			artworkImage.sprite = currentCardData.cardImage;
 		}
 	}
+
+	public void SetAIFaceDownMode()
+	{
+		// 裏面にする
+		ShowBack();
+
+		// 名前消す
+		if (nameText != null)
+			nameText.gameObject.SetActive(false);
+
+		// 効果消す
+		if (effectText != null)
+			effectText.gameObject.SetActive(false);
+
+		// 背景も消す
+		if (textBackgroundImage != null)
+			textBackgroundImage.gameObject.SetActive(false);
+
+		// Stats消す
+		if (statsText != null)
+			statsText.gameObject.SetActive(false);
+
+		// BattleStatsも消す
+		if (battleStatsGroup != null)
+			battleStatsGroup.SetActive(false);
+
+		// コスト全部消す
+		HideAllCostUI();
+
+		// フレーム全部消す
+		foreach (var frameSet in colorFrameSets)
+		{
+			if (frameSet.normalFrame != null)
+				frameSet.normalFrame.SetActive(false);
+
+			if (frameSet.battleFrame != null)
+				frameSet.battleFrame.SetActive(false);
+		}
+
+		// KeyCardIllustも消す
+		if (keyCardIllustImage != null)
+			keyCardIllustImage.gameObject.SetActive(false);
+	}
+
+	public void RevealCard()
+	{
+		ShowFront();
+
+		// UIを普通に戻す
+		if (currentCardData != null)
+			FkingUpdateDisplay(currentCardData);
+	}
+
 
 }

@@ -72,7 +72,7 @@ public class Block : MonoBehaviour
         EffekseerHandle handle2 = EffekseerSystem.PlayEffect(blackLing, whiteLingPosition);
 
         // GUARD!!テキストを表示
-        yield return StartCoroutine(StartGuardTextFade());
+        yield return StartCoroutine(StartGuardTextFade(myPosition));
 
         // 元の角度に回転
         //StartCoroutine(cardMotionHelper.RotationTarget(transform, 0.7f, endRotation, startRotation, rotateCurve));
@@ -82,15 +82,13 @@ public class Block : MonoBehaviour
     /// Guard!!テキストの表示処理
     /// </summary>
     /// <returns></returns>
-    private IEnumerator StartGuardTextFade()
+    private IEnumerator StartGuardTextFade(Vector3 pos)
     {
-        // Guard!!テキストを生成し、キャンバスの子に設定]
-
         // 表示位置をカードの位置に設定
         rectTransform = blockText.GetComponent<RectTransform>();
-        Vector3 cardPosition = camera.WorldToScreenPoint(transform.position);
-        cardPosition.x += 70.0f;
-        cardPosition.y += 100.0f;
+        Vector3 cardPosition = pos;
+        //cardPosition.x += 70.0f;
+        //cardPosition.y += 100.0f;
         rectTransform.localPosition = cardPosition;
 
         // テキスト表示(透明値を調整)

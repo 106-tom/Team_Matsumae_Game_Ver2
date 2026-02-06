@@ -20,7 +20,7 @@ MonoBehaviour:
   cardType: Monster
   genericCost: 0
   specificColor: 5
-  specificCost: 1
+  specificCost: 3
   effectText: "\u7834\u58CA\u6642\u30012\u679A\u30C9\u30ED\u30FC"
   tags: "\u9F8D\u65CF"
   ap: 1
