@@ -10,8 +10,6 @@ public class BGMManager : MonoBehaviour
 		audioSource.clip = bgmClip;
 		audioSource.loop = true;
 		audioSource.Play();
-
-		Debug.Log("Ä¶’†? " + audioSource.isPlaying);
 	}
 
 

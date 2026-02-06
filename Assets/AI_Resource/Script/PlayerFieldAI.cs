@@ -223,40 +223,28 @@ public class PlayerFieldAI : MonoBehaviour
 	// =========================
 	public FieldCardDisplayAI AcceptSummonedCard(CardAI cardData, SummonSide side)
 	{
-		//Debug.Log("[Field] AcceptSummonedCard");
-
 		CleanupNullCards();
 
 		if (fieldCards.Count >= MAX_FIELD)
 		{
-			Debug.LogWarning("フィールドが満杯です");
 			return null;
 		}
 
 		GameObject fieldCardGO =
 			Instantiate(fieldCardPrefab, fieldParent);
 		fieldCardGO.name = cardData.cardName + "フィールド";
-		Debug.Log($"fieldCardGO.name {fieldCardGO.name}",this);
 
 		fieldCardGO.transform.localRotation = Quaternion.identity;
 		fieldCardGO.transform.localScale = Vector3.one * 2.0f;
 		fieldCardGO.transform.localPosition = cardData.position;
-		Debug.Log("fieldCardPosition" + fieldCardGO.transform.localPosition);
-		StartCoroutine(MotionManager.Instance.summon.StartSummon(fieldParent, fieldCardGO));
-		//StartCoroutine(MotionManager.Instance.spell.StartSpell(true, fieldCardGO.transform));
 
-		//fieldCardGO.transform.localPosition = Vector3.zero;
-
-	
+		StartCoroutine(MotionManager.Instance.summon.StartSummon(fieldParent, fieldCardGO, side));
 
 		FieldCardDisplayAI fieldCard =
 			fieldCardGO.GetComponent<FieldCardDisplayAI>();
 
 		if (fieldCard == null)
 		{
-			Debug.LogError(
-				"FieldCardDisplayAI が fieldCardPrefab に付いていない"
-			);
 			Destroy(fieldCardGO);
 			return null;
 		}

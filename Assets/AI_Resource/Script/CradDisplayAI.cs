@@ -114,8 +114,6 @@ public class CardDisplayAI : MonoBehaviour, IPointerClickHandler
 			cardData.position = 
 				new Vector3(transform.localPosition.x, transform.localPosition.y - 150f, transform.localPosition.z); // 2026/02/03 í«â¡ è¢ä´Ç∑ÇÈç€Ç…égÇ§ç¿ïW
 			
-			Debug.Log("cardDataPosition : " + cardData.position);
-			Debug.Log("lcoalPosition : " + transform.localPosition);
 			SummonManagerAI.Instance.TrySummon(cardData, this, summonSide);
 		}
 		

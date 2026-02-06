@@ -174,12 +174,9 @@ public class SummonManagerAI : MonoBehaviour
 		// ===== 使用成功 =====
 		targetMana.PayCost(card);
 		bool isPlayerTurn = (side == SummonSide.Player) ? true : false;
-        StartCoroutine(MotionManager.Instance.spell.StartSpell(isPlayerTurn, handCard.transform));
 
 		// 手札から墓地へ
 		Destroy(handCard.gameObject);
-		//handDeck.RemoveFromHand(handCard);
-
 
 		// 効果を解決
 		EffectManager.Instance.Resolve(
@@ -190,7 +187,7 @@ public class SummonManagerAI : MonoBehaviour
 				ownerSide = side,
 				ownerDeck = targetDeck,
 				self = card,
-				selfField = null,         // 場には置かない
+				selfField = null, // 場には置かない
 				selfPlayerField = (side == SummonSide.Player) ? playerField : enemyField,
 				enemyPlayerField = (side == SummonSide.Player) ? enemyField : playerField,
 				selfLife =

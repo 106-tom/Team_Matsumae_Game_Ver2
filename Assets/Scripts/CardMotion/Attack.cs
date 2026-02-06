@@ -88,15 +88,15 @@ public class Attack : MonoBehaviour
 		Vector3 upStartPosition = myFirstPosition;
 		Vector3 upEndPosition = myFirstPosition + upHeight;
 
-		yield return StartCoroutine(
-			cardMotionHelper.MoveTarget(
-				attackCard,
-				upTime,
-				upStartPosition,
-				upEndPosition,
-				upCurve
-			)
-		);
+		//yield return StartCoroutine(
+		//	cardMotionHelper.MoveTarget(
+		//		attackCard,
+		//		upTime,
+		//		upStartPosition,
+		//		upEndPosition,
+		//		upCurve
+		//	)
+		//);
 
 		// 前進開始位置と終了位置
 		Vector3 forwardStartPosition = attackCard.localPosition;
@@ -128,15 +128,15 @@ public class Attack : MonoBehaviour
 		);
 
 		// 戻る（浮上しながら）
-		yield return StartCoroutine(
-			cardMotionHelper.MoveTarget(
-				attackCard,
-				upTime,
-				forwardEndPosition,
-				forwardStartPosition,
-				upCurve
-			)
-		);
+		//yield return StartCoroutine(
+		//	cardMotionHelper.MoveTarget(
+		//		attackCard,
+		//		upTime,
+		//		forwardEndPosition,
+		//		forwardStartPosition,
+		//		upCurve
+		//	)
+		//);
 
 		// 元の位置に戻る（下降）
 		Vector3 downStartPosition = attackCard.localPosition;

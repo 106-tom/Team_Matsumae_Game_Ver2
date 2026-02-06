@@ -11,9 +11,5 @@ public class PhaseButtonAI : MonoBehaviour
 		{
 			phaseManager.AdvancePhase();
 		}
-		else
-		{
-			Debug.LogError("PhaseManager ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI");
-		}
 	}
 }

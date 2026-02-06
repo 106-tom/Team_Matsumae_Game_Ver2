@@ -283,7 +283,6 @@ public class FieldCardDisplayAI : MonoBehaviour, IPointerClickHandler
 			// 防御側のカードしか押せない
 			if (OwnerSide != defendingSide)
 			{
-				Debug.Log("ブロックフェーズ：防御側のカードを選んでください");
 				return;
 			}
 

@@ -66,7 +66,7 @@ public class Summon : MonoBehaviour
     /// <param name="myFieldCards">自分のフィールド</param>
     /// <param name="summonCard">召喚するカード</param>
     /// <returns></returns>
-    public IEnumerator StartSummon(Transform myFieldCards, GameObject summonCard)
+    public IEnumerator StartSummon(Transform myFieldCards, GameObject summonCard, SummonSide side)
     {
         Vector3 forwardEndPosition = Vector3.zero;
 
@@ -106,8 +106,11 @@ public class Summon : MonoBehaviour
         yield return StartCoroutine(cardMotionHelper.MoveTarget(summonCard.transform, forwardTime, forwardStartPosition, forwardEndPosition, forwardCurve));
 
         // --- エフェクト処理 ---
-        float yAxisOffset = 0.05f;
         Vector3 effectPosition = summonCard.transform.localPosition;
+        float yAxisOffset = (side == SummonSide.Player)
+            ? 0.05f
+            : -0.05f;
+
         effectPosition.z += yAxisOffset;
 
         EffectPoolManager effectPool = EffectPoolManager.Instance;

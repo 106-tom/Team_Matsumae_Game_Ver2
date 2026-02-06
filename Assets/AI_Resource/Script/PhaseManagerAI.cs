@@ -111,7 +111,7 @@ public class PhaseManagerAI : MonoBehaviour
 	//==================================================
 	// ターン終了処理
 	//==================================================
-	void EndTurn()
+	public void EndTurn()
 	{
 		// ターン切替
 		if (turnManager != null)
@@ -464,7 +464,6 @@ public class PhaseManagerAI : MonoBehaviour
 		// -----------------------------
 		// 攻撃開始（場が空なので直接攻撃）
 		// -----------------------------
-		Debug.Log($"敵が直接攻撃します → {attacker.CardName}");
 
 		AttackManagerAI.Instance.StartAttack(PlayerSide.Enemy, attacker);
 

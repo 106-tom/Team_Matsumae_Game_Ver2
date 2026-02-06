@@ -316,8 +316,6 @@ public class FkingCardDisplay : MonoBehaviour
 
 		if (apText != null) apText.text = fieldCard.Defense.ToString();
 		if (bpText != null) bpText.text = fieldCard.Attack.ToString();
-
-		Debug.Log($"Stats表示完了: {fieldCard.CardName}");
 	}
 
 	public void UpdateBattleStats(int ap, int bp)

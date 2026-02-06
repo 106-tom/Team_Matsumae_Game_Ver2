@@ -18,8 +18,6 @@ public class PlayerHpUIAI : MonoBehaviour
 	public int hp = 20;
 	public Text hpText;
 
-	public GameObject panel;
-
 	private bool gameEnded = false; // š’Ç‰ÁF‘JˆÚ‚ª•¡”‰ñ‹N‚«‚È‚¢‚æ‚¤‚É‚·‚é
 
 	void Start()
@@ -28,12 +26,7 @@ public class PlayerHpUIAI : MonoBehaviour
 	}
 
     private void Update()
-    {	//
-        //if (AttackManagerAI.Instance == null) return;
-        //if (AttackManagerAI.Instance.state != AttackState.Blocking) return;
-		//
-        //// š ©•ª‚ÌSide‚ğ“n‚·
-        //AttackManagerAI.Instance.TakeLifeDamage(side);
+    {	
     }
 
     // -----------------------------
