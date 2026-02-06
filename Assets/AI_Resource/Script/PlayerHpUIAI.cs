@@ -27,10 +27,19 @@ public class PlayerHpUIAI : MonoBehaviour
 		UpdateUI();
 	}
 
-	// -----------------------------
-	// HPクリック（ライフ受け）
-	// -----------------------------
-	public void OnClick()
+    private void Update()
+    {	//
+        //if (AttackManagerAI.Instance == null) return;
+        //if (AttackManagerAI.Instance.state != AttackState.Blocking) return;
+		//
+        //// ★ 自分のSideを渡す
+        //AttackManagerAI.Instance.TakeLifeDamage(side);
+    }
+
+    // -----------------------------
+    // HPクリック（ライフ受け）
+    // -----------------------------
+    public void OnClick()
 	{
 		if (AttackManagerAI.Instance == null) return;
 		if (AttackManagerAI.Instance.state != AttackState.Blocking) return;

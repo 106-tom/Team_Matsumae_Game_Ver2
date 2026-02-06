@@ -7,7 +7,7 @@ public class PhaseEndButtonAI : MonoBehaviour
 	// ボタンを押すとエンドフェーズに進める
 	public void OnClickEndPhase()
 	{
-		if (phaseManager != null)
+		if (phaseManager != null && phaseManager.currentPlayerIndex == 0)
 		{
 			phaseManager.currentPhase = PhaseManagerAI.Phase.End; // Endフェーズに直接設定
 			//phaseManager.EndTurn();           // 必要ならTurn終了処理も呼ぶ

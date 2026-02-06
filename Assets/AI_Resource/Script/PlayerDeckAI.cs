@@ -17,7 +17,7 @@ public class PlayerDeckAI : MonoBehaviour
 	public GameObject cardPrefab;                  // カード表示用Prefab
 	public GameObject playerAi;
 
-	public GameObject playerAI;
+	//public GameObject playerAI;
 
 	bool isGameEnd = false;
 
@@ -50,9 +50,8 @@ public class PlayerDeckAI : MonoBehaviour
     void InitializeDeckFromSavedDeck()
     {
         deck.Clear();
-        string path = ""; // 初期化
+        string jsonContent = "";
 
-<<<<<<< HEAD
         // ① 選択中のデッキ名を取得
         string deckName = DeckDataManager.Instance.SelectedDeckName;
         if (string.IsNullOrEmpty(deckName))
@@ -61,102 +60,58 @@ public class PlayerDeckAI : MonoBehaviour
             return;
         }
 
-        // ---------------------------
-        // tsukasa_2 優先ロジック: ユーザーデッキ or サンプルデッキの判定
-        // ---------------------------
-        string userPath = Path.Combine(
-            DeckDataManager.Instance.DeckDirectory,
-            deckName + ".json"
-        );
+        // --- tsukasa_2 優先ロジック: プレイヤーに応じた読み込み先の判定 ---
 
-        string jsonContent = "";
-=======
-		if (string.IsNullOrEmpty(deckName))
-		{
-			Debug.LogError("Battle開始時にデッキが選択されていません！");
-			return;
-		}
-		if (playerAI.GetComponent<PlayerAI>().playerName == "0")
-		{
-			// ---------------------------
-			//ユーザーデッキ優先
-			// ---------------------------
-			string userPath = Path.Combine(
-				DeckDataManager.Instance.DeckDirectory,
-				deckName + ".json"
-			);
-			if (File.Exists(userPath))
-			{
-				path = File.ReadAllText(userPath);
-			}
-			else
-			{
-				// ---------------------------
-				//サンプルデッキ
-				// ---------------------------
-				TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
-
-				if (sample != null)
-				{
-					path = sample.text;
-				}
-			}
-		}
-        else
+        // プレイヤーが自分（ID "0"）の場合：ユーザー保存デッキを優先チェック
+        if (playerAi.GetComponent<PlayerAI>().playerName == "0")
         {
-			// ---------------------------
-			//サンプルデッキ
-			// ---------------------------
-			deckName = "赤単";
-			TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
+            string userPath = Path.Combine(
+                DeckDataManager.Instance.DeckDirectory,
+                deckName + ".json"
+            );
 
-			if (sample != null)
-			{
-				path = sample.text;
-			}
-		}
-
-		if (!File.Exists(path))
-		{
-			Debug.LogError("デッキファイルが存在しません: " + path);
-			return;
-		}
->>>>>>> origin/tsukasa_2
-
-        if (File.Exists(userPath))
-        {
-            // ユーザーが作成したデッキが存在する場合
-            jsonContent = File.ReadAllText(userPath);
-            Debug.Log($"ユーザーデッキを読み込みます: {userPath}");
-        }
-        else
-        {
-            // 存在しない場合はResources（サンプルデッキ）から読み込み
-            TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
-            if (sample != null)
+            if (File.Exists(userPath))
             {
-                jsonContent = sample.text;
-                Debug.Log($"サンプルデッキをResourcesから読み込みます: {deckName}");
+                jsonContent = File.ReadAllText(userPath);
+                Debug.Log($"ユーザーデッキを読み込みます: {userPath}");
             }
             else
             {
-                Debug.LogError($"デッキファイルが見つかりません (User/Sample共): {deckName}");
-                return;
+                // ユーザーファイルがなければResourcesから
+                TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
+                if (sample != null)
+                {
+                    jsonContent = sample.text;
+                    Debug.Log($"サンプルデッキをResourcesから読み込みます: {deckName}");
+                }
+            }
+        }
+        else
+        {
+            // 敵（AI）の場合：デフォルトで「赤単」などを読み込む設定（tsukasa_2側の仕様）
+            string enemyDeckName = "赤単";
+            TextAsset sample = Resources.Load<TextAsset>("Decks/" + enemyDeckName);
+            if (sample != null)
+            {
+                jsonContent = sample.text;
+                Debug.Log($"敵用サンプルデッキを読み込みます: {enemyDeckName}");
             }
         }
 
-        // ③ JSON読み込み
-        DeckSaveData data = JsonUtility.FromJson<DeckSaveData>(jsonContent);
+        if (string.IsNullOrEmpty(jsonContent))
+        {
+            Debug.LogError($"デッキデータの読み込みに失敗しました。Player: {playerAi.GetComponent<PlayerAI>().playerName}");
+            return;
+        }
 
+        // ③ JSON展開
+        DeckSaveData data = JsonUtility.FromJson<DeckSaveData>(jsonContent);
         Debug.Log($"Battle用デッキデータ展開成功: {data.deckName}");
 
-        // ④ cardIds を元に40枚デッキ生成
+        // ④ cardIds を元にデッキ生成
         foreach (int id in data.cardIds)
         {
-            // IDを2桁の文字列に変換 (例: 1 -> "01")
             string idString = id.ToString().PadLeft(2, '0');
-
-            // allCardsから一致するカードを探す
             CardAI cardData = allCards.Find(card => card.cardID == idString);
 
             if (cardData == null)
@@ -164,13 +119,11 @@ public class PlayerDeckAI : MonoBehaviour
                 Debug.LogWarning($"カードIDがallCardsに存在しません: {idString}");
                 continue;
             }
-
             deck.Add(cardData);
         }
 
         // ⑤ シャッフル
         ShuffleDeck();
-
         Debug.Log($"デッキ初期化完了：{deck.Count}枚");
     }
 

@@ -7,7 +7,7 @@ public class HandManagerAI : MonoBehaviour
 
 	public Transform handZoneParent;
 	public Transform fieldZoneParent;
-	public float offsetX = 120f;   // カード間の距離（調整可）
+	public float offsetX = 140f;   // カード間の距離（調整可）
 
 	private void Awake()
 	{

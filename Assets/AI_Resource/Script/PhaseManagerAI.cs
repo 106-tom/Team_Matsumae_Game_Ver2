@@ -119,7 +119,7 @@ public class PhaseManagerAI : MonoBehaviour
 
 		// プレイヤー交代
 		currentPlayerIndex = 1 - currentPlayerIndex;
-
+		
 		// 次のターン開始
 		SetPhase(Phase.Start);
 	}
@@ -242,7 +242,8 @@ public class PhaseManagerAI : MonoBehaviour
 				break;
 
 			case Phase.End:
-				Debug.Log("End Phase");
+                EndTurn();
+                Debug.Log("End Phase");
 				break;
 		}
 	}
