@@ -58,23 +58,38 @@ public class PlayerDeckAI : MonoBehaviour
 			Debug.LogError("Battle開始時にデッキが選択されていません！");
 			return;
 		}
+		if (playerAI.GetComponent<PlayerAI>().playerName == "0")
+		{
+			// ---------------------------
+			//ユーザーデッキ優先
+			// ---------------------------
+			string userPath = Path.Combine(
+				DeckDataManager.Instance.DeckDirectory,
+				deckName + ".json"
+			);
+			if (File.Exists(userPath))
+			{
+				path = File.ReadAllText(userPath);
+			}
+			else
+			{
+				// ---------------------------
+				//サンプルデッキ
+				// ---------------------------
+				TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
 
-		// ---------------------------
-		//ユーザーデッキ優先
-		// ---------------------------
-		string userPath = Path.Combine(
-			DeckDataManager.Instance.DeckDirectory,
-			deckName + ".json"
-		);
-		if (File.Exists(userPath))
-		{
-			path = File.ReadAllText(userPath);
+				if (sample != null)
+				{
+					path = sample.text;
+				}
+			}
 		}
-		else
-		{
+        else
+        {
 			// ---------------------------
 			//サンプルデッキ
 			// ---------------------------
+			deckName = "赤単";
 			TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
 
 			if (sample != null)
@@ -82,6 +97,7 @@ public class PlayerDeckAI : MonoBehaviour
 				path = sample.text;
 			}
 		}
+
 		if (!File.Exists(path))
 		{
 			Debug.LogError("デッキファイルが存在しません: " + path);
