@@ -36,16 +36,16 @@ public class DeckSelectUIManager : MonoBehaviour
     // =========================
     public void Refresh()
     {
-
         ClearButtons();
 
-        int deckCount = DeckDataManager.Instance.DeckCount;
-        int viewCount = Mathf.Min(deckCount + 1, maxDeckViewCount);
+        var deckList = DeckDataManager.Instance.GetDeckListForDisplay();
+
+        int viewCount = Mathf.Min(deckList.Count + 1, maxDeckViewCount);
 
         for (int i = 0; i < viewCount; i++)
         {
-            if (i < deckCount)
-                CreateDeckButton(i);
+            if (i < deckList.Count)
+                CreateDeckButton(deckList[i]);
             else
                 CreateNewDeckButton();
         }
@@ -54,10 +54,8 @@ public class DeckSelectUIManager : MonoBehaviour
     // =========================
     // Button Create
     // =========================
-    void CreateDeckButton(int index)
+    void CreateDeckButton(string deckName)
     {
-        string deckName = DeckDataManager.Instance.GetDeckName(index);
-
         GameObject obj = Instantiate(deckButtonPrefab, deckGridParent);
         Button button = obj.GetComponent<Button>();
         TMP_Text text = obj.GetComponentInChildren<TMP_Text>();

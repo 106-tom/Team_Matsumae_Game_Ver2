@@ -19,6 +19,9 @@ public class DeckDataManager : MonoBehaviour
     public string SelectedDeckName =>
         PlayerPrefs.GetString(SELECTED_DECK_KEY, "");
 
+    List<string> sampleDeckNames = new List<string>();
+    List<string> userDeckNames = new List<string>();
+
     string editingDeckName;
 
     void Awake()
@@ -71,28 +74,53 @@ public class DeckDataManager : MonoBehaviour
     // =========================
     public void LoadDeckList()
     {
-        deckNames.Clear();
-
-        //サンプルデッキ（Assets）
         LoadSampleDeckList();
+        LoadUserDeckList();
+    }
+    public List<string> GetDeckListForDisplay()
+    {
+        List<string> result = new List<string>();
 
-        //ユーザーデッキ（Documents）
+        result.AddRange(sampleDeckNames);
+        result.AddRange(userDeckNames);
+
+        return result;
+    }
+    void LoadUserDeckList()
+    {
+        userDeckNames.Clear();
+
         foreach (var file in Directory.GetFiles(DeckDirectory, "*.json"))
         {
             var data = JsonUtility.FromJson<DeckSaveData>(
                 File.ReadAllText(file)
             );
 
-            // デッキ名が無い or 未保存なら除外
             if (string.IsNullOrEmpty(data.deckName))
                 continue;
 
-            deckNames.Add(data.deckName);
+            userDeckNames.Add(data.deckName);
         }
 
-        deckNames.Sort();
+        userDeckNames.Sort();
     }
 
+    void LoadSampleDeckList()
+    {
+        sampleDeckNames.Clear();
+
+        TextAsset[] samples = Resources.LoadAll<TextAsset>("Decks");
+        foreach (var textAsset in samples)
+        {
+            var data = JsonUtility.FromJson<DeckSaveData>(textAsset.text);
+
+            if (string.IsNullOrEmpty(data.deckName))
+                continue;
+
+            sampleDeckNames.Add(data.deckName);
+        }
+        sampleDeckNames.Sort();
+    }
     public string GetDeckName(int index)
     {
         if (index < 0 || index >= deckNames.Count)
@@ -256,24 +284,6 @@ public class DeckDataManager : MonoBehaviour
 
         Debug.LogError("デッキが存在しません: " + deckName);
     }
-    void LoadSampleDeckList()
-    {
-        TextAsset[] samples = Resources.LoadAll<TextAsset>("Decks");
-
-        foreach (var textAsset in samples)
-        {
-            var data = JsonUtility.FromJson<DeckSaveData>(textAsset.text);
-
-            if (string.IsNullOrEmpty(data.deckName))
-                continue;
-
-            // ユーザーデッキと名前が被っていたら無視
-            if (!deckNames.Contains(data.deckName))
-            {
-                deckNames.Add(data.deckName);
-            }
-        }
-    }
 
     // =========================
     // Folder Open
@@ -312,5 +322,8 @@ public class DeckDataManager : MonoBehaviour
         nameInput.SetDeckName(data.deckName);
         editManager.LoadFromData(data);
     }
-
+    public bool IsSampleDeck(string deckName)
+    {
+        return sampleDeckNames.Contains(deckName);
+    }
 }

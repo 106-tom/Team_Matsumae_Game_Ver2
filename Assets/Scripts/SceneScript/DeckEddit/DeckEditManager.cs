@@ -142,7 +142,7 @@ public class DeckEditManager : MonoBehaviour
         DeckDataManager.Instance.SaveDeckSmart();
     }
 
-    private void ReturnToDeckSelect()
+    public void ReturnToDeckSelect()
     {
         SceneManager.LoadScene("DeckSelect");
     }

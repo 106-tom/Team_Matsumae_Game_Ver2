@@ -16,6 +16,8 @@ public class PlayerDeckAI : MonoBehaviour
 	public Transform handParent;                   // 手札表示用の親オブジェクト
 	public GameObject cardPrefab;                  // カード表示用Prefab
 
+	public GameObject playerAI;
+
 	bool isGameEnd = false;
 
 	//public HandManagerAI handManager;
@@ -47,7 +49,7 @@ public class PlayerDeckAI : MonoBehaviour
 	void InitializeDeckFromSavedDeck()
 	{
 		deck.Clear();
-
+		string path = null;
 		// ① 選択中のデッキ名を取得
 		string deckName = DeckDataManager.Instance.SelectedDeckName;
 
@@ -57,12 +59,29 @@ public class PlayerDeckAI : MonoBehaviour
 			return;
 		}
 
-		// ② JSONファイルのパス取得
-		string path = Path.Combine(
+		// ---------------------------
+		//ユーザーデッキ優先
+		// ---------------------------
+		string userPath = Path.Combine(
 			DeckDataManager.Instance.DeckDirectory,
 			deckName + ".json"
 		);
+		if (File.Exists(userPath))
+		{
+			path = File.ReadAllText(userPath);
+		}
+		else
+		{
+			// ---------------------------
+			//サンプルデッキ
+			// ---------------------------
+			TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
 
+			if (sample != null)
+			{
+				path = sample.text;
+			}
+		}
 		if (!File.Exists(path))
 		{
 			Debug.LogError("デッキファイルが存在しません: " + path);
