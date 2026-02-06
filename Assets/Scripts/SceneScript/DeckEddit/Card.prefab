@@ -668,7 +668,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 63.9, y: 105.1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 340, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2786647163249940659
@@ -2195,7 +2195,7 @@ GameObject:
   - component: {fileID: 2815627863974982590}
   - component: {fileID: 5951147331834418043}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: mana_55
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2217,7 +2217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 110.4, y: 246.84988}
+  m_AnchoredPosition: {x: 110, y: 246}
   m_SizeDelta: {x: 95.8316, y: 41.666}
   m_Pivot: {x: 0.46548003, y: 0.4999999}
 --- !u!222 &2815627863974982590

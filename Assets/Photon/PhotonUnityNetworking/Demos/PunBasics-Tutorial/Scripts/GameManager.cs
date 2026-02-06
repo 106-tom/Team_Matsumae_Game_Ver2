@@ -161,7 +161,7 @@ namespace Photon.Pun.Demo.PunBasics
 
 		public void QuitApplication()
 		{
-			Application.Quit();
+			//Application.Quit();
 		}
 
 		#endregion

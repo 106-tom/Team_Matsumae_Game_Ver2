@@ -184,7 +184,41 @@ public class DeckDataManager : MonoBehaviour
         deckNames.Remove(deckName);
     }
 
+    public bool DeleteSelectedDeck()
+    {
+        string deckName = SelectedDeckName;
 
+        if (string.IsNullOrEmpty(deckName))
+        {
+            Debug.LogWarning("削除対象が選択されていません");
+            return false;
+        }
+
+        // サンプルは削除不可
+        if (IsSampleDeck(deckName))
+        {
+            Debug.LogWarning("サンプルデッキは削除できません");
+            return false;
+        }
+
+        string path = Path.Combine(DeckDirectory, deckName + ".json");
+
+        if (!File.Exists(path))
+        {
+            Debug.LogWarning("削除ファイルが存在しません");
+            return false;
+        }
+
+        File.Delete(path);
+
+        PlayerPrefs.DeleteKey(SELECTED_DECK_KEY);
+        PlayerPrefs.Save();
+
+        LoadDeckList();
+
+        Debug.Log("デッキ削除成功: " + deckName);
+        return true;
+    }
 
     // =========================
     // Save / Load
