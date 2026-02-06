@@ -25,6 +25,10 @@ public class StockPageController : MonoBehaviour
 
     [SerializeField] Color selectedColor = Color.white;
     [SerializeField] Color unselectedColor = new Color(0.6f, 0.6f, 0.6f, 1f);
+    int currentIndex = 0;
+
+    public int PageCount => pages.Length;
+    public int CurrentIndex => currentIndex;
 
     void Awake()
     {
@@ -67,36 +71,25 @@ public class StockPageController : MonoBehaviour
                 : unselectedColor;
         }
     }
+    public void ShowPageByIndex(int index)
+    {
+        currentIndex = (index + pages.Length) % pages.Length;
 
+        for (int i = 0; i < pages.Length; i++)
+        {
+            pages[i].SetActive(i == currentIndex);
+
+            var image = buttons[i].GetComponent<Image>();
+            image.color = (i == currentIndex)
+                ? selectedColor
+                : unselectedColor;
+        }
+    }
     // ===== ƒ{ƒ^ƒ“—p =====
-    public void ShowRed()
-    {
-        ShowPage(redPage, redButton);
-    }
-
-    public void ShowBlue()
-    {
-        ShowPage(bluePage, blueButton);
-    }
-
-    public void ShowGreen()
-    {
-        ShowPage(greenPage, greenButton);
-    }
-
-    public void ShowYellow()
-    {
-        ShowPage(yellowPage, yellowButton);
-    }
-
-    public void ShowPurple()
-    {
-        ShowPage(purplePage, purpleButton);
-    }
-    
-    public void ShowWhite()
-    {
-        ShowPage(whitePage, whiteButton);
-    }
-
+    public void ShowRed() => ShowPageByIndex(0);
+    public void ShowBlue() => ShowPageByIndex(1);
+    public void ShowGreen() => ShowPageByIndex(2);
+    public void ShowYellow() => ShowPageByIndex(3);
+    public void ShowPurple() => ShowPageByIndex(4);
+    public void ShowWhite() => ShowPageByIndex(5);
 }

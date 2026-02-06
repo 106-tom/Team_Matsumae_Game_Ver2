@@ -9,7 +9,7 @@ public class DeckEditManager : MonoBehaviour
     // =================================
     // デッキデータ
     // =================================
-    [SerializeField] private int deckMax = 40;
+    [SerializeField] private int deckMax = 30;
     private int[] deckCardIds;
     [SerializeField] private DeckNameInput nameInput;
 
@@ -27,13 +27,35 @@ public class DeckEditManager : MonoBehaviour
     [SerializeField] private Transform yellowStockContent;
     [SerializeField] private Transform purpleStockContent;
     [SerializeField] private Transform whiteStockContent;
+    [Header("Button UI")]
+    [SerializeField] private Button redButton;
+    [SerializeField] private Button blueButton;
+    [SerializeField] private Button greenButton;
+    [SerializeField] private Button yellowButton;
+    [SerializeField] private Button purpleButton;
+    [SerializeField] private Button whiteButton;
+
+    private Dictionary<CardColor, Button> colorButtons;
 
     private Dictionary<CardColor, Transform[]> stockSlotsByColor;
     private Transform[] deckSlots;
 
     private int lastTouchedCardId = -1;
-    private Color unselectedColor = new Color(0.6f, 0.6f, 0.6f, 1f);
 
+    private CardColor currentColor = CardColor.Red;
+
+    private CardColor[] colorOrder =
+    {
+    CardColor.Red,
+    CardColor.Blue,
+    CardColor.Green,
+    CardColor.Yellow,
+    CardColor.Purple,
+    CardColor.White
+    };
+    [SerializeField] StockPageController stockController;
+
+    private int currentIndex = 0;
     // =================================
     // コストグラフ
     // =================================
@@ -41,6 +63,7 @@ public class DeckEditManager : MonoBehaviour
     [SerializeField] private Transform costGraphRoot;
     [SerializeField] private GameObject barPrefab;
     [SerializeField] private float heightPerCard = 20f;
+    [SerializeField] private RectTransform cardListArea; // カード一覧の親UI
     private const int MAX_COST = 7;
 
     // =================================
@@ -51,6 +74,17 @@ public class DeckEditManager : MonoBehaviour
         InitializeDeckData();
         InitializeDeckSlots();
         InitializeStockSlots();
+
+        colorButtons = new Dictionary<CardColor, Button>
+        {
+            { CardColor.Red, redButton },
+            { CardColor.Blue, blueButton },
+            { CardColor.Green, greenButton },
+            { CardColor.Yellow, yellowButton },
+            { CardColor.Purple, purpleButton },
+            { CardColor.White, whiteButton }
+        };
+
     }
 
     private void Start()
@@ -102,6 +136,22 @@ public class DeckEditManager : MonoBehaviour
         for (int i = 0; i < parent.childCount; i++)
             children[i] = parent.GetChild(i);
         return children;
+    }
+    // =================================
+    // スクロール
+    // =================================
+    void Update()
+    {
+        if (!IsMouseOverCardList())
+            return;
+
+        float scroll = Input.mouseScrollDelta.y;
+        if (scroll == 0) return;
+
+        int next = stockController.CurrentIndex +
+                  (scroll > 0 ? -1 : 1);
+
+        stockController.ShowPageByIndex(next);
     }
 
     // =================================
@@ -501,6 +551,33 @@ public class DeckEditManager : MonoBehaviour
         {
             var overlay = obj.transform.Find("mana_55");
             overlay.gameObject.SetActive(false);
+        }
+
+    }
+
+    private bool IsMouseOverCardList()
+    {
+        return RectTransformUtility.RectangleContainsScreenPoint(
+            cardListArea,
+            Input.mousePosition,
+            null
+        );
+    }
+
+    private void UpdateButtonVisual(CardColor activeColor)
+    {
+        foreach (var pair in colorButtons)
+        {
+            Image img = pair.Value.GetComponent<Image>();
+
+            if (pair.Key == activeColor)
+            {
+                img.color = Color.white; // 明るく
+            }
+            else
+            {
+                img.color = new Color(0.6f, 0.6f, 0.6f); // 暗く
+            }
         }
     }
 }

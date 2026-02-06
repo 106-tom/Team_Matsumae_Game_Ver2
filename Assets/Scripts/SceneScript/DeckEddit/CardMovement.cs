@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class CardMovement : MonoBehaviour,
@@ -16,7 +16,7 @@ public class CardMovement : MonoBehaviour,
         dropDeckPanels = FindObjectsOfType<DropDeckCardPlace>();
         dropCollectionPanels = FindObjectsOfType<DropCollectCardPlace>();
     }
-    // ===== �N���b�N =====
+    // ===== クリック =====
     public void OnPointerClick(PointerEventData eventData)
     {
         CardController card = GetComponent<CardController>();
@@ -24,7 +24,22 @@ public class CardMovement : MonoBehaviour,
 
         DeckEditManager manager =
             FindObjectOfType<DeckEditManager>();
+        // 🔹 右クリック → 1枚移動
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            if (transform.parent.GetComponent<DropDeckCardPlace>() != null)
+            {
+                // デッキ側にあるなら戻す
+                manager.RemoveDeckCard(card.model.cardId);
+            }
+            else
+            {
+                // コレクション側なら追加
+                manager.SetDeckCards(card.model.cardId);
+            }
 
+            return; // ← ここ重要
+        }
         manager.SetLastTouchedCard(card.model.cardId);
     }
 
@@ -82,10 +97,10 @@ public class CardMovement : MonoBehaviour,
 
         if (!droppedSuccessfully)
         {
-            // �� �ǂ��ɂ��h���b�v����Ȃ�����
-            Debug.Log("�����ȏꏊ�Ƀh���b�v");
+            // ★ どこにもドロップされなかった
+            Debug.Log("無効な場所にドロップ");
 
-            // UI�𐳂�����Ԃɖ߂�
+            // UIを正しい状態に戻す
             manager.RefreshAll();
         }
         Destroy(gameObject);
