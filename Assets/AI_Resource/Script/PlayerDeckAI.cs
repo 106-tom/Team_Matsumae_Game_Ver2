@@ -52,6 +52,7 @@ public class PlayerDeckAI : MonoBehaviour
         deck.Clear();
         string path = ""; // 初期化
 
+<<<<<<< HEAD
         // ① 選択中のデッキ名を取得
         string deckName = DeckDataManager.Instance.SelectedDeckName;
         if (string.IsNullOrEmpty(deckName))
@@ -69,6 +70,58 @@ public class PlayerDeckAI : MonoBehaviour
         );
 
         string jsonContent = "";
+=======
+		if (string.IsNullOrEmpty(deckName))
+		{
+			Debug.LogError("Battle開始時にデッキが選択されていません！");
+			return;
+		}
+		if (playerAI.GetComponent<PlayerAI>().playerName == "0")
+		{
+			// ---------------------------
+			//ユーザーデッキ優先
+			// ---------------------------
+			string userPath = Path.Combine(
+				DeckDataManager.Instance.DeckDirectory,
+				deckName + ".json"
+			);
+			if (File.Exists(userPath))
+			{
+				path = File.ReadAllText(userPath);
+			}
+			else
+			{
+				// ---------------------------
+				//サンプルデッキ
+				// ---------------------------
+				TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
+
+				if (sample != null)
+				{
+					path = sample.text;
+				}
+			}
+		}
+        else
+        {
+			// ---------------------------
+			//サンプルデッキ
+			// ---------------------------
+			deckName = "赤単";
+			TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
+
+			if (sample != null)
+			{
+				path = sample.text;
+			}
+		}
+
+		if (!File.Exists(path))
+		{
+			Debug.LogError("デッキファイルが存在しません: " + path);
+			return;
+		}
+>>>>>>> origin/tsukasa_2
 
         if (File.Exists(userPath))
         {
