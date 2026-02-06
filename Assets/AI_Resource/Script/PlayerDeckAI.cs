@@ -47,92 +47,82 @@ public class PlayerDeckAI : MonoBehaviour
 		InitializeDeckFromSavedDeck();
 	}
 
-	void InitializeDeckFromSavedDeck()
-	{
-		deck.Clear();
-		string path = null;
-		// ① 選択中のデッキ名を取得
-		string deckName = DeckDataManager.Instance.SelectedDeckName;
+    void InitializeDeckFromSavedDeck()
+    {
+        deck.Clear();
+        string path = ""; // 初期化
+
+        // ① 選択中のデッキ名を取得
+        string deckName = DeckDataManager.Instance.SelectedDeckName;
         if (string.IsNullOrEmpty(deckName))
         {
             Debug.LogError("Battle開始時にデッキが選択されていません！");
             return;
         }
-        if (playerAi.GetComponent<PlayerAI>().playerName == "0")
-		{
-            // ② JSONファイルのパス取得
-            path = Path.Combine(
-                DeckDataManager.Instance.DeckDirectory,
-                deckName + ".json"
-            );
+
+        // ---------------------------
+        // tsukasa_2 優先ロジック: ユーザーデッキ or サンプルデッキの判定
+        // ---------------------------
+        string userPath = Path.Combine(
+            DeckDataManager.Instance.DeckDirectory,
+            deckName + ".json"
+        );
+
+        string jsonContent = "";
+
+        if (File.Exists(userPath))
+        {
+            // ユーザーが作成したデッキが存在する場合
+            jsonContent = File.ReadAllText(userPath);
+            Debug.Log($"ユーザーデッキを読み込みます: {userPath}");
+        }
+        else
+        {
+            // 存在しない場合はResources（サンプルデッキ）から読み込み
+            TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
+            if (sample != null)
+            {
+                jsonContent = sample.text;
+                Debug.Log($"サンプルデッキをResourcesから読み込みます: {deckName}");
+            }
+            else
+            {
+                Debug.LogError($"デッキファイルが見つかりません (User/Sample共): {deckName}");
+                return;
+            }
         }
 
-<<<<<<< HEAD
-=======
-		// ---------------------------
-		//ユーザーデッキ優先
-		// ---------------------------
-		string userPath = Path.Combine(
-			DeckDataManager.Instance.DeckDirectory,
-			deckName + ".json"
-		);
-		if (File.Exists(userPath))
-		{
-			path = File.ReadAllText(userPath);
-		}
-		else
-		{
-			// ---------------------------
-			//サンプルデッキ
-			// ---------------------------
-			TextAsset sample = Resources.Load<TextAsset>("Decks/" + deckName);
->>>>>>> origin/tsukasa_2
+        // ③ JSON読み込み
+        DeckSaveData data = JsonUtility.FromJson<DeckSaveData>(jsonContent);
 
-			if (sample != null)
-			{
-				path = sample.text;
-			}
-		}
-		if (!File.Exists(path))
-		{
-			Debug.LogError("デッキファイルが存在しません: " + path);
-			return;
-		}
+        Debug.Log($"Battle用デッキデータ展開成功: {data.deckName}");
 
-		// ③ JSON読み込み
-		DeckSaveData data =
-			JsonUtility.FromJson<DeckSaveData>(File.ReadAllText(path));
+        // ④ cardIds を元に40枚デッキ生成
+        foreach (int id in data.cardIds)
+        {
+            // IDを2桁の文字列に変換 (例: 1 -> "01")
+            string idString = id.ToString().PadLeft(2, '0');
 
-		Debug.Log($"Battle用デッキ読み込み成功: {data.deckName}");
+            // allCardsから一致するカードを探す
+            CardAI cardData = allCards.Find(card => card.cardID == idString);
 
-		// ④ cardIds を元に40枚デッキ生成
-		foreach (int id in data.cardIds)
-		{
-			// DeckEdit側はint、CardAI側はstringなので変換する
-			string idString = id.ToString();
+            if (cardData == null)
+            {
+                Debug.LogWarning($"カードIDがallCardsに存在しません: {idString}");
+                continue;
+            }
 
-			idString = idString.PadLeft(2, '0');
+            deck.Add(cardData);
+        }
 
-			// allCardsから一致するカードを探す
-			CardAI cardData = allCards.Find(card => card.cardID == idString);
+        // ⑤ シャッフル
+        ShuffleDeck();
 
-			if (cardData == null)
-			{
-				Debug.LogWarning($"カードIDがallCardsに存在しません: {idString}");
-				continue;
-			}
+        Debug.Log($"デッキ初期化完了：{deck.Count}枚");
+    }
 
-			deck.Add(cardData);
-		}
-
-		// ⑤ シャッフル
-		ShuffleDeck();
-
-		Debug.Log($"デッキ初期化完了：{deck.Count}枚");
-	}
-
-	// デッキを初期化
-	void InitializeDeck()
+    // デッキを初期化
+    void InitializeDeck()
 	{
 		//deck.Clear();
 		//
